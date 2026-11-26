@@ -777,6 +777,23 @@
       margin-top: 6px;
       display: block;
     }
+
+    /* ===== EXTRA STYLES FOR TELEGRAM & INSTAGRAM ===== */
+    .icon-tg { background: linear-gradient(135deg, #0088cc, #29b6f6); color: white; }
+    .icon-ig { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); color: white; }
+    .card-accent-tg { border-top: 3px solid #0088cc; }
+    .card-accent-ig { border-top: 3px solid #c13584; }
+    .module-header-tg { background: linear-gradient(135deg, #0088cc, #29b6f6); color: white; }
+    .module-header-ig { background: linear-gradient(135deg, #833ab4, #fd1d1d); color: white; }
+    .badge-tg { background: rgba(0,136,204,0.12); color: #0088cc; }
+    .badge-ig { background: rgba(193,53,132,0.12); color: #c13584; }
+    .highlight-tg { background: linear-gradient(135deg, rgba(0,136,204,0.07), rgba(41,182,246,0.04)); border: 1px solid rgba(0,136,204,0.25); }
+    .highlight-ig { background: linear-gradient(135deg, rgba(193,53,132,0.07), rgba(253,29,29,0.04)); border: 1px solid rgba(193,53,132,0.25); }
+    .highlight-tg h4 { color: #0088cc; }
+    .highlight-ig h4 { color: #c13584; }
+    .feature-list li.tg { border-right-color: #0088cc; }
+    .feature-list li.ig { border-right-color: #c13584; }
+
   </style>
 </head>
 <body>
@@ -787,26 +804,26 @@
     <span class="brand-badge">برنامه جامع دیجیتال‌سازی</span>
     <h1>طرح تحول دیجیتال<br><span>برند راسپینا</span></h1>
     <p class="hero-sub">
-      مستندات جامع طراحی و پیاده‌سازی سیستم‌های یکپارچه CRM، باشگاه مشتریان،
-      اتوماسیون اداری بین‌شعبه‌ای، و مدیریت انبار هوشمند برای برند پوشاک راسپینا —
-      با رویکرد کامل موبایل‌فرست و یکپارچه‌سازی با نرم‌افزار سپیدار
+      مستندات جامع طراحی و پیاده‌سازی سیستم‌های یکپارچه CRM و باشگاه مشتریان، ربات فروشگاهی تلگرام،
+      ربات هوش مصنوعی اینستاگرام (پاسخگوی دایرکت + پایشگر رشد)، اتوماسیون اداری ۱۰۰٪ بدون کاغذ و
+      انبارگردانی سازگار با سپیدار — با رویکرد توسعه سریع مبتنی بر هوش مصنوعی (AI-First)
     </p>
     <div class="hero-stats">
       <div class="stat-item">
-        <span class="stat-number">۳</span>
-        <span class="stat-label">سیستم اصلی</span>
+        <span class="stat-number">۶</span>
+        <span class="stat-label">سیستم یکپارچه کلان</span>
       </div>
       <div class="stat-item">
         <span class="stat-number">۱۴M+</span>
-        <span class="stat-label">کالای قابل انبارگردانی</span>
+        <span class="stat-label">کالای انبارگردانی با بارکد</span>
       </div>
       <div class="stat-item">
         <span class="stat-number">۲</span>
-        <span class="stat-label">شعبه (همدان – تهران)</span>
+        <span class="stat-label">شعبه متصل (همدان – تهران)</span>
       </div>
       <div class="stat-item">
-        <span class="stat-number">۱۰۰٪</span>
-        <span class="stat-label">وب‌بیس و موبایل‌فرست</span>
+        <span class="stat-number">۸–۹</span>
+        <span class="stat-label">هفته تحویل با شتاب AI</span>
       </div>
     </div>
   </div>
@@ -816,14 +833,17 @@
 <!-- ===== NAVIGATION ===== -->
 <nav class="toc-section">
   <div class="toc-inner">
-    <span class="toc-label">◆ فهرست:</span>
-    <a href="#brand" class="toc-btn">🏷️ برند راسپینا</a>
+    <span class="toc-label">◆ فهرست سامانه:</span>
+    <a href="#brand" class="toc-btn">🏷️ برند</a>
     <a href="#crm" class="toc-btn">👥 CRM</a>
     <a href="#club" class="toc-btn">⭐ باشگاه مشتریان</a>
+    <a href="#telegram" class="toc-btn" style="border-color:#0088cc;color:#85d7ff;">🤖 ربات تلگرام</a>
+    <a href="#instagram" class="toc-btn" style="border-color:#c13584;color:#ff9bd2;">📸 ربات اینستاگرام</a>
     <a href="#automation" class="toc-btn">🏢 اتوماسیون اداری</a>
-    <a href="#warehouse" class="toc-btn">📦 انبارگردانی</a>
+    <a href="#warehouse" class="toc-btn">📦 انبارگردانی سپیدار</a>
     <a href="#integration" class="toc-btn">🔗 یکپارچه‌سازی</a>
-    <a href="#roadmap" class="toc-btn">🗓️ نقشه راه</a>
+    <a href="#roadmap" class="toc-btn">🗓️ زمان‌بندی و نقشه راه</a>
+    <a href="Raspina-Project-Timeline.html" class="toc-btn" style="background:linear-gradient(135deg,var(--accent),#e8c97a);color:#1a1a2e;font-weight:700;">📊 تایم‌لاین تفکیکی</a>
   </div>
 </nav>
 
@@ -1331,13 +1351,265 @@
   </div>
 </section>
 
+
+<!-- ===== TELEGRAM SHOP BOT ===== -->
+<section id="telegram" class="section" style="background:white;">
+  <div class="wrapper">
+    <div class="section-header">
+      <div class="section-icon icon-tg">🤖</div>
+      <div class="section-title-block">
+        <span class="section-num">بخش ۰۴ — ربات فروشگاهی تلگرام</span>
+        <h2>ربات فروشگاهی تلگرام راسپینا (Telegram Shop Bot)</h2>
+        <p>فروشگاه کامل و مستقل در بستر تلگرام، متصل به دیتای زنده سایت‌ها با کاتالوگ درختی، استعلام قیمت و دکمه خرید مستقیم</p>
+      </div>
+    </div>
+
+    <div class="highlight-box highlight-tg">
+      <span class="highlight-icon">🛍️</span>
+      <div>
+        <h4>فروشگاه مدرن درون‌برنامه‌ای: تجربه خرید بدون خروج از تلگرام</h4>
+        <p>
+          بسیاری از مشتریان پوشاک تمایلی به باز کردن مرورگر و پیمایش صفحات سایت ندارند.
+          این ربات اختصاصی به ۳ وب‌سایت رسمی راسپینا متصل است و مطابق با ساختار درختی دسته‌بندی‌ها،
+          تمام محصولات را به همراه تصاویر آلبومی، سایزبندی، رنگ‌بندی، قیمت لحظه‌ای و <strong>لینک مستقیم خرید همان محصول از سایت</strong>
+          در اختیار کاربر قرار می‌دهد تا چرخه انتخاب تا پرداخت در چند ثانیه کامل شود.
+        </p>
+      </div>
+    </div>
+
+    <!-- ماژول‌های ربات تلگرام -->
+    <div class="sub-section-title">✨ امکانات و قابلیت‌های کلیدی ربات تلگرام</div>
+    <div class="card-grid">
+      <div class="card card-accent-tg">
+        <span class="card-icon">📂</span>
+        <h3>دسته‌بندی درختی پویا</h3>
+        <p>نمایش شکیل تمامی گروه‌های محصولی (مانتو، شومیز، شلوار، پیراهن، ست، بارانی، اکسسوری) با دکمه‌های شیشه‌ای اینلاین و شمارش تعداد موجودی.</p>
+      </div>
+      <div class="card card-accent-tg">
+        <span class="card-icon">👗</span>
+        <h3>کاتالوگ چندرسانه‌ای محصول</h3>
+        <p>ارسال آلبوم تصاویر تنخور کالا، جدول سایزبندی، توضیحات جنس پارچه، قیمت روز و وضعیت موجودی هر انبار به صورت لحظه‌ای از سایت.</p>
+      </div>
+      <div class="card card-accent-tg">
+        <span class="card-icon">🔗</span>
+        <h3>دکمه مستقیم خرید در سایت</h3>
+        <p>زیر هر کارت محصول، دکمه اختصاصی «خرید آنلاین از سایت» تعبیه شده که مشتری را دقیقاً به صفحه تسویه‌حساب یا خرید همان محصول هدایت می‌کند.</p>
+      </div>
+      <div class="card card-accent-tg">
+        <span class="card-icon">🔍</span>
+        <h3>جستجوی هوشمند کالا</h3>
+        <p>امکان سرچ متنی نام کالا، کد محصول، بازه قیمتی یا فیلتر بر اساس رنگ و سایز برای دسترسی فوری بدون نیاز به گردش در منوها.</p>
+      </div>
+      <div class="card card-accent-tg">
+        <span class="card-icon">📦</span>
+        <h3>پیگیری آنلاین وضعیت سفارش</h3>
+        <p>مشتری می‌تواند تنها با وارد کردن شماره سفارش یا شماره موبایل، آخرین وضعیت آماده‌سازی، بسته‌بندی و کد رهگیری پستی را دریافت کند.</p>
+      </div>
+      <div class="card card-accent-tg">
+        <span class="card-icon">📢</span>
+        <h3>اتصال به CRM و برودکست هوشمند</h3>
+        <p>ثبت رفتارها و علایق کاربر در پروفایل CRM، اطلاع‌رسانی شارژ مجدد کالاهای ناموجود، و ارسال کمپین‌های تخفیفی بر اساس سلیقه کاربر.</p>
+      </div>
+    </div>
+
+    <!-- سناریوی کاربری در تلگرام -->
+    <div class="sub-section">
+      <div class="sub-section-title">🔄 جریان خرید در ربات تلگرام (User Flow)</div>
+      <div class="flow">
+        <div class="flow-step">
+          <div class="flow-box">
+            <div class="flow-num">۱</div>
+            <div class="flow-title">استارت و منوی اصلی</div>
+            <div class="flow-desc">مشاهده دسته‌بندی‌ها و کالکشن‌های جدید</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-box">
+            <div class="flow-num">۲</div>
+            <div class="flow-title">انتخاب دسته‌بندی</div>
+            <div class="flow-desc">مثلاً شومیز / مانتو با فیلتر سایز و رنگ</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-box">
+            <div class="flow-num">۳</div>
+            <div class="flow-title">بررسی مشخصات کالا</div>
+            <div class="flow-desc">عکس، جدول سایز، قیمت زنده و موجودی</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-box">
+            <div class="flow-num">۴</div>
+            <div class="flow-title">کلیک روی لینک خرید</div>
+            <div class="flow-desc">انتقال آنی به درگاه و سبد خرید همان محصول در سایت</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-box">
+            <div class="flow-num">۵</div>
+            <div class="flow-title">ثبت در CRM و پیگیری</div>
+            <div class="flow-desc">ارسال خودکار کد پیگیری و امتیاز باشگاه به مشتری</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- جدول مشخصات فنی ربات تلگرام -->
+    <div class="sub-section">
+      <div class="sub-section-title">⚙️ مشخصات فنی و معماری ربات تلگرام</div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>مولفه</th>
+            <th>فناوری / پیاده‌سازی</th>
+            <th>مزیت برای راسپینا</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>تکنولوژی هسته</td>
+            <td>Python 3.11 + Aiogram (Asynchronous Engine)</td>
+            <td>پاسخگویی سریع به هزاران کاربر همزمان بدون افت سرعت</td>
+          </tr>
+          <tr>
+            <td>اتصال به وب‌سایت‌ها</td>
+            <td>REST API + Webhook به هر ۳ سایت راسپینا</td>
+            <td>به‌روزرسانی خودکار قیمت و موجودی بدون نیاز به ثبت دستی</td>
+          </tr>
+          <tr>
+            <td>سیستم کشینگ (Caching)</td>
+            <td>Redis In-Memory Database</td>
+            <td>لودینگ آنی کاتالوگ و کاهش بار روی سرور سایت‌های اصلی</td>
+          </tr>
+          <tr>
+            <td>امنیت و احراز هویت</td>
+            <td>رمزنگاری تلگرام + اتصال شماره تلفن به CRM</td>
+            <td>شناسایی خودکار سوابق مشتری به محض استارت ربات</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INSTAGRAM AI BOT ===== -->
+<section id="instagram" class="section">
+  <div class="wrapper">
+    <div class="section-header">
+      <div class="section-icon icon-ig">📸</div>
+      <div class="section-title-block">
+        <span class="section-num">بخش ۰۵ — ربات هوشمند اینستاگرام</span>
+        <h2>دستیار هوش مصنوعی و پایشگر اینستاگرام راسپینا</h2>
+        <p>پاسخ‌گویی فوق‌سریع ۲ تا ۱۰ ثانیه‌ای به دایرکت‌ها و کامنت‌ها بدون خطا + پایش و تحلیل تخصصی رشد پیج با گزارش‌های روزانه و هفتگی</p>
+      </div>
+    </div>
+
+    <!-- بخش اول: دایرکت و کامنت هوش مصنوعی -->
+    <div class="sub-section-title">💬 بخش اول: پاسخگوی هوشمند دایرکت و کامنت (Direct & Comment AI Assistant)</div>
+    <div class="highlight-box highlight-ig">
+      <span class="highlight-icon">⚡</span>
+      <div>
+        <h4>پاسخ‌گویی آنی بین ۲ الی ۱۰ ثانیه با دقت ۱۰۰٪ بر اساس دیتای زنده سایت</h4>
+        <p>
+          این دستیار با اتصال به هوش مصنوعی پیشرفته (Claude / GPT-4o) و یکپارچگی با پایگاه دانش محصولات سایت (RAG Architecture)،
+          به تمام دایرکت‌ها و کامنت‌ها در کمترین زمان ممکن پاسخ می‌دهد. سیستم دارای گاردریل‌های سخت‌گیرانه‌ای است تا هیچ‌گونه خطایی
+          (مانند ارسال اطلاعات شلوار به جای شومیز) رخ ندهد. همچنین قابلیت <strong>شناسایی پست و استوری ارسال‌شده به دایرکت</strong>
+          را داراست و بلافاصله اطلاعات دقیق و لینک خرید اختصاصی آن محصول را ارسال می‌کند.
+        </p>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card-accent-ig">
+        <span class="card-icon">🎯</span>
+        <h3>دقت ۱۰۰٪ بدون خطا (Zero-Hallucination)</h3>
+        <p>هوش مصنوعی قبل از هر پاسخ، موجودی، کد کالا و دسته‌بندی را از دیتابیس استعلام می‌کند. اگر مشتری در مورد شومیز بپرسد، هرگز اطلاعات شلوار یا مانتو ارسال نخواهد شد.</p>
+      </div>
+      <div class="card card-accent-ig">
+        <span class="card-icon">🖼️</span>
+        <h3>تشخیص پست محصول در دایرکت</h3>
+        <p>مشتری با فوروارد کردن هر پست یا ریلز از پیج به دایرکت، در کمتر از ۵ ثانیه قیمت کالا، سایزهای موجود، رنگ‌بندی و <strong>لینک خرید مستقیم از سایت</strong> را دریافت می‌کند.</p>
+      </div>
+      <div class="card card-accent-ig">
+        <span class="card-icon">⏱️</span>
+        <h3>سرعت پاسخگویی ۲ الی ۱۰ ثانیه</h3>
+        <p>عملکرد پایدار ۲۴ ساعته در ۷ روز هفته؛ پاسخ‌دهی به اوج ترافیک جشنواره‌ها بدون معطلی مشتریان و پیشگیری از سرد شدن انگیزه خرید.</p>
+      </div>
+      <div class="card card-accent-ig">
+        <span class="card-icon">🎭</span>
+        <h3>شخصیت و لحن اختصاصی برند راسپینا</h3>
+        <p>پاسخ‌ها با لحن محترمانه، صمیمی و تخصصی استایلیست مد زنانه تنظیم شده و متناسب با شرایط مشتری تخفیف‌ها یا محصولات مکمل را پیشنهاد می‌دهد.</p>
+      </div>
+      <div class="card card-accent-ig">
+        <span class="card-icon">💬</span>
+        <h3>پاسخگویی خودکار به کامنت‌ها</h3>
+        <p>ارسال فوری پاسخ عمومی زیر کامنت + ارسال پیام خصوصی خودکار در دایرکت به همراه لینک مستقیم محصول برای بستن سریع فروش.</p>
+      </div>
+      <div class="card card-accent-ig">
+        <span class="card-icon">🚨</span>
+        <h3>ارجاع هوشمند به اپراتور انسانی (Fallback)</h3>
+        <p>در موارد پیچیده (پیگیری مرجوعی خاص، شکایات حساس یا سؤالات نیازمند تایید مدیر)، گفتگو بدون معطلی به کارشناس پشتیبانی ارجاع می‌شود.</p>
+      </div>
+    </div>
+
+    <!-- بخش دوم: پایشگر رشد و متخصص اینستاگرام -->
+    <div class="sub-section" style="margin-top:36px;">
+      <div class="sub-section-title">📊 بخش دوم: پایشگر و آنالیزور تخصصی اینستاگرام (Instagram Growth Specialist)</div>
+      <div class="highlight-box highlight-gold">
+        <span class="highlight-icon">📈</span>
+        <div>
+          <h4>تحلیل پیج مانند یک مشاور ارشد اینستاگرام — گزارش‌های روزانه و هفتگی</h4>
+          <p>
+            این ماژول از طریق اتصال مستقیم به Instagram Insights API کلیه اتفاقات پیج را به صورت ۲۴ ساعته رصد کرده و
+            خروجی‌های تحلیلی را برای مدیران تولید می‌کند تا تصمیم‌گیری‌های بازاریابی و تولید محتوا بر اساس دیتای دقیق انجام شود.
+          </p>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="module-block">
+          <div class="module-header module-header-gold">
+            <span class="mh-icon">☀️</span>
+            <h3>گزارش تحلیلی روزانه (Daily Briefing)</h3>
+          </div>
+          <div class="module-body">
+            <p style="font-size:13px;color:var(--text-light);margin-bottom:12px;">ارسال خودکار به موبایل مدیریت رأس ساعت ۸:۰۰ صبح هر روز شامل:</p>
+            <ul class="feature-list">
+              <li class="gold"><span class="fi-icon">👥</span><div><strong>ورودی و خروجی:</strong> تعداد فالوورهای جدید و آنفالوها با تفکیک منبع</div></li>
+              <li class="gold"><span class="fi-icon">👁️</span><div><strong>دیده‌شدن (Reach & Impressions):</strong> آمار بازدید استوری‌ها، پست‌ها و ریلزهای ۲۴ ساعت اخیر</div></li>
+              <li class="gold"><span class="fi-icon">🛒</span><div><strong>فروش محقق شده:</strong> تعداد کلیک‌های لینک خرید دایرکت و بیو و مبلغ فروش</div></li>
+              <li class="gold"><span class="fi-icon">💬</span><div><strong>حجم تعاملات:</strong> تعداد دایرکت‌ها، کامنت‌های پاسخ‌داده‌شده و موضوعات پرتکرار</div></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="module-block">
+          <div class="module-header module-header-ig">
+            <span class="mh-icon">📅</span>
+            <h3>گزارش استراتژیک هفتگی (Weekly Strategic Audit)</h3>
+          </div>
+          <div class="module-body">
+            <p style="font-size:13px;color:var(--text-light);margin-bottom:12px;">ارسال ابتدای هر هفته همراه با تحلیل هوشمند الگوریتم:</p>
+            <ul class="feature-list">
+              <li class="ig"><span class="fi-icon">🏆</span><div><strong>بهترین و ضعیف‌ترین محتوا:</strong> آنالیز علل موفقیت یا شکست ریلزها و پست‌ها</div></li>
+              <li class="ig"><span class="fi-icon">⏰</span><div><strong>ساعات طلایی انتشار:</strong> تعیین دقیق بهترین زمان پست‌گذاری برای بیشترین بازدهی</div></li>
+              <li class="ig"><span class="fi-icon">📊</span><div><strong>نرخ تعامل (Engagement Rate):</strong> مقایسه درصد تعامل با استانداردهای صنعت مد</div></li>
+              <li class="ig"><span class="fi-icon">🎯</span><div><strong>۳ راهکار عملی هفتگی:</strong> دستورالعمل مشخص هوش مصنوعی برای تولید محتوای هفته آینده</div></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===== AUTOMATION ===== -->
 <section id="automation" class="section" style="background:white;">
   <div class="wrapper">
     <div class="section-header">
       <div class="section-icon icon-green">🏢</div>
       <div class="section-title-block">
-        <span class="section-num">بخش ۰۴ — اتوماسیون اداری</span>
+        <span class="section-num">بخش ۰۶ — اتوماسیون اداری</span>
         <h2>اتوماسیون اداری بین‌شعبه‌ای راسپینا</h2>
         <p>سیستم جامع اداری برای هماهنگی کامل بین شعبه همدان و دفتر تهران — ۱۰۰٪ وب و موبایل‌فرست</p>
       </div>
@@ -1543,7 +1815,7 @@
     <div class="section-header">
       <div class="section-icon icon-purple">📦</div>
       <div class="section-title-block">
-        <span class="section-num">بخش ۰۵ — سیستم انبارگردانی هوشمند</span>
+        <span class="section-num">بخش ۰۷ — سیستم انبارگردانی هوشمند</span>
         <h2>انبارگردانی راسپینا — یکپارچه با سپیدار</h2>
         <p>مدیریت ۱۴ میلیون+ SKU با خواندن بارکد از دوربین گوشی — سازگار کامل با نرم‌افزار حسابداری سپیدار</p>
       </div>
@@ -1756,7 +2028,7 @@
     <div class="section-header">
       <div class="section-icon icon-dark">🔗</div>
       <div class="section-title-block">
-        <span class="section-num">بخش ۰۶ — معماری یکپارچه</span>
+        <span class="section-num">بخش ۰۸ — معماری یکپارچه اکوسیستم دیجیتال</span>
         <h2>یکپارچه‌سازی کامل اکوسیستم دیجیتال راسپینا</h2>
         <p>نقشه ارتباطی بین تمام سیستم‌ها و پلتفرم‌ها</p>
       </div>
@@ -1770,15 +2042,15 @@
         <div class="int-node">🛒 raspinashop.com</div>
         <div class="int-node">👗 raspinaclothing.com</div>
         <div class="int-node">🏷️ raspinaclothes.com</div>
-        <div class="int-node">👥 CRM System</div>
-        <div class="int-node">⭐ Customer Club</div>
-        <div class="int-node">🏢 Office Automation</div>
-        <div class="int-node">📦 Warehouse System</div>
-        <div class="int-node">📊 Sepidar ERP</div>
-        <div class="int-node">📱 SMS/WhatsApp</div>
-        <div class="int-node">📧 Email Marketing</div>
-        <div class="int-node">📸 Instagram API</div>
-        <div class="int-node">📊 Analytics Dashboard</div>
+        <div class="int-node" style="border-color:#0088cc;color:#0088cc;font-weight:700;">🤖 Telegram Shop Bot</div>
+        <div class="int-node" style="border-color:#c13584;color:#c13584;font-weight:700;">📸 Instagram AI Assistant</div>
+        <div class="int-node" style="border-color:#c13584;color:#c13584;font-weight:700;">📊 Instagram Analytics Engine</div>
+        <div class="int-node">👥 CRM System 360°</div>
+        <div class="int-node">⭐ Loyalty Club</div>
+        <div class="int-node">🏢 Office Automation (Hamedan ↔ Tehran)</div>
+        <div class="int-node">📦 Warehouse Barcode Scanner</div>
+        <div class="int-node">📊 Sepidar ERP Integration</div>
+        <div class="int-node">📱 SMS / WhatsApp Gateways</div>
       </div>
     </div>
 
@@ -1795,6 +2067,27 @@
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td>Telegram Shop Bot</td>
+          <td>سایت‌های راسپینا</td>
+          <td>کاتالوگ، دسته‌بندی، قیمت، هدایت به سبد خرید</td>
+          <td><span class="badge badge-tg">REST API + Redis Cache</span></td>
+          <td>Real-time (< ۱ ثانیه)</td>
+        </tr>
+        <tr>
+          <td>Instagram Direct / Comments</td>
+          <td>پایگاه دانش AI + دیتابیس کالا</td>
+          <td>تشخیص پست، ارسال قیمت، موجودی، لینک خرید</td>
+          <td><span class="badge badge-ig">Instagram Graph API + RAG</span></td>
+          <td>۲ الی ۱۰ ثانیه</td>
+        </tr>
+        <tr>
+          <td>Instagram Insights</td>
+          <td>داشبورد هوش تجاری</td>
+          <td>ورودی/خروجی، ریچ، نرخ تعامل، فروش پیج</td>
+          <td><span class="badge badge-ig">Insights API + AI Analytics</span></td>
+          <td>روزانه و هفتگی</td>
+        </tr>
         <tr>
           <td>raspinashop.com</td>
           <td>CRM</td>
@@ -1899,70 +2192,121 @@
     <div class="section-header">
       <div class="section-icon icon-gold">🗓️</div>
       <div class="section-title-block">
-        <span class="section-num">بخش ۰۷ — نقشه راه اجرایی</span>
+        <span class="section-num">بخش ۰۹ — جدول زمانی، گانت چارت و نقشه راه اجرایی</span>
         <h2>برنامه زمان‌بندی پیاده‌سازی</h2>
         <p>مراحل اجرایی پیشنهادی برای راه‌اندازی تدریجی و بدون اختلال در عملیات جاری</p>
       </div>
     </div>
 
+    <div class="highlight-box highlight-gold" style="margin-bottom:28px;">
+      <span class="highlight-icon">⚡</span>
+      <div>
+        <h4>سرعت بالای توسعه مبتنی بر هوش مصنوعی (AI-Accelerated Development)</h4>
+        <p>
+          با به کارگیری ابزارهای مهندسی هوش مصنوعی در کدنویسی، طراحی اسکیما، تست و بهینه‌سازی،
+          بازه زمانی پروژه‌ها از حالت سنتی چندماهه، به <strong>۸ الی ۹ هفته در حالت اجرای موازی</strong> کاهش می‌یابد.
+          کلیه پروژه‌ها می‌توانند به صورت هم‌زمان یا ماژولار تحویل داده شوند.
+        </p>
+      </div>
+    </div>
+
+    <table class="data-table" style="margin-bottom:32px;">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>پروژه</th>
+          <th>زمان اجرای تکی</th>
+          <th>زمان در حالت موازی</th>
+          <th>پیش‌نیازها</th>
+          <th>خروجی تحویلی</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>۱</strong></td>
+          <td><strong>👥 CRM + باشگاه مشتریان</strong></td>
+          <td><strong>۶ هفته</strong></td>
+          <td><span class="badge badge-blue">هفته ۱ تا ۶</span></td>
+          <td>API سایت‌ها و هاست</td>
+          <td>پروفایل ۳۶۰، اتصال به ۳ سایت، سیستم امتیاز و پیگیری</td>
+        </tr>
+        <tr>
+          <td><strong>۲</strong></td>
+          <td><strong>🤖 ربات فروشگاهی تلگرام</strong></td>
+          <td><strong>۳ هفته</strong></td>
+          <td><span class="badge badge-tg">هفته ۱ تا ۳</span></td>
+          <td>توکن تلگرام، دیتابیس کالا</td>
+          <td>فروشگاه کامل تلگرام با دسته‌بندی و لینک خرید</td>
+        </tr>
+        <tr>
+          <td><strong>۳</strong></td>
+          <td><strong>📸 ربات اینستاگرام (AI + تحلیل)</strong></td>
+          <td><strong>۵ هفته</strong></td>
+          <td><span class="badge badge-ig">هفته ۳ تا ۷</span></td>
+          <td>Business Account، Meta API</td>
+          <td>پاسخگویی دایرکت ۲–۱۰ ثانیه + گزارش‌های روزانه/هفتگی</td>
+        </tr>
+        <tr>
+          <td><strong>۴</strong></td>
+          <td><strong>🏢 اتوماسیون اداری دو شعبه</strong></td>
+          <td><strong>۴ هفته</strong></td>
+          <td><span class="badge badge-green">هفته ۲ تا ۵</span></td>
+          <td>مصاحبه فرم‌ها و نقش‌ها</td>
+          <td>سامانه ۱۰۰٪ بدون کاغذ، وب و موبایل</td>
+        </tr>
+        <tr>
+          <td><strong>۵</strong></td>
+          <td><strong>📦 انبارگردانی با بارکد و سپیدار</strong></td>
+          <td><strong>۴ هفته</strong></td>
+          <td><span class="badge badge-purple">هفته ۳ تا ۶</span></td>
+          <td>کدینگ کالا و انبار سپیدار</td>
+          <td>اسکن با دوربین گوشی برای ۱۴M+ کالا و خروجی سپیدار</td>
+        </tr>
+        <tr>
+          <td><strong>★</strong></td>
+          <td><strong>🔗 یکپارچه‌سازی نهایی و تست جامع</strong></td>
+          <td><strong>۲ هفته</strong></td>
+          <td><span class="badge badge-gold">هفته ۷ تا ۸</span></td>
+          <td>اتمام ماژول‌های اصلی</td>
+          <td>استقرار کل اکوسیستم به صورت زنده</td>
+        </tr>
+      </tbody>
+    </table>
+
     <div class="timeline">
       <div class="timeline-item">
-        <div class="timeline-date">ماه ۱–۲ | فاز صفر: زیرساخت</div>
-        <div class="timeline-title">راه‌اندازی زیرساخت و نیازسنجی دقیق</div>
+        <div class="timeline-date">هفته ۱–۲ | فاز آغازین</div>
+        <div class="timeline-title">راه‌اندازی زیرساخت، ربات تلگرام و آغاز اتوماسیون</div>
         <div class="timeline-desc">
-          بررسی دقیق API سایت‌ها، نصب سرور، تعریف ساختار پایگاه داده،
-          مصاحبه با کارکنان هر دو شعبه، تعریف نقش‌ها و دسترسی‌ها،
-          دریافت لیست کامل کالاها از سپیدار، تعریف ساختار کدینگ.
+          بررسی API سایت‌ها، استارت ربات فروشگاهی تلگرام، طراحی دیتابیس مشترک CRM و باشگاه مشتریان،
+          نیازسنجی گردش‌کارهای کاغذی بین دو شعبه همدان و تهران.
         </div>
       </div>
 
       <div class="timeline-item">
-        <div class="timeline-date">ماه ۳–۴ | فاز اول: انبارگردانی</div>
-        <div class="timeline-title">پیاده‌سازی سیستم انبارگردانی (اولویت اول)</div>
+        <div class="timeline-date">هفته ۳–۴ | فاز دوم: تلگرام زنده + ربات اینستاگرام</div>
+        <div class="timeline-title">تکمیل ربات تلگرام + آغاز هوش مصنوعی اینستاگرام و انبارگردانی</div>
         <div class="timeline-desc">
-          توسعه سیستم اسکن بارکد با دوربین، اتصال به داده‌های سپیدار،
-          آزمون با تیم انبار در شعبه همدان، رفع اشکالات، آموزش کارکنان.
-          هدف: انبارگردانی کامل موازی آزمایشی با ۱۴M+ کالا در کمترین زمان.
+          راه‌اندازی رسمی فروشگاه تلگرام، دریافت مجوزهای Meta Graph API، ساخت وکتور دیتابیس کالاها برای پاسخگویی دایرکت اینستاگرام،
+          پیاده‌سازی اسکنر بارکد با دوربین گوشی و انطباق فرمت سپیدار.
         </div>
       </div>
 
       <div class="timeline-item">
-        <div class="timeline-date">ماه ۵–۶ | فاز دوم: CRM پایه</div>
-        <div class="timeline-title">راه‌اندازی CRM و اتصال به سایت‌ها</div>
+        <div class="timeline-date">هفته ۵–۶ | فاز سوم: تکمیل اتوماسیون و CRM</div>
+        <div class="timeline-title">عملیاتی شدن اتوماسیون اداری، انبارگردانی و باشگاه مشتریان</div>
         <div class="timeline-desc">
-          ایجاد پروفایل مشتریان، اتصال API به ۳ سایت،
-          میگریشن داده‌های مشتریان موجود، راه‌اندازی ماژول پیگیری پس از خرید،
-          آموزش تیم فروش و پشتیبانی.
+          راه‌اندازی سامانه بدون کاغذ اداری، فعال‌سازی ماژول پیگیری پس از خرید و امتیازدهی باشگاه در CRM،
+          تست اسکن بارکد ۱۴M+ کالا در شعبه همدان، تست پاسخگویی ۲ تا ۱۰ ثانیه‌ای هوش مصنوعی اینستاگرام.
         </div>
       </div>
 
       <div class="timeline-item">
-        <div class="timeline-date">ماه ۷–۸ | فاز سوم: باشگاه مشتریان</div>
-        <div class="timeline-title">افتتاح باشگاه مشتریان راسپینا</div>
+        <div class="timeline-date">هفته ۷–۸ | فاز نهایی: تحویل کامل</div>
+        <div class="timeline-title">راه‌اندازی موتور تحلیلی اینستاگرام و یکپارچه‌سازی نهایی</div>
         <div class="timeline-desc">
-          پیاده‌سازی سیستم امتیاز و سطوح عضویت، راه‌اندازی پنل وب باشگاه،
-          اتصال به SMS و واتس‌اپ، کمپین ثبت‌نام اولیه اعضا.
-          هدف: ثبت‌نام ۵۰٪ مشتریان موجود در ۳۰ روز اول.
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-date">ماه ۹–۱۰ | فاز چهارم: اتوماسیون اداری</div>
-        <div class="timeline-title">پیاده‌سازی اتوماسیون اداری دو شعبه</div>
-        <div class="timeline-desc">
-          راه‌اندازی ماژول مکاتبات، وظایف، پیام‌رسان و تقویم،
-          اتصال دو شعبه همدان و تهران، آموزش تمام کارکنان.
-          هدف: حذف کامل مکاتبات کاغذی بین دو شعبه.
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <div class="timeline-date">ماه ۱۱–۱۲ | فاز پنجم: یکپارچه‌سازی و بهینه‌سازی</div>
-        <div class="timeline-title">تکمیل یکپارچه‌سازی و راه‌اندازی داشبورد مدیریتی</div>
-        <div class="timeline-desc">
-          اتصال کامل همه سیستم‌ها، راه‌اندازی داشبورد یکپارچه هیئت مدیره،
-          پیاده‌سازی گزارشات پیشرفته، آموزش نهایی، مستندسازی کامل سیستم،
-          تنظیم SLA و قرارداد نگهداری.
+          راه‌اندازی گزارش‌های خودکار روزانه و هفتگی رشد اینستاگرام، اتصال کامل ربات‌ها و شعب به CRM مرکزی،
+          تست فشار و امنیت، آموزش مدیران و پرسنل، تحویل قطعی پروژه‌ها.
         </div>
       </div>
     </div>
@@ -2089,10 +2433,12 @@
     <div>
       <h4>سیستم‌های دیجیتال</h4>
       <ul>
-        <li>✅ CRM اختصاصی راسپینا</li>
-        <li>✅ باشگاه مشتریان</li>
-        <li>✅ اتوماسیون اداری</li>
-        <li>✅ انبارگردانی هوشمند</li>
+        <li>✅ CRM اختصاصی و پیگیری خرید</li>
+        <li>✅ باشگاه مشتریان چهار سطحی</li>
+        <li>✅ ربات فروشگاهی تلگرام</li>
+        <li>✅ ربات هوشمند اینستاگرام (AI + تحلیل)</li>
+        <li>✅ اتوماسیون اداری بدون کاغذ</li>
+        <li>✅ انبارگردانی بارکدی متصل به سپیدار</li>
       </ul>
     </div>
   </div>
