@@ -1,0 +1,2490 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>برنامه جامع دیجیتال‌سازی برند راسپینا</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
+
+    :root {
+      --primary: #1a1a2e;
+      --secondary: #16213e;
+      --accent: #c9a84c;
+      --accent2: #e8c97a;
+      --gold-light: #f5e6b2;
+      --text-main: #1a1a1a;
+      --text-light: #555;
+      --text-muted: #888;
+      --bg-light: #f9f7f3;
+      --bg-card: #ffffff;
+      --border: #e8e0d0;
+      --success: #2d6a4f;
+      --danger: #c0392b;
+      --info: #1a5276;
+      --warning: #d4a017;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+      --shadow-lg: 0 8px 48px rgba(0,0,0,0.14);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Vazirmatn', Tahoma, Arial, sans-serif;
+      background: var(--bg-light);
+      color: var(--text-main);
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    /* ===== HEADER ===== */
+    .hero {
+      background: linear-gradient(135deg, var(--primary) 0%, #0d1b2a 50%, var(--secondary) 100%);
+      color: white;
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(ellipse at center, rgba(201,168,76,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 70px 40px 60px;
+      position: relative;
+      z-index: 1;
+    }
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(201,168,76,0.15);
+      border: 1px solid rgba(201,168,76,0.4);
+      border-radius: 50px;
+      padding: 6px 20px;
+      font-size: 13px;
+      color: var(--accent2);
+      margin-bottom: 24px;
+      letter-spacing: 1px;
+    }
+    .brand-badge::before { content: '◆'; font-size: 10px; }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 900;
+      line-height: 1.3;
+      margin-bottom: 20px;
+      color: white;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.75);
+      max-width: 680px;
+      margin-bottom: 36px;
+      line-height: 2;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .stat-item { text-align: center; }
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent);
+      display: block;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: rgba(255,255,255,0.6);
+      display: block;
+      margin-top: 4px;
+    }
+    .hero-divider {
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2), transparent);
+      margin-top: 50px;
+    }
+
+    /* ===== NAVIGATION ===== */
+    .toc-section {
+      background: var(--primary);
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+    .toc-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .toc-label {
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      margin-left: 12px;
+      white-space: nowrap;
+    }
+    .toc-btn {
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.25);
+      color: rgba(255,255,255,0.8);
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: all 0.2s;
+      font-family: 'Vazirmatn', Tahoma, sans-serif;
+    }
+    .toc-btn:hover {
+      background: rgba(201,168,76,0.3);
+      color: var(--accent2);
+      border-color: var(--accent);
+    }
+
+    /* ===== WRAPPER ===== */
+    .wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    /* ===== SECTION ===== */
+    .section {
+      padding: 60px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .section:last-child { border-bottom: none; }
+
+    .section-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    .section-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+    .icon-gold { background: linear-gradient(135deg, #c9a84c, #e8c97a); }
+    .icon-blue { background: linear-gradient(135deg, #1a5276, #2980b9); }
+    .icon-green { background: linear-gradient(135deg, #1e8449, #27ae60); }
+    .icon-purple { background: linear-gradient(135deg, #6c3483, #9b59b6); }
+    .icon-dark { background: linear-gradient(135deg, #1a1a2e, #34495e); }
+
+    .section-title-block h2 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    .section-title-block p {
+      color: var(--text-light);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .section-num {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    /* ===== CARDS ===== */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 24px;
+    }
+    .card-grid-2 { grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); }
+    .card-grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+    .card-icon {
+      font-size: 32px;
+      margin-bottom: 14px;
+      display: block;
+    }
+    .card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+    .card p {
+      font-size: 13.5px;
+      color: var(--text-light);
+      line-height: 1.8;
+    }
+    .card-accent { border-top: 3px solid var(--accent); }
+    .card-accent-blue { border-top: 3px solid #2980b9; }
+    .card-accent-green { border-top: 3px solid #27ae60; }
+    .card-accent-purple { border-top: 3px solid #9b59b6; }
+
+    /* ===== FEATURE LIST ===== */
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--text-light);
+      padding: 10px 14px;
+      background: var(--bg-light);
+      border-radius: 8px;
+      border-right: 3px solid var(--border);
+    }
+    .feature-list li.gold { border-right-color: var(--accent); }
+    .feature-list li.blue { border-right-color: #2980b9; }
+    .feature-list li.green { border-right-color: #27ae60; }
+    .feature-list li.purple { border-right-color: #9b59b6; }
+    .feature-list .fi-icon {
+      font-size: 18px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .feature-list strong { color: var(--primary); font-weight: 600; }
+
+    /* ===== PROCESS FLOW ===== */
+    .flow {
+      display: flex;
+      gap: 0;
+      align-items: stretch;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+    .flow-step {
+      flex: 1;
+      min-width: 150px;
+      text-align: center;
+      position: relative;
+    }
+    .flow-step:not(:last-child)::after {
+      content: '◄';
+      position: absolute;
+      left: -16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--accent);
+      font-size: 18px;
+    }
+    .flow-box {
+      background: var(--bg-card);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 12px;
+      margin: 0 8px;
+      height: 100%;
+      transition: border-color 0.2s;
+    }
+    .flow-box:hover { border-color: var(--accent); }
+    .flow-num {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      color: white;
+      margin: 0 auto 10px;
+    }
+    .flow-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+    .flow-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* ===== TABLE ===== */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      margin-top: 20px;
+      font-size: 14px;
+    }
+    .data-table thead {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+    }
+    .data-table th {
+      padding: 14px 18px;
+      text-align: right;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+    }
+    .data-table td {
+      padding: 13px 18px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-light);
+      vertical-align: top;
+    }
+    .data-table tbody tr:last-child td { border-bottom: none; }
+    .data-table tbody tr:nth-child(even) { background: var(--bg-light); }
+    .data-table tbody tr:hover { background: rgba(201,168,76,0.05); }
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .badge-gold { background: rgba(201,168,76,0.15); color: #8a6914; }
+    .badge-blue { background: rgba(41,128,185,0.12); color: #1a5276; }
+    .badge-green { background: rgba(39,174,96,0.12); color: #1e8449; }
+    .badge-red { background: rgba(192,57,43,0.12); color: #922b21; }
+    .badge-purple { background: rgba(155,89,182,0.12); color: #6c3483; }
+
+    /* ===== HIGHLIGHT BOX ===== */
+    .highlight-box {
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin: 24px 0;
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+    }
+    .highlight-gold {
+      background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(232,201,122,0.05));
+      border: 1px solid rgba(201,168,76,0.3);
+    }
+    .highlight-blue {
+      background: linear-gradient(135deg, rgba(41,128,185,0.07), rgba(26,82,118,0.04));
+      border: 1px solid rgba(41,128,185,0.25);
+    }
+    .highlight-green {
+      background: linear-gradient(135deg, rgba(39,174,96,0.07), rgba(30,132,73,0.04));
+      border: 1px solid rgba(39,174,96,0.25);
+    }
+    .highlight-red {
+      background: rgba(192,57,43,0.06);
+      border: 1px solid rgba(192,57,43,0.2);
+    }
+    .highlight-icon { font-size: 28px; flex-shrink: 0; margin-top: 2px; }
+    .highlight-box h4 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+    .highlight-gold h4 { color: #7d6316; }
+    .highlight-blue h4 { color: #1a5276; }
+    .highlight-green h4 { color: #1e8449; }
+    .highlight-red h4 { color: #922b21; }
+    .highlight-box p, .highlight-box ul { font-size: 13.5px; color: var(--text-light); line-height: 1.8; }
+    .highlight-box ul { padding-right: 20px; }
+
+    /* ===== TWO COLUMNS ===== */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 24px;
+    }
+    .three-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    /* ===== MODULE BLOCK ===== */
+    .module-block {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+    }
+    .module-header {
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .module-header-gold { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: white; }
+    .module-header-blue { background: linear-gradient(135deg, #1a5276, #2980b9); color: white; }
+    .module-header-green { background: linear-gradient(135deg, #1e8449, #27ae60); color: white; }
+    .module-header-purple { background: linear-gradient(135deg, #6c3483, #9b59b6); color: white; }
+    .module-header-dark { background: linear-gradient(135deg, #1a1a2e, #2c3e50); color: white; }
+    .module-header h3 { font-size: 1.1rem; font-weight: 700; }
+    .module-header .mh-icon { font-size: 24px; }
+    .module-body { padding: 24px; }
+    .module-body .feature-list li { background: var(--bg-light); }
+
+    /* ===== TIMELINE ===== */
+    .timeline {
+      position: relative;
+      padding-right: 30px;
+      margin-top: 24px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--accent), rgba(201,168,76,0.1));
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 28px;
+      padding-right: 30px;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      right: -7px;
+      top: 10px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid white;
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+    .timeline-date {
+      font-size: 11px;
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+    .timeline-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+    .timeline-desc {
+      font-size: 13.5px;
+      color: var(--text-light);
+      line-height: 1.8;
+    }
+
+    /* ===== BRAND INFO ===== */
+    .brand-info-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 32px;
+      align-items: start;
+      margin-top: 32px;
+    }
+    .brand-logo-block {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .brand-name-display {
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--primary);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .brand-name-fa {
+      font-size: 1.3rem;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 20px;
+    }
+    .brand-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .brand-tag {
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      color: var(--text-light);
+    }
+
+    /* ===== INTEGRATION DIAGRAM ===== */
+    .integration-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      margin-top: 24px;
+    }
+    .int-center {
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      margin: 0 auto 24px;
+      box-shadow: 0 8px 32px rgba(26,26,46,0.3);
+    }
+    .int-nodes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+    .int-node {
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-size: 13px;
+      color: var(--text-light);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ===== PRIORITY TABLE ===== */
+    .priority-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 24px;
+    }
+    .priority-card {
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .priority-header {
+      padding: 16px 20px;
+      font-weight: 700;
+      font-size: 15px;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .priority-body {
+      background: var(--bg-card);
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-top: none;
+    }
+    .priority-body ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .priority-body ul li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13.5px;
+      color: var(--text-light);
+    }
+    .priority-body ul li::before { content: '◈'; color: var(--accent); flex-shrink: 0; }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--primary);
+      color: rgba(255,255,255,0.7);
+      padding: 40px 0;
+      margin-top: 20px;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 32px;
+    }
+    .footer h4 {
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      letter-spacing: 1px;
+    }
+    .footer p, .footer li {
+      font-size: 13px;
+      line-height: 2;
+    }
+    .footer ul { list-style: none; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin-top: 32px;
+      padding-top: 20px;
+      text-align: center;
+      font-size: 12px;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ===== PRINT ===== */
+    @media print {
+      .toc-section { display: none; }
+      .section { page-break-inside: avoid; }
+      .hero { background: var(--primary) !important; }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2rem; }
+      .wrapper { padding: 0 20px; }
+      .two-col, .three-col, .card-grid-3 { grid-template-columns: 1fr; }
+      .brand-info-grid { grid-template-columns: 1fr; }
+      .priority-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .toc-inner { padding: 0 16px; }
+      .flow { gap: 10px; }
+      .flow-step::after { display: none; }
+    }
+
+    /* ===== SCROLL REVEAL ===== */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.5s, transform 0.5s; }
+    .revealed { opacity: 1; transform: none; }
+
+    /* ===== PRINT BUTTON ===== */
+    .print-btn {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 12px 24px;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(201,168,76,0.4);
+      font-family: 'Vazirmatn', Tahoma, sans-serif;
+      font-weight: 600;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+    .print-btn:hover { background: #b8923e; transform: translateY(-2px); }
+
+    /* ===== SUB-SECTION ===== */
+    .sub-section {
+      margin-top: 36px;
+      padding-top: 36px;
+      border-top: 1px dashed var(--border);
+    }
+    .sub-section-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .sub-section-title::before {
+      content: '';
+      display: block;
+      width: 4px;
+      height: 22px;
+      background: var(--accent);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    /* ===== KPI CARDS ===== */
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .kpi-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .kpi-num {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent);
+      display: block;
+    }
+    .kpi-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 6px;
+      display: block;
+    }
+
+    /* ===== EXTRA STYLES FOR TELEGRAM & INSTAGRAM ===== */
+    .icon-tg { background: linear-gradient(135deg, #0088cc, #29b6f6); color: white; }
+    .icon-ig { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); color: white; }
+    .card-accent-tg { border-top: 3px solid #0088cc; }
+    .card-accent-ig { border-top: 3px solid #c13584; }
+    .module-header-tg { background: linear-gradient(135deg, #0088cc, #29b6f6); color: white; }
+    .module-header-ig { background: linear-gradient(135deg, #833ab4, #fd1d1d); color: white; }
+    .badge-tg { background: rgba(0,136,204,0.12); color: #0088cc; }
+    .badge-ig { background: rgba(193,53,132,0.12); color: #c13584; }
+    .highlight-tg { background: linear-gradient(135deg, rgba(0,136,204,0.07), rgba(41,182,246,0.04)); border: 1px solid rgba(0,136,204,0.25); }
+    .highlight-ig { background: linear-gradient(135deg, rgba(193,53,132,0.07), rgba(253,29,29,0.04)); border: 1px solid rgba(193,53,132,0.25); }
+    .highlight-tg h4 { color: #0088cc; }
+    .highlight-ig h4 { color: #c13584; }
+    .feature-list li.tg { border-right-color: #0088cc; }
+    .feature-list li.ig { border-right-color: #c13584; }
+
+  </style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<div class="hero">
+  <div class="hero-inner">
+    <span class="brand-badge">برنامه جامع دیجیتال‌سازی</span>
+    <h1>طرح تحول دیجیتال<br><span>برند راسپینا</span></h1>
+    <p class="hero-sub">
+      مستندات جامع طراحی و پیاده‌سازی سیستم‌های یکپارچه CRM و باشگاه مشتریان، ربات فروشگاهی تلگرام،
+      ربات هوش مصنوعی اینستاگرام (پاسخگوی دایرکت + پایشگر رشد)، اتوماسیون اداری ۱۰۰٪ بدون کاغذ و
+      انبارگردانی سازگار با سپیدار — با رویکرد توسعه سریع مبتنی بر هوش مصنوعی (AI-First)
+    </p>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-number">۶</span>
+        <span class="stat-label">سیستم یکپارچه کلان</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">۱۴M+</span>
+        <span class="stat-label">کالای انبارگردانی با بارکد</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">۲</span>
+        <span class="stat-label">شعبه متصل (همدان – تهران)</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">۸–۹</span>
+        <span class="stat-label">هفته تحویل با شتاب AI</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-divider"></div>
+</div>
+
+<!-- ===== NAVIGATION ===== -->
+<nav class="toc-section">
+  <div class="toc-inner">
+    <span class="toc-label">◆ فهرست سامانه:</span>
+    <a href="#brand" class="toc-btn">🏷️ برند</a>
+    <a href="#crm" class="toc-btn">👥 CRM</a>
+    <a href="#club" class="toc-btn">⭐ باشگاه مشتریان</a>
+    <a href="#telegram" class="toc-btn" style="border-color:#0088cc;color:#85d7ff;">🤖 ربات تلگرام</a>
+    <a href="#instagram" class="toc-btn" style="border-color:#c13584;color:#ff9bd2;">📸 ربات اینستاگرام</a>
+    <a href="#automation" class="toc-btn">🏢 اتوماسیون اداری</a>
+    <a href="#warehouse" class="toc-btn">📦 انبارگردانی سپیدار</a>
+    <a href="#integration" class="toc-btn">🔗 یکپارچه‌سازی</a>
+    <a href="#roadmap" class="toc-btn">🗓️ زمان‌بندی و نقشه راه</a>
+    <a href="Raspina-Project-Timeline.html" class="toc-btn" style="background:linear-gradient(135deg,var(--accent),#e8c97a);color:#1a1a2e;font-weight:700;">📊 تایم‌لاین تفکیکی</a>
+  </div>
+</nav>
+
+<!-- ===== BRAND INFO ===== -->
+<section id="brand" class="section">
+  <div class="wrapper">
+    <div class="section-header">
+      <div class="section-icon icon-gold">🏷️</div>
+      <div class="section-title-block">
+        <span class="section-num">بخش ۰۱ — شناسنامه برند</span>
+        <h2>برند راسپینا</h2>
+        <p>اطلاعات پایه، هویت برند، و زیرساخت‌های فعلی</p>
+      </div>
+    </div>
+
+    <div class="brand-info-grid">
+      <div class="brand-logo-block">
+        <span class="brand-name-display">RASPINA</span>
+        <span class="brand-name-fa">راسپینا</span>
+        <div style="width:60px;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));margin:0 auto 16px;border-radius:2px;"></div>
+        <p style="font-size:13px;color:var(--text-light);line-height:1.9;">
+          برند پوشاک زنانه ایرانی با تمرکز بر<br>
+          کیفیت بالا، متریال مرغوب<br>و طراحی‌های مدرن
+        </p>
+        <div class="brand-tags">
+          <span class="brand-tag">پوشاک زنانه</span>
+          <span class="brand-tag">مد ایرانی</span>
+          <span class="brand-tag">کیفیت بالا</span>
+          <span class="brand-tag">طراحی مدرن</span>
+          <span class="brand-tag">عمده و خرده</span>
+        </div>
+      </div>
+
+      <div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>مشخصه</th>
+              <th>جزئیات</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>نام برند</td>
+              <td><strong>Raspina | راسپینا</strong></td>
+            </tr>
+            <tr>
+              <td>حوزه فعالیت</td>
+              <td>طراحی، تولید و عرضه پوشاک زنانه</td>
+            </tr>
+            <tr>
+              <td>محصولات اصلی</td>
+              <td>مانتو، تونیک، بلوز، شلوار، پیراهن، دامن، ست، اکسسوری</td>
+            </tr>
+            <tr>
+              <td>شعبه همدان</td>
+              <td>خیابان میرزاده عشقی، نبش کوچه امامی‌زاده، ساختمان راسپینا — ☎ ۰۸۱-۳۸۲۸۳۵۲۱</td>
+            </tr>
+            <tr>
+              <td>دفتر تهران</td>
+              <td>خیابان ولیعصر، بالاتر از میدان ولیعصر، کوچه شهید شهامتی (مجتمع راسپینا) + گلدن مال</td>
+            </tr>
+            <tr>
+              <td>سایت‌های فروش</td>
+              <td>
+                <span class="badge badge-blue">raspinashop.com</span>
+                <span class="badge badge-blue">raspinaclothing.com</span>
+                <span class="badge badge-blue">raspinaclothes.com</span>
+              </td>
+            </tr>
+            <tr>
+              <td>اینستاگرام</td>
+              <td>@raspina.clothing</td>
+            </tr>
+            <tr>
+              <td>بازار هدف</td>
+              <td>بانوان ایرانی، فروشگاه‌های سراسر کشور (عمده‌فروشی)</td>
+            </tr>
+            <tr>
+              <td>حضور بین‌الملل</td>
+              <td>نمایشگاه CPM روسیه</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="highlight-box highlight-gold" style="margin-top:32px;">
+      <span class="highlight-icon">💡</span>
+      <div>
+        <h4>چرا دیجیتال‌سازی برای راسپینا ضروری است؟</h4>
+        <p>
+          برند راسپینا با داشتن دو شعبه فعال در همدان و تهران، سه پلتفرم فروش آنلاین، ۱۴ میلیون+ SKU کالا و
+          پایگاه گسترده مشتریان، نیاز به یک اکوسیستم دیجیتال یکپارچه دارد تا تجربه مشتری را بهبود داده،
+          هماهنگی بین‌شعبه‌ای را تسهیل کند، و عملیات انبار را به شکلی دقیق و سریع مدیریت نماید.
+          این طرح سه سیستم محوری را در قالب یک پلتفرم وب‌بنیان موبایل‌فرست تعریف می‌کند.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CRM ===== -->
+<section id="crm" class="section" style="background:white;">
+  <div class="wrapper">
+    <div class="section-header">
+      <div class="section-icon icon-blue">👥</div>
+      <div class="section-title-block">
+        <span class="section-num">بخش ۰۲ — سیستم مدیریت ارتباط با مشتری</span>
+        <h2>CRM اختصاصی راسپینا</h2>
+        <p>سیستم جامع مدیریت مشتری با جزئیات کامل رفتاری، تاریخچه تعاملات و امتیازدهی هوشمند</p>
+      </div>
+    </div>
+
+    <!-- پروفایل مشتری -->
+    <div class="sub-section-title">🧑 ماژول پروفایل جامع مشتری</div>
+    <p style="color:var(--text-light);font-size:14px;margin-bottom:20px;line-height:1.9;">
+      هر مشتری دارای یک پروفایل ۳۶۰ درجه است که از تمام کانال‌های تعامل (وب‌سایت‌ها، خرید حضوری، تماس‌ها، و شبکه‌های اجتماعی)
+      به‌صورت خودکار تجمیع می‌شود.
+    </p>
+
+    <div class="card-grid">
+      <div class="card card-accent-blue">
+        <span class="card-icon">🪪</span>
+        <h3>اطلاعات هویتی</h3>
+        <p>نام، کد ملی، تاریخ تولد، جنسیت، شماره موبایل، ایمیل، آدرس‌های تحویل، شبکه‌های اجتماعی، عکس پروفایل</p>
+      </div>
+      <div class="card card-accent-blue">
+        <span class="card-icon">🛒</span>
+        <h3>تاریخچه کامل خرید</h3>
+        <p>تمام سفارشات آنلاین (۳ سایت) + خریدهای حضوری (همدان/تهران) با جزئیات محصول، قیمت، تخفیف، روش پرداخت</p>
+      </div>
+      <div class="card card-accent-blue">
+        <span class="card-icon">❤️</span>
+        <h3>علایق و سلیقه</h3>
+        <p>محصولات لایک‌شده، آیتم‌های افزوده به سبد خرید، کالاهای مشاهده‌شده، امتیاز داده‌شده، و ترجیحات رنگ و سایز</p>
+      </div>
+      <div class="card card-accent-blue">
+        <span class="card-icon">📞</span>
+        <h3>تاریخچه تعاملات</h3>
+        <p>تمام تماس‌های تلفنی (با خلاصه)، چت‌های پشتیبانی، ایمیل‌ها، و بازدیدهای حضوری ثبت‌شده توسط پرسنل</p>
+      </div>
+      <div class="card card-accent-blue">
+        <span class="card-icon">🎯</span>
+        <h3>پیگیری‌های پس از خرید</h3>
+        <p>وضعیت رضایت، مرجوعی‌ها، شکایات، گارانتی، پیام‌های یادآور، و نتیجه هر پیگیری با تاریخ و مسئول</p>
+      </div>
+      <div class="card card-accent-blue">
+        <span class="card-icon">📊</span>
+        <h3>آنالیتیکس رفتاری</h3>
+        <p>الگوی خرید، فصل‌های اوج خرید، متوسط ارزش سبد، دفعات مراجعه، و پیش‌بینی خرید بعدی با AI</p>
+      </div>
+    </div>
+
+    <!-- ماژول اتصال به سایت -->
+    <div class="sub-section">
+      <div class="sub-section-title">🔌 اتصال یکپارچه به پنل کاربری سایت‌ها</div>
+      <div class="highlight-box highlight-blue">
+        <span class="highlight-icon">🌐</span>
+        <div>
+          <h4>یکپارچه‌سازی با ۳ پلتفرم فروش آنلاین</h4>
+          <p>
+            سیستم CRM از طریق API به هر سه سایت متصل می‌شود و اطلاعات پنل کاربری هر مشتری را
+            در زمان واقعی می‌خواند. این اتصال دو‌طرفه است: هم داده‌ها از سایت‌ها وارد CRM می‌شوند
+            و هم امتیاز و وضعیت باشگاه مشتریان از CRM به پنل کاربری سایت بازمی‌گردد.
+          </p>
+        </div>
+      </div>
+
+      <div class="two-col" style="margin-top:0;">
+        <ul class="feature-list">
+          <li class="blue"><span class="fi-icon">🔗</span><div><strong>raspinashop.com API:</strong> خواندن سفارشات، سبد خرید، wishlist و رفتار مرور محصولات</div></li>
+          <li class="blue"><span class="fi-icon">🔗</span><div><strong>raspinaclothing.com API:</strong> سابقه خرید، نظرات، امتیازدهی محصولات و آمار مشاهده</div></li>
+          <li class="blue"><span class="fi-icon">🔗</span><div><strong>raspinaclothes.com API:</strong> پروفایل کاربری، آدرس‌های ذخیره‌شده و ترجیحات پرداخت</div></li>
+          <li class="blue"><span class="fi-icon">🔄</span><div><strong>Webhook Real-time:</strong> هر تغییر در سایت بلافاصله در CRM ثبت می‌شود</div></li>
+        </ul>
+        <ul class="feature-list">
+          <li class="blue"><span class="fi-icon">📲</span><div><strong>پنل کارشناس:</strong> مشاهده کامل پروفایل مشتری هنگام تماس تلفنی با نمایش پاپ‌آپ خودکار</div></li>
+          <li class="blue"><span class="fi-icon">👁️</span><div><strong>Customer 360 View:</strong> یک صفحه واحد با تمام اطلاعات از همه منابع</div></li>
+          <li class="blue"><span class="fi-icon">🏷️</span><div><strong>Customer Tagging:</strong> برچسب‌گذاری خودکار و دستی بر اساس رفتار</div></li>
+          <li class="blue"><span class="fi-icon">📧</span><div><strong>Omnichannel:</strong> یکپارچه‌سازی SMS، ایمیل، واتس‌اپ و پوش نوتیفیکیشن</div></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- امتیازدهی -->
+    <div class="sub-section">
+      <div class="sub-section-title">⭐ سیستم امتیازدهی و اسکورینگ هوشمند</div>
+
+      <div class="module-block">
+        <div class="module-header module-header-blue">
+          <span class="mh-icon">📈</span>
+          <h3>Customer Scoring Engine — موتور امتیازدهی مشتریان</h3>
+        </div>
+        <div class="module-body">
+          <div class="card-grid">
+            <div>
+              <h4 style="font-size:14px;font-weight:700;color:var(--primary);margin-bottom:12px;">امتیاز RFM</h4>
+              <ul class="feature-list">
+                <li class="gold"><span class="fi-icon">📅</span><div><strong>Recency (R):</strong> چه مدت پیش آخرین خرید؟ — هر چه اخیرتر، امتیاز بیشتر</div></li>
+                <li class="gold"><span class="fi-icon">🔁</span><div><strong>Frequency (F):</strong> چند بار خرید کرده؟ — تعداد تراکنش‌های موفق</div></li>
+                <li class="gold"><span class="fi-icon">💰</span><div><strong>Monetary (M):</strong> مجموع ارزش خریدها — ارزش مادی مشتری برای برند</div></li>
+              </ul>
+            </div>
+            <div>
+              <h4 style="font-size:14px;font-weight:700;color:var(--primary);margin-bottom:12px;">امتیاز رفتاری (Behavioral Score)</h4>
+              <ul class="feature-list">
+                <li class="blue"><span class="fi-icon">❤️</span><div>محصولات پسندیده‌شده و افزوده به علاقه‌مندی‌ها</div></li>
+                <li class="blue"><span class="fi-icon">👁️</span><div>تعداد و مدت بازدید از صفحات محصول</div></li>
+                <li class="blue"><span class="fi-icon">⭐</span><div>نظرات و امتیازهای ثبت‌شده بر محصولات</div></li>
+                <li class="blue"><span class="fi-icon">📢</span><div>معرفی دوستان و فعالیت ریفرال</div></li>
+              </ul>
+            </div>
+            <div>
+              <h4 style="font-size:14px;font-weight:700;color:var(--primary);margin-bottom:12px;">امتیاز تعامل (Engagement Score)</h4>
+              <ul class="feature-list">
+                <li class="green"><span class="fi-icon">📱</span><div>باز کردن SMS‌ها و ایمیل‌های کمپین</div></li>
+                <li class="green"><span class="fi-icon">👍</span><div>پاسخ‌دهی به پیام‌های برند</div></li>
+                <li class="green"><span class="fi-icon">🏢</span><div>حضور در رویدادها و رونمایی‌های برند</div></li>
+                <li class="green"><span class="fi-icon">💬</span><div>اشتراک‌گذاری و تگ کردن برند</div></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- پیگیری پس از خرید -->
+    <div class="sub-section">
+      <div class="sub-section-title">📋 ماژول پیگیری پس از خرید (Post-Purchase Follow-up)</div>
+      <div class="highlight-box highlight-green">
+        <span class="highlight-icon">✅</span>
+        <div>
+          <h4>هیچ مشتری‌ای بدون پیگیری نمی‌ماند</h4>
+          <p>سیستم به‌صورت خودکار وظایف پیگیری ایجاد کرده و به کارشناسان اختصاص می‌دهد.
+          هر پیگیری با جزئیات کامل (تاریخ، زمان، نتیجه، اقدام بعدی) ثبت می‌شود.</p>
+        </div>
+      </div>
+
+      <div class="flow">
+        <div class="flow-step">
+          <div class="flow-box">
+            <div class="flow-num">۱</div>
+            <div class="flow-title">خرید انجام شد</div>
+            <div class="flow-desc">ثبت خودکار در CRM با تمام جزئیات</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-box">
+            <div class="flow-num">۲</div>
+            <div class="flow-title">۲۴ ساعت بعد</div>
+            <div class="flow-desc">SMS تأیید دریافت + لینک نظرسنجی رضایت</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-box">
+            <div class="flow-num">۳</div>
+            <div class="flow-title">۷ روز بعد</div>
+            <div class="flow-desc">تماس پیگیری کارشناس + ثبت نتیجه در CRM</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-box">
+            <div class="flow-num">۴</div>
+            <div class="flow-title">۳۰ روز بعد</div>
+            <div class="flow-desc">پیشنهاد محصول مشابه + کد تخفیف شخصی‌سازی‌شده</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-box">
+            <div class="flow-num">۵</div>
+            <div class="flow-title">۹۰ روز بعد</div>
+            <div class="flow-desc">Win-back Campaign برای مشتریان غیرفعال</div>
+          </div>
+        </div>
+      </div>
+
+      <table class="data-table" style="margin-top:28px;">
+        <thead>
+          <tr>
+            <th>نوع پیگیری</th>
+            <th>زمان‌بندی</th>
+            <th>کانال</th>
+            <th>مسئول</th>
+            <th>آنچه ثبت می‌شود</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>تأیید دریافت مرسوله</td>
+            <td>۲۴ ساعت بعد از خرید آنلاین</td>
+            <td><span class="badge badge-blue">SMS</span></td>
+            <td>خودکار (سیستم)</td>
+            <td>وضعیت تحویل، امتیاز دریافت</td>
+          </tr>
+          <tr>
+            <td>بررسی رضایت</td>
+            <td>۷ روز پس از دریافت</td>
+            <td><span class="badge badge-green">تماس تلفنی</span></td>
+            <td>کارشناس CRM</td>
+            <td>نمره رضایت ۱-۱۰، مشکلات، پیشنهادات، متن مکالمه</td>
+          </tr>
+          <tr>
+            <td>مدیریت مرجوعی</td>
+            <td>در صورت درخواست بازگشت</td>
+            <td><span class="badge badge-gold">ترکیبی</span></td>
+            <td>واحد فروش</td>
+            <td>دلیل مرجوعی، وضعیت کالا، زمان بازپرداخت، نتیجه</td>
+          </tr>
+          <tr>
+            <td>پیشنهاد مکمل</td>
+            <td>۳۰ روز پس از خرید</td>
+            <td><span class="badge badge-purple">واتس‌اپ</span></td>
+            <td>خودکار (AI)</td>
+            <td>نرخ کلیک، خرید مجدد، کد تخفیف استفاده‌شده</td>
+          </tr>
+          <tr>
+            <td>بازفعال‌سازی</td>
+            <td>۹۰+ روز عدم خرید</td>
+            <td><span class="badge badge-blue">SMS + ایمیل</span></td>
+            <td>خودکار (سیستم)</td>
+            <td>واکنش مشتری، تخفیف ارائه‌شده، نتیجه</td>
+          </tr>
+          <tr>
+            <td>VIP Care Call</td>
+            <td>فصلی (هر ۳ ماه)</td>
+            <td><span class="badge badge-green">تماس تلفنی VIP</span></td>
+            <td>مدیر ارشد</td>
+            <td>خلاصه سال، پیشنهادات ویژه، ثبت بازخورد استراتژیک</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- داشبورد CRM -->
+    <div class="sub-section">
+      <div class="sub-section-title">📊 داشبورد تحلیلی CRM</div>
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <span class="kpi-num">NPS</span>
+          <span class="kpi-label">شاخص خالص ترویج‌دهنده</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-num">CLV</span>
+          <span class="kpi-label">ارزش طول عمر مشتری</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-num">CAC</span>
+          <span class="kpi-label">هزینه جذب مشتری</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-num">Churn</span>
+          <span class="kpi-label">نرخ ریزش مشتری</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-num">AOV</span>
+          <span class="kpi-label">میانگین ارزش سفارش</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-num">CSAT</span>
+          <span class="kpi-label">رضایت مشتری</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CUSTOMER CLUB ===== -->
+<section id="club" class="section">
+  <div class="wrapper">
+    <div class="section-header">
+      <div class="section-icon icon-gold">⭐</div>
+      <div class="section-title-block">
+        <span class="section-num">بخش ۰۳ — باشگاه مشتریان</span>
+        <h2>باشگاه مشتریان راسپینا</h2>
+        <p>سیستم وفاداری چندسطحی با مزایای انحصاری، امتیاز، جوایز و تجربه شخصی‌سازی‌شده</p>
+      </div>
+    </div>
+
+    <div class="highlight-box highlight-gold">
+      <span class="highlight-icon">👑</span>
+      <div>
+        <h4>فلسفه باشگاه: هر مشتری یک تجربه منحصربه‌فرد</h4>
+        <p>
+          باشگاه مشتریان راسپینا بر اساس رویکرد «وفاداری عاطفی» طراحی شده — نه صرفاً تخفیف.
+          هر عضو بر اساس رفتار، تعامل و ارزش خود در یکی از ۴ سطح قرار می‌گیرد و
+          مزایایی متناسب با سطح خود دریافت می‌کند که به مرور باعث افزایش وابستگی به برند می‌شود.
+        </p>
+      </div>
+    </div>
+
+    <!-- سطوح عضویت -->
+    <div class="sub-section-title">🏆 سطوح عضویت (Membership Tiers)</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:16px;">
+      <div style="background:linear-gradient(135deg,#b0bec5,#78909c);border-radius:16px;padding:24px;color:white;text-align:center;">
+        <div style="font-size:40px;margin-bottom:10px;">🥈</div>
+        <div style="font-size:1.1rem;font-weight:800;margin-bottom:6px;">برنزی</div>
+        <div style="font-size:12px;opacity:0.85;margin-bottom:12px;">BRONZE</div>
+        <div style="background:rgba(255,255,255,0.15);border-radius:8px;padding:10px;font-size:12px;">
+          از اولین خرید<br>۱٪ امتیاز برگشتی<br>دسترسی به پیشنهادات پایه
+        </div>
+      </div>
+      <div style="background:linear-gradient(135deg,#c0a060,#a0804a);border-radius:16px;padding:24px;color:white;text-align:center;">
+        <div style="font-size:40px;margin-bottom:10px;">🥇</div>
+        <div style="font-size:1.1rem;font-weight:800;margin-bottom:6px;">طلایی</div>
+        <div style="font-size:12px;opacity:0.85;margin-bottom:12px;">GOLD</div>
+        <div style="background:rgba(255,255,255,0.15);border-radius:8px;padding:10px;font-size:12px;">
+          ۳ خرید یا ۵M تومان<br>۳٪ امتیاز + تولد<br>اولویت پشتیبانی
+        </div>
+      </div>
+      <div style="background:linear-gradient(135deg,#b0c4de,#5b7fa6);border-radius:16px;padding:24px;color:white;text-align:center;">
+        <div style="font-size:40px;margin-bottom:10px;">💎</div>
+        <div style="font-size:1.1rem;font-weight:800;margin-bottom:6px;">پلاتینوم</div>
+        <div style="font-size:12px;opacity:0.85;margin-bottom:12px;">PLATINUM</div>
+        <div style="background:rgba(255,255,255,0.15);border-radius:8px;padding:10px;font-size:12px;">
+          ۱۰ خرید یا ۲۰M تومان<br>۵٪ امتیاز + دسترسی زود<br>دعوت به رونمایی‌ها
+        </div>
+      </div>
+      <div style="background:linear-gradient(135deg,#1a1a2e,#0d1b2a);border-radius:16px;padding:24px;color:white;text-align:center;">
+        <div style="font-size:40px;margin-bottom:10px;">👑</div>
+        <div style="font-size:1.1rem;font-weight:800;margin-bottom:6px;">VIP Black</div>
+        <div style="font-size:12px;opacity:0.85;margin-bottom:12px;">EXCLUSIVE</div>
+        <div style="background:rgba(201,168,76,0.2);border:1px solid rgba(201,168,76,0.4);border-radius:8px;padding:10px;font-size:12px;color:var(--accent2);">
+          دعوت توسط برند<br>۸٪ امتیاز + مشاور اختصاصی<br>خدمات درب منزل
+        </div>
+      </div>
+    </div>
+
+    <!-- امکانات باشگاه -->
+    <div class="sub-section">
+      <div class="sub-section-title">🎁 امکانات و ویژگی‌های باشگاه</div>
+      <div class="two-col">
+        <div class="module-block">
+          <div class="module-header module-header-gold">
+            <span class="mh-icon">🪙</span>
+            <h3>سیستم امتیاز و پاداش</h3>
+          </div>
+          <div class="module-body">
+            <ul class="feature-list">
+              <li class="gold"><span class="fi-icon">🛒</span><div><strong>امتیاز خرید:</strong> به ازای هر ۱۰۰ تومان خرید، امتیاز متناسب با سطح</div></li>
+              <li class="gold"><span class="fi-icon">📸</span><div><strong>امتیاز محتوا:</strong> ثبت عکس با محصول + تگ برند = ۵۰۰ امتیاز</div></li>
+              <li class="gold"><span class="fi-icon">👥</span><div><strong>امتیاز معرفی:</strong> معرفی هر دوست = ۱۰۰۰ امتیاز برای هر دو نفر</div></li>
+              <li class="gold"><span class="fi-icon">⭐</span><div><strong>امتیاز نظر:</strong> ثبت نظر صادقانه = ۲۰۰ امتیاز</div></li>
+              <li class="gold"><span class="fi-icon">🎂</span><div><strong>امتیاز تولد:</strong> ۱۰۰۰ امتیاز هدیه در ماه تولد</div></li>
+              <li class="gold"><span class="fi-icon">🏷️</span><div><strong>استفاده از امتیاز:</strong> هر ۱۰۰ امتیاز = ۱۰ تومان تخفیف فوری</div></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="module-block">
+          <div class="module-header module-header-purple">
+            <span class="mh-icon">🎯</span>
+            <h3>مزایای انحصاری اعضا</h3>
+          </div>
+          <div class="module-body">
+            <ul class="feature-list">
+              <li class="purple"><span class="fi-icon">🔔</span><div><strong>Early Access:</strong> دسترسی زودهنگام به کلکسیون‌های جدید (۴۸ ساعت قبل)</div></li>
+              <li class="purple"><span class="fi-icon">🎁</span><div><strong>بسته‌بندی ویژه:</strong> هدیه‌بندی رایگان و کارت تبریک دست‌نویس</div></li>
+              <li class="purple"><span class="fi-icon">🛍️</span><div><strong>رزرو آنلاین:</strong> رزرو محصول قبل از موجودیت عمومی</div></li>
+              <li class="purple"><span class="fi-icon">📏</span><div><strong>استایلینگ شخصی:</strong> مشاوره رایگان از متخصصان استایل راسپینا</div></li>
+              <li class="purple"><span class="fi-icon">🚀</span><div><strong>ارسال اولویت‌دار:</strong> پردازش و ارسال در اولین نوبت</div></li>
+              <li class="purple"><span class="fi-icon">↩️</span><div><strong>بازگشت آسان:</strong> ۳۰ روز مهلت مرجوعی (استاندارد ۷ روز)</div></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- اپ باشگاه -->
+    <div class="sub-section">
+      <div class="sub-section-title">📱 پنل وب باشگاه (Mobile-First)</div>
+      <div class="card-grid">
+        <div class="card card-accent">
+          <span class="card-icon">📊</span>
+          <h3>داشبورد مشتری</h3>
+          <p>مشاهده امتیاز فعلی، سطح عضویت، پیشرفت به سطح بعدی و تاریخچه کامل امتیازات</p>
+        </div>
+        <div class="card card-accent">
+          <span class="card-icon">🎟️</span>
+          <h3>کیف پول دیجیتال</h3>
+          <p>مشاهده موجودی امتیاز قابل استفاده، تاریخ انقضا، و تبدیل فوری به کد تخفیف</p>
+        </div>
+        <div class="card card-accent">
+          <span class="card-icon">📋</span>
+          <h3>تاریخچه سفارشات</h3>
+          <p>وضعیت تمام سفارشات، پیگیری مرسوله، دانلود فاکتور و ثبت مرجوعی</p>
+        </div>
+        <div class="card card-accent">
+          <span class="card-icon">🔔</span>
+          <h3>اعلان‌های شخصی</h3>
+          <p>پیشنهادات ویژه بر اساس علایق، اطلاع از موجودی کالاهای wishlist</p>
+        </div>
+        <div class="card card-accent">
+          <span class="card-icon">💬</span>
+          <h3>چت پشتیبانی</h3>
+          <p>ارتباط مستقیم با کارشناس اختصاصی (برای سطوح پلاتینوم و VIP)</p>
+        </div>
+        <div class="card card-accent">
+          <span class="card-icon">🎪</span>
+          <h3>رویدادها</h3>
+          <p>ثبت‌نام در رونمایی‌ها، فروش ویژه اعضا و رویدادهای انحصاری</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== TELEGRAM SHOP BOT ===== -->
+<section id="telegram" class="section" style="background:white;">
+  <div class="wrapper">
+    <div class="section-header">
+      <div class="section-icon icon-tg">🤖</div>
+      <div class="section-title-block">
+        <span class="section-num">بخش ۰۴ — ربات فروشگاهی تلگرام</span>
+        <h2>ربات فروشگاهی تلگرام راسپینا (Telegram Shop Bot)</h2>
+        <p>فروشگاه کامل و مستقل در بستر تلگرام، متصل به دیتای زنده سایت‌ها با کاتالوگ درختی، استعلام قیمت و دکمه خرید مستقیم</p>
+      </div>
+    </div>
+
+    <div class="highlight-box highlight-tg">
+      <span class="highlight-icon">🛍️</span>
+      <div>
+        <h4>فروشگاه مدرن درون‌برنامه‌ای: تجربه خرید بدون خروج از تلگرام</h4>
+        <p>
+          بسیاری از مشتریان پوشاک تمایلی به باز کردن مرورگر و پیمایش صفحات سایت ندارند.
+          این ربات اختصاصی به ۳ وب‌سایت رسمی راسپینا متصل است و مطابق با ساختار درختی دسته‌بندی‌ها،
+          تمام محصولات را به همراه تصاویر آلبومی، سایزبندی، رنگ‌بندی، قیمت لحظه‌ای و <strong>لینک مستقیم خرید همان محصول از سایت</strong>
+          در اختیار کاربر قرار می‌دهد تا چرخه انتخاب تا پرداخت در چند ثانیه کامل شود.
+        </p>
+      </div>
+    </div>
+
+    <!-- ماژول‌های ربات تلگرام -->
+    <div class="sub-section-title">✨ امکانات و قابلیت‌های کلیدی ربات تلگرام</div>
+    <div class="card-grid">
+      <div class="card card-accent-tg">
+        <span class="card-icon">📂</span>
+        <h3>دسته‌بندی درختی پویا</h3>
+        <p>نمایش شکیل تمامی گروه‌های محصولی (مانتو، شومیز، شلوار، پیراهن، ست، بارانی، اکسسوری) با دکمه‌های شیشه‌ای اینلاین و شمارش تعداد موجودی.</p>
+      </div>
+      <div class="card card-accent-tg">
+        <span class="card-icon">👗</span>
+        <h3>کاتالوگ چندرسانه‌ای محصول</h3>
+        <p>ارسال آلبوم تصاویر تنخور کالا، جدول سایزبندی، توضیحات جنس پارچه، قیمت روز و وضعیت موجودی هر انبار به صورت لحظه‌ای از سایت.</p>
+      </div>
+      <div class="card card-accent-tg">
+        <span class="card-icon">🔗</span>
+        <h3>دکمه مستقیم خرید در سایت</h3>
+        <p>زیر هر کارت محصول، دکمه اختصاصی «خرید آنلاین از سایت» تعبیه شده که مشتری را دقیقاً به صفحه تسویه‌حساب یا خرید همان محصول هدایت می‌کند.</p>
+      </div>
+      <div class="card card-accent-tg">
+        <span class="card-icon">🔍</span>
+        <h3>جستجوی هوشمند کالا</h3>
+        <p>امکان سرچ متنی نام کالا، کد محصول، بازه قیمتی یا فیلتر بر اساس رنگ و سایز برای دسترسی فوری بدون نیاز به گردش در منوها.</p>
+      </div>
+      <div class="card card-accent-tg">
+        <span class="card-icon">📦</span>
+        <h3>پیگیری آنلاین وضعیت سفارش</h3>
+        <p>مشتری می‌تواند تنها با وارد کردن شماره سفارش یا شماره موبایل، آخرین وضعیت آماده‌سازی، بسته‌بندی و کد رهگیری پستی را دریافت کند.</p>
+      </div>
+      <div class="card card-accent-tg">
+        <span class="card-icon">📢</span>
+        <h3>اتصال به CRM و برودکست هوشمند</h3>
+        <p>ثبت رفتارها و علایق کاربر در پروفایل CRM، اطلاع‌رسانی شارژ مجدد کالاهای ناموجود، و ارسال کمپین‌های تخفیفی بر اساس سلیقه کاربر.</p>
+      </div>
+    </div>
+
+    <!-- سناریوی کاربری در تلگرام -->
+    <div class="sub-section">
+      <div class="sub-section-title">🔄 جریان خرید در ربات تلگرام (User Flow)</div>
+      <div class="flow">
+        <div class="flow-step">
+          <div class="flow-box">
+            <div class="flow-num">۱</div>
+            <div class="flow-title">استارت و منوی اصلی</div>
+            <div class="flow-desc">مشاهده دسته‌بندی‌ها و کالکشن‌های جدید</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-box">
+            <div class="flow-num">۲</div>
+            <div class="flow-title">انتخاب دسته‌بندی</div>
+            <div class="flow-desc">مثلاً شومیز / مانتو با فیلتر سایز و رنگ</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-box">
+            <div class="flow-num">۳</div>
+            <div class="flow-title">بررسی مشخصات کالا</div>
+            <div class="flow-desc">عکس، جدول سایز، قیمت زنده و موجودی</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-box">
+            <div class="flow-num">۴</div>
+            <div class="flow-title">کلیک روی لینک خرید</div>
+            <div class="flow-desc">انتقال آنی به درگاه و سبد خرید همان محصول در سایت</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-box">
+            <div class="flow-num">۵</div>
+            <div class="flow-title">ثبت در CRM و پیگیری</div>
+            <div class="flow-desc">ارسال خودکار کد پیگیری و امتیاز باشگاه به مشتری</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- جدول مشخصات فنی ربات تلگرام -->
+    <div class="sub-section">
+      <div class="sub-section-title">⚙️ مشخصات فنی و معماری ربات تلگرام</div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>مولفه</th>
+            <th>فناوری / پیاده‌سازی</th>
+            <th>مزیت برای راسپینا</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>تکنولوژی هسته</td>
+            <td>Python 3.11 + Aiogram (Asynchronous Engine)</td>
+            <td>پاسخگویی سریع به هزاران کاربر همزمان بدون افت سرعت</td>
+          </tr>
+          <tr>
+            <td>اتصال به وب‌سایت‌ها</td>
+            <td>REST API + Webhook به هر ۳ سایت راسپینا</td>
+            <td>به‌روزرسانی خودکار قیمت و موجودی بدون نیاز به ثبت دستی</td>
+          </tr>
+          <tr>
+            <td>سیستم کشینگ (Caching)</td>
+            <td>Redis In-Memory Database</td>
+            <td>لودینگ آنی کاتالوگ و کاهش بار روی سرور سایت‌های اصلی</td>
+          </tr>
+          <tr>
+            <td>امنیت و احراز هویت</td>
+            <td>رمزنگاری تلگرام + اتصال شماره تلفن به CRM</td>
+            <td>شناسایی خودکار سوابق مشتری به محض استارت ربات</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INSTAGRAM AI BOT ===== -->
+<section id="instagram" class="section">
+  <div class="wrapper">
+    <div class="section-header">
+      <div class="section-icon icon-ig">📸</div>
+      <div class="section-title-block">
+        <span class="section-num">بخش ۰۵ — ربات هوشمند اینستاگرام</span>
+        <h2>دستیار هوش مصنوعی و پایشگر اینستاگرام راسپینا</h2>
+        <p>پاسخ‌گویی فوق‌سریع ۲ تا ۱۰ ثانیه‌ای به دایرکت‌ها و کامنت‌ها بدون خطا + پایش و تحلیل تخصصی رشد پیج با گزارش‌های روزانه و هفتگی</p>
+      </div>
+    </div>
+
+    <!-- بخش اول: دایرکت و کامنت هوش مصنوعی -->
+    <div class="sub-section-title">💬 بخش اول: پاسخگوی هوشمند دایرکت و کامنت (Direct & Comment AI Assistant)</div>
+    <div class="highlight-box highlight-ig">
+      <span class="highlight-icon">⚡</span>
+      <div>
+        <h4>پاسخ‌گویی آنی بین ۲ الی ۱۰ ثانیه با دقت ۱۰۰٪ بر اساس دیتای زنده سایت</h4>
+        <p>
+          این دستیار با اتصال به هوش مصنوعی پیشرفته (Claude / GPT-4o) و یکپارچگی با پایگاه دانش محصولات سایت (RAG Architecture)،
+          به تمام دایرکت‌ها و کامنت‌ها در کمترین زمان ممکن پاسخ می‌دهد. سیستم دارای گاردریل‌های سخت‌گیرانه‌ای است تا هیچ‌گونه خطایی
+          (مانند ارسال اطلاعات شلوار به جای شومیز) رخ ندهد. همچنین قابلیت <strong>شناسایی پست و استوری ارسال‌شده به دایرکت</strong>
+          را داراست و بلافاصله اطلاعات دقیق و لینک خرید اختصاصی آن محصول را ارسال می‌کند.
+        </p>
+      </div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card card-accent-ig">
+        <span class="card-icon">🎯</span>
+        <h3>دقت ۱۰۰٪ بدون خطا (Zero-Hallucination)</h3>
+        <p>هوش مصنوعی قبل از هر پاسخ، موجودی، کد کالا و دسته‌بندی را از دیتابیس استعلام می‌کند. اگر مشتری در مورد شومیز بپرسد، هرگز اطلاعات شلوار یا مانتو ارسال نخواهد شد.</p>
+      </div>
+      <div class="card card-accent-ig">
+        <span class="card-icon">🖼️</span>
+        <h3>تشخیص پست محصول در دایرکت</h3>
+        <p>مشتری با فوروارد کردن هر پست یا ریلز از پیج به دایرکت، در کمتر از ۵ ثانیه قیمت کالا، سایزهای موجود، رنگ‌بندی و <strong>لینک خرید مستقیم از سایت</strong> را دریافت می‌کند.</p>
+      </div>
+      <div class="card card-accent-ig">
+        <span class="card-icon">⏱️</span>
+        <h3>سرعت پاسخگویی ۲ الی ۱۰ ثانیه</h3>
+        <p>عملکرد پایدار ۲۴ ساعته در ۷ روز هفته؛ پاسخ‌دهی به اوج ترافیک جشنواره‌ها بدون معطلی مشتریان و پیشگیری از سرد شدن انگیزه خرید.</p>
+      </div>
+      <div class="card card-accent-ig">
+        <span class="card-icon">🎭</span>
+        <h3>شخصیت و لحن اختصاصی برند راسپینا</h3>
+        <p>پاسخ‌ها با لحن محترمانه، صمیمی و تخصصی استایلیست مد زنانه تنظیم شده و متناسب با شرایط مشتری تخفیف‌ها یا محصولات مکمل را پیشنهاد می‌دهد.</p>
+      </div>
+      <div class="card card-accent-ig">
+        <span class="card-icon">💬</span>
+        <h3>پاسخگویی خودکار به کامنت‌ها</h3>
+        <p>ارسال فوری پاسخ عمومی زیر کامنت + ارسال پیام خصوصی خودکار در دایرکت به همراه لینک مستقیم محصول برای بستن سریع فروش.</p>
+      </div>
+      <div class="card card-accent-ig">
+        <span class="card-icon">🚨</span>
+        <h3>ارجاع هوشمند به اپراتور انسانی (Fallback)</h3>
+        <p>در موارد پیچیده (پیگیری مرجوعی خاص، شکایات حساس یا سؤالات نیازمند تایید مدیر)، گفتگو بدون معطلی به کارشناس پشتیبانی ارجاع می‌شود.</p>
+      </div>
+    </div>
+
+    <!-- بخش دوم: پایشگر رشد و متخصص اینستاگرام -->
+    <div class="sub-section" style="margin-top:36px;">
+      <div class="sub-section-title">📊 بخش دوم: پایشگر و آنالیزور تخصصی اینستاگرام (Instagram Growth Specialist)</div>
+      <div class="highlight-box highlight-gold">
+        <span class="highlight-icon">📈</span>
+        <div>
+          <h4>تحلیل پیج مانند یک مشاور ارشد اینستاگرام — گزارش‌های روزانه و هفتگی</h4>
+          <p>
+            این ماژول از طریق اتصال مستقیم به Instagram Insights API کلیه اتفاقات پیج را به صورت ۲۴ ساعته رصد کرده و
+            خروجی‌های تحلیلی را برای مدیران تولید می‌کند تا تصمیم‌گیری‌های بازاریابی و تولید محتوا بر اساس دیتای دقیق انجام شود.
+          </p>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="module-block">
+          <div class="module-header module-header-gold">
+            <span class="mh-icon">☀️</span>
+            <h3>گزارش تحلیلی روزانه (Daily Briefing)</h3>
+          </div>
+          <div class="module-body">
+            <p style="font-size:13px;color:var(--text-light);margin-bottom:12px;">ارسال خودکار به موبایل مدیریت رأس ساعت ۸:۰۰ صبح هر روز شامل:</p>
+            <ul class="feature-list">
+              <li class="gold"><span class="fi-icon">👥</span><div><strong>ورودی و خروجی:</strong> تعداد فالوورهای جدید و آنفالوها با تفکیک منبع</div></li>
+              <li class="gold"><span class="fi-icon">👁️</span><div><strong>دیده‌شدن (Reach & Impressions):</strong> آمار بازدید استوری‌ها، پست‌ها و ریلزهای ۲۴ ساعت اخیر</div></li>
+              <li class="gold"><span class="fi-icon">🛒</span><div><strong>فروش محقق شده:</strong> تعداد کلیک‌های لینک خرید دایرکت و بیو و مبلغ فروش</div></li>
+              <li class="gold"><span class="fi-icon">💬</span><div><strong>حجم تعاملات:</strong> تعداد دایرکت‌ها، کامنت‌های پاسخ‌داده‌شده و موضوعات پرتکرار</div></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="module-block">
+          <div class="module-header module-header-ig">
+            <span class="mh-icon">📅</span>
+            <h3>گزارش استراتژیک هفتگی (Weekly Strategic Audit)</h3>
+          </div>
+          <div class="module-body">
+            <p style="font-size:13px;color:var(--text-light);margin-bottom:12px;">ارسال ابتدای هر هفته همراه با تحلیل هوشمند الگوریتم:</p>
+            <ul class="feature-list">
+              <li class="ig"><span class="fi-icon">🏆</span><div><strong>بهترین و ضعیف‌ترین محتوا:</strong> آنالیز علل موفقیت یا شکست ریلزها و پست‌ها</div></li>
+              <li class="ig"><span class="fi-icon">⏰</span><div><strong>ساعات طلایی انتشار:</strong> تعیین دقیق بهترین زمان پست‌گذاری برای بیشترین بازدهی</div></li>
+              <li class="ig"><span class="fi-icon">📊</span><div><strong>نرخ تعامل (Engagement Rate):</strong> مقایسه درصد تعامل با استانداردهای صنعت مد</div></li>
+              <li class="ig"><span class="fi-icon">🎯</span><div><strong>۳ راهکار عملی هفتگی:</strong> دستورالعمل مشخص هوش مصنوعی برای تولید محتوای هفته آینده</div></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AUTOMATION ===== -->
+<section id="automation" class="section" style="background:white;">
+  <div class="wrapper">
+    <div class="section-header">
+      <div class="section-icon icon-green">🏢</div>
+      <div class="section-title-block">
+        <span class="section-num">بخش ۰۶ — اتوماسیون اداری</span>
+        <h2>اتوماسیون اداری بین‌شعبه‌ای راسپینا</h2>
+        <p>سیستم جامع اداری برای هماهنگی کامل بین شعبه همدان و دفتر تهران — ۱۰۰٪ وب و موبایل‌فرست</p>
+      </div>
+    </div>
+
+    <div class="highlight-box highlight-green">
+      <span class="highlight-icon">🌐</span>
+      <div>
+        <h4>معماری: وب‌بیس — بدون نیاز به نصب نرم‌افزار</h4>
+        <p>
+          سیستم اتوماسیون به‌صورت کامل تحت مرورگر (Progressive Web App) اجرا می‌شود.
+          تمام کارکنان هر دو شعبه با نام کاربری و رمز عبور اختصاصی وارد می‌شوند.
+          دسترسی‌ها بر اساس نقش (Role-Based Access Control) تنظیم است.
+          همه داده‌ها روی سرور ابری ایران ذخیره و رمزگذاری می‌شوند.
+        </p>
+      </div>
+    </div>
+
+    <!-- ماژول‌های اصلی -->
+    <div class="sub-section-title">📂 ماژول‌های اصلی اتوماسیون</div>
+
+    <div class="module-block">
+      <div class="module-header module-header-green">
+        <span class="mh-icon">📄</span>
+        <h3>مدیریت مکاتبات و اسناد</h3>
+      </div>
+      <div class="module-body">
+        <div class="two-col">
+          <ul class="feature-list">
+            <li class="green"><span class="fi-icon">📝</span><div><strong>نامه‌نگاری داخلی:</strong> ارسال نامه‌های رسمی بین شعبه‌ها با شماره‌گذاری خودکار و بایگانی</div></li>
+            <li class="green"><span class="fi-icon">📨</span><div><strong>نامه‌های خارجی:</strong> مدیریت مکاتبات با تأمین‌کنندگان، شرکا و مراجع قانونی</div></li>
+            <li class="green"><span class="fi-icon">📁</span><div><strong>آرشیو هوشمند:</strong> جستجوی فوری در تمام اسناد با فیلتر تاریخ، نویسنده و موضوع</div></li>
+            <li class="green"><span class="fi-icon">✍️</span><div><strong>امضای دیجیتال:</strong> تأیید و امضای اسناد از راه دور توسط مدیران</div></li>
+          </ul>
+          <ul class="feature-list">
+            <li class="green"><span class="fi-icon">🗂️</span><div><strong>قرارداد و تفاهم‌نامه:</strong> ایجاد، پیگیری انقضا و تمدید قراردادها</div></li>
+            <li class="green"><span class="fi-icon">🔒</span><div><strong>اسناد محرمانه:</strong> سطح‌بندی دسترسی به اسناد حساس</div></li>
+            <li class="green"><span class="fi-icon">📲</span><div><strong>نوتیفیکیشن:</strong> اطلاع‌رسانی فوری هنگام دریافت نامه یا سند جدید</div></li>
+            <li class="green"><span class="fi-icon">📤</span><div><strong>خروجی PDF:</strong> دانلود سربرگ رسمی با آرم راسپینا</div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="module-block" style="margin-top:20px;">
+      <div class="module-header module-header-blue">
+        <span class="mh-icon">✅</span>
+        <h3>مدیریت وظایف و گردش کار (Workflow)</h3>
+      </div>
+      <div class="module-body">
+        <div class="two-col">
+          <ul class="feature-list">
+            <li class="blue"><span class="fi-icon">📌</span><div><strong>ایجاد تسک:</strong> تعریف وظیفه با ددلاین، اولویت و مسئول اجرا</div></li>
+            <li class="blue"><span class="fi-icon">🔄</span><div><strong>گردش تأیید:</strong> مسیر تأیید چندمرحله‌ای (مثلاً: کارشناس ← سرپرست ← مدیر)</div></li>
+            <li class="blue"><span class="fi-icon">📊</span><div><strong>بورد کانبان:</strong> مشاهده وضعیت وظایف به‌صورت بصری</div></li>
+            <li class="blue"><span class="fi-icon">⏰</span><div><strong>یادآور خودکار:</strong> ارسال هشدار قبل از انقضای ددلاین</div></li>
+          </ul>
+          <ul class="feature-list">
+            <li class="blue"><span class="fi-icon">🏷️</span><div><strong>تگ و دسته‌بندی:</strong> سازماندهی وظایف بر اساس پروژه، شعبه، اولویت</div></li>
+            <li class="blue"><span class="fi-icon">💬</span><div><strong>کامنت‌گذاری:</strong> گفتگوی تیمی درون هر وظیفه</div></li>
+            <li class="blue"><span class="fi-icon">📎</span><div><strong>پیوست فایل:</strong> ضمیمه اسناد به وظایف</div></li>
+            <li class="blue"><span class="fi-icon">📈</span><div><strong>گزارش عملکرد:</strong> کارایی هر کارمند بر اساس تسک‌های تکمیل‌شده</div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="module-block" style="margin-top:20px;">
+      <div class="module-header module-header-purple">
+        <span class="mh-icon">👤</span>
+        <h3>مدیریت منابع انسانی (HR Module)</h3>
+      </div>
+      <div class="module-body">
+        <div class="card-grid">
+          <div>
+            <h4 style="font-size:13px;font-weight:700;color:var(--primary);margin-bottom:10px;">📊 حضور و غیاب</h4>
+            <ul class="feature-list">
+              <li class="purple"><span class="fi-icon">⏱️</span><div>ثبت ورود/خروج آنلاین از موبایل</div></li>
+              <li class="purple"><span class="fi-icon">📅</span><div>مدیریت مرخصی و ماموریت</div></li>
+              <li class="purple"><span class="fi-icon">📋</span><div>کارکرد ماهانه و اضافه‌کاری</div></li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="font-size:13px;font-weight:700;color:var(--primary);margin-bottom:10px;">💰 حقوق و دستمزد</h4>
+            <ul class="feature-list">
+              <li class="purple"><span class="fi-icon">🧮</span><div>محاسبه خودکار حقوق ماهانه</div></li>
+              <li class="purple"><span class="fi-icon">📄</span><div>فیش حقوقی دیجیتال</div></li>
+              <li class="purple"><span class="fi-icon">🏦</span><div>اتصال به سیستم بانکی</div></li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="font-size:13px;font-weight:700;color:var(--primary);margin-bottom:10px;">📚 آموزش و ارزیابی</h4>
+            <ul class="feature-list">
+              <li class="purple"><span class="fi-icon">🎓</span><div>برنامه آموزشی آنلاین</div></li>
+              <li class="purple"><span class="fi-icon">⭐</span><div>ارزیابی عملکرد دوره‌ای</div></li>
+              <li class="purple"><span class="fi-icon">🏆</span><div>سیستم پاداش و تشویق</div></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="module-block" style="margin-top:20px;">
+      <div class="module-header module-header-dark">
+        <span class="mh-icon">💬</span>
+        <h3>پیام‌رسان داخلی امن (Internal Messenger)</h3>
+      </div>
+      <div class="module-body">
+        <div class="two-col">
+          <ul class="feature-list">
+            <li><span class="fi-icon">💬</span><div><strong>چت تیمی:</strong> گروه‌های کاری اختصاصی برای هر واحد</div></li>
+            <li><span class="fi-icon">📹</span><div><strong>ویدیوکنفرانس:</strong> جلسات آنلاین بین همدان و تهران</div></li>
+            <li><span class="fi-icon">📢</span><div><strong>اعلامیه رسمی:</strong> ابلاغ بخشنامه‌ها و اطلاعیه‌ها</div></li>
+          </ul>
+          <ul class="feature-list">
+            <li><span class="fi-icon">🔒</span><div><strong>رمزگذاری End-to-End:</strong> حفاظت از محرمانگی مکالمات</div></li>
+            <li><span class="fi-icon">📁</span><div><strong>اشتراک فایل:</strong> ارسال اسناد در همان گفتگو</div></li>
+            <li><span class="fi-icon">🗑️</span><div><strong>حذف خودکار:</strong> پاک‌شدن پیام‌های حساس پس از مطالعه</div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- جلسات -->
+    <div class="sub-section">
+      <div class="sub-section-title">📅 ماژول جلسات و تقویم</div>
+      <div class="card-grid" style="grid-template-columns:repeat(auto-fill,minmax(220px,1fr));">
+        <div class="card card-accent-green">
+          <span class="card-icon">📆</span>
+          <h3>تقویم مشترک</h3>
+          <p>تقویم یکپارچه دو شعبه، قابل فیلتر بر اساس کارمند، واحد یا نوع رویداد</p>
+        </div>
+        <div class="card card-accent-green">
+          <span class="card-icon">🤝</span>
+          <h3>رزرو جلسه</h3>
+          <p>رزرو اتاق جلسه، ارسال دعوت‌نامه خودکار با لینک ویدیوکنفرانس</p>
+        </div>
+        <div class="card card-accent-green">
+          <span class="card-icon">📝</span>
+          <h3>صورت‌جلسه</h3>
+          <p>ثبت مصوبات، وظایف تقسیم‌شده و ضبط جلسه — همه در یک سند</p>
+        </div>
+        <div class="card card-accent-green">
+          <span class="card-icon">🔔</span>
+          <h3>یادآور جلسات</h3>
+          <p>ارسال SMS و نوتیفیکیشن ۱ ساعت و ۱۵ دقیقه قبل از شروع</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- گزارش‌دهی -->
+    <div class="sub-section">
+      <div class="sub-section-title">📊 گزارش‌دهی مدیریتی</div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>نوع گزارش</th>
+            <th>دوره</th>
+            <th>مخاطب</th>
+            <th>محتوا</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>گزارش فروش مقایسه‌ای شعبه‌ها</td>
+            <td><span class="badge badge-blue">روزانه</span></td>
+            <td>مدیر عامل</td>
+            <td>فروش همدان vs تهران، رشد نسبت به دیروز، پیش‌بینی</td>
+          </tr>
+          <tr>
+            <td>گزارش حضور کارکنان</td>
+            <td><span class="badge badge-green">ماهانه</span></td>
+            <td>مدیر HR</td>
+            <td>غیبت، مرخصی، اضافه‌کاری، بیشترین/کمترین کارکرد</td>
+          </tr>
+          <tr>
+            <td>گزارش وظایف</td>
+            <td><span class="badge badge-blue">هفتگی</span></td>
+            <td>سرپرستان</td>
+            <td>تسک‌های تکمیل‌شده، معوق، در انتظار تأیید</td>
+          </tr>
+          <tr>
+            <td>گزارش مکاتبات</td>
+            <td><span class="badge badge-gold">فصلی</span></td>
+            <td>مدیر اداری</td>
+            <td>تعداد نامه‌ها، زمان پاسخ‌دهی، بایگانی موضوعی</td>
+          </tr>
+          <tr>
+            <td>داشبورد مدیریتی (Realtime)</td>
+            <td><span class="badge badge-purple">لحظه‌ای</span></td>
+            <td>هیئت مدیره</td>
+            <td>KPIهای کلیدی دو شعبه در یک نگاه</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WAREHOUSE ===== -->
+<section id="warehouse" class="section">
+  <div class="wrapper">
+    <div class="section-header">
+      <div class="section-icon icon-purple">📦</div>
+      <div class="section-title-block">
+        <span class="section-num">بخش ۰۷ — سیستم انبارگردانی هوشمند</span>
+        <h2>انبارگردانی راسپینا — یکپارچه با سپیدار</h2>
+        <p>مدیریت ۱۴ میلیون+ SKU با خواندن بارکد از دوربین گوشی — سازگار کامل با نرم‌افزار حسابداری سپیدار</p>
+      </div>
+    </div>
+
+    <div class="highlight-box highlight-red">
+      <span class="highlight-icon">⚠️</span>
+      <div>
+        <h4>چالش اصلی: مقیاس بزرگ</h4>
+        <p>
+          با <strong>۱۴,۰۰۰,۰۰۰+ کالای متفاوت</strong> که باید تک‌به‌تک بررسی شوند،
+          سرعت عملیات انبارگردانی حیاتی است. راهکار: استفاده از دوربین گوشی موبایل
+          برای اسکن سریع بارکد — نه اسکنر جداگانه، نه نصب نرم‌افزار اضافه.
+          هر کارمند با گوشی شخصی و مرورگر وارد سیستم می‌شود و شروع به شمارش می‌کند.
+        </p>
+      </div>
+    </div>
+
+    <!-- بارکد اسکنر -->
+    <div class="sub-section-title">📱 سیستم اسکن بارکد با دوربین گوشی</div>
+
+    <div class="module-block">
+      <div class="module-header module-header-purple">
+        <span class="mh-icon">📸</span>
+        <h3>موتور اسکن بارکد درون‌مرورگری (WebRTC Barcode Scanner)</h3>
+      </div>
+      <div class="module-body">
+        <div class="two-col">
+          <div>
+            <h4 style="font-size:14px;font-weight:700;color:var(--primary);margin-bottom:12px;">ویژگی‌های فنی اسکنر</h4>
+            <ul class="feature-list">
+              <li class="purple"><span class="fi-icon">📸</span><div><strong>بدون نصب:</strong> مستقیم از مرورگر گوشی — Chrome یا Safari</div></li>
+              <li class="purple"><span class="fi-icon">⚡</span><div><strong>سرعت بالا:</strong> شناسایی بارکد در کمتر از ۰.۵ ثانیه</div></li>
+              <li class="purple"><span class="fi-icon">🔍</span><div><strong>همه فرمت‌ها:</strong> EAN-13, EAN-8, Code128, QR, DataMatrix, Code39</div></li>
+              <li class="purple"><span class="fi-icon">💡</span><div><strong>کم‌نور:</strong> عملکرد در شرایط نور کم انبار</div></li>
+              <li class="purple"><span class="fi-icon">📶</span><div><strong>آفلاین:</strong> اسکن بدون اینترنت + سینک هنگام اتصال</div></li>
+              <li class="purple"><span class="fi-icon">🔊</span><div><strong>بازخورد صوتی:</strong> صدای بیپ هنگام اسکن موفق</div></li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="font-size:14px;font-weight:700;color:var(--primary);margin-bottom:12px;">فرآیند اسکن</h4>
+            <div class="flow" style="flex-direction:column;gap:12px;">
+              <div style="background:var(--bg-light);border-radius:10px;padding:14px;border-right:3px solid #9b59b6;">
+                <strong style="font-size:13px;color:var(--primary);">۱. ورود به سیستم</strong>
+                <p style="font-size:12.5px;color:var(--text-light);margin-top:4px;">کارمند با نام کاربری اختصاصی وارد می‌شود</p>
+              </div>
+              <div style="background:var(--bg-light);border-radius:10px;padding:14px;border-right:3px solid #9b59b6;">
+                <strong style="font-size:13px;color:var(--primary);">۲. انتخاب پروژه انبارگردانی</strong>
+                <p style="font-size:12.5px;color:var(--text-light);margin-top:4px;">انتخاب انبار، تاریخ و بخش مورد نظر</p>
+              </div>
+              <div style="background:var(--bg-light);border-radius:10px;padding:14px;border-right:3px solid #9b59b6;">
+                <strong style="font-size:13px;color:var(--primary);">۳. فعال‌کردن دوربین</strong>
+                <p style="font-size:12.5px;color:var(--text-light);margin-top:4px;">با یک کلیک دوربین گوشی فعال می‌شود</p>
+              </div>
+              <div style="background:var(--bg-light);border-radius:10px;padding:14px;border-right:3px solid #9b59b6;">
+                <strong style="font-size:13px;color:var(--primary);">۴. اسکن و تأیید</strong>
+                <p style="font-size:12.5px;color:var(--text-light);margin-top:4px;">نمایش فوری اطلاعات کالا + ورود تعداد</p>
+              </div>
+              <div style="background:var(--bg-light);border-radius:10px;padding:14px;border-right:3px solid #9b59b6;">
+                <strong style="font-size:13px;color:var(--primary);">۵. ثبت خودکار</strong>
+                <p style="font-size:12.5px;color:var(--text-light);margin-top:4px;">داده‌ها با نام کاربر، زمان و مکان ذخیره می‌شود</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- داده‌های بارکد -->
+    <div class="sub-section">
+      <div class="sub-section-title">🏷️ اطلاعات خوانده‌شده از بارکد</div>
+      <p style="color:var(--text-light);font-size:14px;margin-bottom:16px;">
+        بارکدهای راسپینا از قبل حاوی داده‌های ساختاریافته هستند. سیستم پس از اسکن بلافاصله تمام جزئیات را نمایش می‌دهد:
+      </p>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>فیلد داده</th>
+            <th>مثال</th>
+            <th>منبع</th>
+            <th>قابل ویرایش</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>کد کالا (SKU)</td><td>RAS-MNT-BLK-M-001</td><td>بارکد</td><td><span class="badge badge-red">خیر</span></td></tr>
+          <tr><td>نام محصول</td><td>مانتو بلند مشکی راسپینا</td><td>پایگاه داده</td><td><span class="badge badge-red">خیر</span></td></tr>
+          <tr><td>دسته‌بندی</td><td>مانتو / زنانه</td><td>پایگاه داده</td><td><span class="badge badge-red">خیر</span></td></tr>
+          <tr><td>رنگ</td><td>مشکی</td><td>بارکد/پایگاه داده</td><td><span class="badge badge-red">خیر</span></td></tr>
+          <tr><td>سایز</td><td>M</td><td>بارکد/پایگاه داده</td><td><span class="badge badge-red">خیر</span></td></tr>
+          <tr><td>موجودی سیستم</td><td>۴۵ عدد</td><td>پایگاه داده سپیدار</td><td><span class="badge badge-red">خیر</span></td></tr>
+          <tr><td>موجودی شمارش‌شده</td><td>[ورودی کارمند]</td><td>کارمند</td><td><span class="badge badge-green">بله</span></td></tr>
+          <tr><td>مغایرت</td><td>+۲ یا -۳</td><td>محاسبه خودکار</td><td><span class="badge badge-red">خیر</span></td></tr>
+          <tr><td>موقعیت در انبار</td><td>قفسه A۴ - ردیف ۳</td><td>پایگاه داده</td><td><span class="badge badge-green">بله</span></td></tr>
+          <tr><td>قیمت خرید</td><td>۸۵۰,۰۰۰ تومان</td><td>سپیدار</td><td><span class="badge badge-red">خیر</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- یکپارچه‌سازی سپیدار -->
+    <div class="sub-section">
+      <div class="sub-section-title">🔗 یکپارچه‌سازی کامل با نرم‌افزار سپیدار</div>
+
+      <div class="highlight-box highlight-gold">
+        <span class="highlight-icon">⚙️</span>
+        <div>
+          <h4>انطباق کامل با ساختار داده‌ای سپیدار</h4>
+          <p>
+            سیستم انبارگردانی دقیقاً با ساختار کدینگ کالا، کد انبار، مراکز هزینه و واحدهای شمارش نرم‌افزار سپیدار هماهنگ است.
+            خروجی نهایی انبارگردانی به‌صورت فایل اکسل استاندارد سپیدار آماده می‌شود که مستقیماً از منوی «ورود اطلاعات انبار» سپیدار قابل import است.
+          </p>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="module-block">
+          <div class="module-header module-header-gold">
+            <span class="mh-icon">📤</span>
+            <h3>خروجی به سپیدار</h3>
+          </div>
+          <div class="module-body">
+            <ul class="feature-list">
+              <li class="gold"><span class="fi-icon">📊</span><div><strong>فایل Excel استاندارد:</strong> با ستون‌های دقیق سپیدار (کد کالا، کد انبار، تعداد، قیمت)</div></li>
+              <li class="gold"><span class="fi-icon">📋</span><div><strong>گزارش مغایرت:</strong> فهرست تفاوت موجودی واقعی با سیستم</div></li>
+              <li class="gold"><span class="fi-icon">🔄</span><div><strong>سند تعدیل موجودی:</strong> آماده ثبت در سپیدار</div></li>
+              <li class="gold"><span class="fi-icon">✅</span><div><strong>اعتبارسنجی قبل از export:</strong> بررسی کدهای کالا و خطایابی</div></li>
+              <li class="gold"><span class="fi-icon">📅</span><div><strong>آرشیو تاریخچه:</strong> ذخیره تمام دوره‌های انبارگردانی</div></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="module-block">
+          <div class="module-header module-header-green">
+            <span class="mh-icon">📥</span>
+            <h3>دریافت از سپیدار</h3>
+          </div>
+          <div class="module-body">
+            <ul class="feature-list">
+              <li class="green"><span class="fi-icon">📂</span><div><strong>Import کد کالا:</strong> دریافت لیست کامل کالاها از سپیدار با یک کلیک</div></li>
+              <li class="green"><span class="fi-icon">💰</span><div><strong>قیمت خرید:</strong> دریافت آخرین قیمت تمام‌شده هر کالا</div></li>
+              <li class="green"><span class="fi-icon">📊</span><div><strong>موجودی فعلی سیستم:</strong> مقدار ثبت‌شده در سپیدار برای مقایسه</div></li>
+              <li class="green"><span class="fi-icon">🏢</span><div><strong>کد انبارها:</strong> دریافت کد و نام تمام انبارهای تعریف‌شده</div></li>
+              <li class="green"><span class="fi-icon">📁</span><div><strong>گروه‌بندی کالا:</strong> دسته‌بندی سپیدار برای فیلتر و گزارش</div></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- مدیریت تیم انبار -->
+    <div class="sub-section">
+      <div class="sub-section-title">👥 مدیریت تیم انبارگردانی</div>
+      <div class="card-grid">
+        <div class="card card-accent-purple">
+          <span class="card-icon">🔐</span>
+          <h3>ورود با رمز اختصاصی</h3>
+          <p>هر کارمند نام کاربری و رمز دارد. تمام اسکن‌ها با نام او ثبت می‌شوند — پاسخگویی کامل</p>
+        </div>
+        <div class="card card-accent-purple">
+          <span class="card-icon">🗺️</span>
+          <h3>تقسیم‌بندی منطقه</h3>
+          <p>به هر کارمند یک بخش از انبار اختصاص داده می‌شود تا از دوباره‌شماری جلوگیری شود</p>
+        </div>
+        <div class="card card-accent-purple">
+          <span class="card-icon">📊</span>
+          <h3>داشبورد پیشرفت</h3>
+          <p>مدیر می‌تواند پیشرفت هر نفر را در زمان واقعی ببیند: چند کالا اسکن شده، چقدر مانده</p>
+        </div>
+        <div class="card card-accent-purple">
+          <span class="card-icon">⚡</span>
+          <h3>شمارش موازی</h3>
+          <p>تمام اعضای تیم به‌صورت همزمان کار می‌کنند — سیستم تداخل را مدیریت می‌کند</p>
+        </div>
+        <div class="card card-accent-purple">
+          <span class="card-icon">🔍</span>
+          <h3>بازشماری هوشمند</h3>
+          <p>کالاهایی که مغایرت بالا دارند به‌صورت خودکار برای شمارش مجدد فلگ می‌شوند</p>
+        </div>
+        <div class="card card-accent-purple">
+          <span class="card-icon">🛡️</span>
+          <h3>جلوگیری از تقلب</h3>
+          <p>تشخیص اسکن تکراری، هشدار هنگام ثبت تعداد غیرمعقول، لاگ کامل فعالیت‌ها</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- گزارش‌های انبار -->
+    <div class="sub-section">
+      <div class="sub-section-title">📈 گزارش‌های انبارگردانی</div>
+      <div class="two-col">
+        <ul class="feature-list">
+          <li class="purple"><span class="fi-icon">📋</span><div><strong>گزارش مغایرت کلی:</strong> مقایسه موجودی سیستم با موجودی واقعی برای همه کالاها</div></li>
+          <li class="purple"><span class="fi-icon">📊</span><div><strong>گزارش مغایرت ارزشی:</strong> تبدیل اختلاف تعداد به ارزش ریالی</div></li>
+          <li class="purple"><span class="fi-icon">📉</span><div><strong>گزارش کالاهای کم‌موجود:</strong> فهرست کالاهایی که زیر حد مینیمم هستند</div></li>
+          <li class="purple"><span class="fi-icon">🔄</span><div><strong>گزارش کالاهای راکد:</strong> کالاهایی که مدت طولانی فروش نداشتند</div></li>
+        </ul>
+        <ul class="feature-list">
+          <li class="purple"><span class="fi-icon">👤</span><div><strong>گزارش عملکرد تیم:</strong> سرعت و دقت هر کارمند در شمارش</div></li>
+          <li class="purple"><span class="fi-icon">📅</span><div><strong>مقایسه دوره‌ای:</strong> مقایسه دو انبارگردانی برای شناسایی روند</div></li>
+          <li class="purple"><span class="fi-icon">📂</span><div><strong>گزارش دسته‌بندی:</strong> وضعیت موجودی به تفکیک نوع محصول/رنگ/سایز</div></li>
+          <li class="purple"><span class="fi-icon">📤</span><div><strong>خروجی Excel/PDF:</strong> صادر کردن هر گزارش برای مدیران</div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INTEGRATION ===== -->
+<section id="integration" class="section" style="background:white;">
+  <div class="wrapper">
+    <div class="section-header">
+      <div class="section-icon icon-dark">🔗</div>
+      <div class="section-title-block">
+        <span class="section-num">بخش ۰۸ — معماری یکپارچه اکوسیستم دیجیتال</span>
+        <h2>یکپارچه‌سازی کامل اکوسیستم دیجیتال راسپینا</h2>
+        <p>نقشه ارتباطی بین تمام سیستم‌ها و پلتفرم‌ها</p>
+      </div>
+    </div>
+
+    <div class="integration-box">
+      <div class="int-center">🔮</div>
+      <h3 style="font-size:1.1rem;font-weight:700;color:var(--primary);margin-bottom:8px;">هسته مرکزی: Raspina Digital Core</h3>
+      <p style="font-size:13px;color:var(--text-light);max-width:500px;margin:0 auto 24px;">تمام سیستم‌ها از طریق API یکپارچه به این هسته متصل هستند</p>
+      <div class="int-nodes">
+        <div class="int-node">🛒 raspinashop.com</div>
+        <div class="int-node">👗 raspinaclothing.com</div>
+        <div class="int-node">🏷️ raspinaclothes.com</div>
+        <div class="int-node" style="border-color:#0088cc;color:#0088cc;font-weight:700;">🤖 Telegram Shop Bot</div>
+        <div class="int-node" style="border-color:#c13584;color:#c13584;font-weight:700;">📸 Instagram AI Assistant</div>
+        <div class="int-node" style="border-color:#c13584;color:#c13584;font-weight:700;">📊 Instagram Analytics Engine</div>
+        <div class="int-node">👥 CRM System 360°</div>
+        <div class="int-node">⭐ Loyalty Club</div>
+        <div class="int-node">🏢 Office Automation (Hamedan ↔ Tehran)</div>
+        <div class="int-node">📦 Warehouse Barcode Scanner</div>
+        <div class="int-node">📊 Sepidar ERP Integration</div>
+        <div class="int-node">📱 SMS / WhatsApp Gateways</div>
+      </div>
+    </div>
+
+    <!-- جزئیات یکپارچه‌سازی -->
+    <div class="sub-section-title" style="margin-top:40px;">🔌 جزئیات اتصالات</div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>اتصال از</th>
+          <th>به</th>
+          <th>نوع داده</th>
+          <th>روش</th>
+          <th>تناوب</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Telegram Shop Bot</td>
+          <td>سایت‌های راسپینا</td>
+          <td>کاتالوگ، دسته‌بندی، قیمت، هدایت به سبد خرید</td>
+          <td><span class="badge badge-tg">REST API + Redis Cache</span></td>
+          <td>Real-time (< ۱ ثانیه)</td>
+        </tr>
+        <tr>
+          <td>Instagram Direct / Comments</td>
+          <td>پایگاه دانش AI + دیتابیس کالا</td>
+          <td>تشخیص پست، ارسال قیمت، موجودی، لینک خرید</td>
+          <td><span class="badge badge-ig">Instagram Graph API + RAG</span></td>
+          <td>۲ الی ۱۰ ثانیه</td>
+        </tr>
+        <tr>
+          <td>Instagram Insights</td>
+          <td>داشبورد هوش تجاری</td>
+          <td>ورودی/خروجی، ریچ، نرخ تعامل، فروش پیج</td>
+          <td><span class="badge badge-ig">Insights API + AI Analytics</span></td>
+          <td>روزانه و هفتگی</td>
+        </tr>
+        <tr>
+          <td>raspinashop.com</td>
+          <td>CRM</td>
+          <td>سفارشات، کاربران، رفتار</td>
+          <td><span class="badge badge-blue">REST API + Webhook</span></td>
+          <td>Real-time</td>
+        </tr>
+        <tr>
+          <td>raspinaclothing.com</td>
+          <td>CRM</td>
+          <td>خریدها، نظرات، پروفایل</td>
+          <td><span class="badge badge-blue">REST API + Webhook</span></td>
+          <td>Real-time</td>
+        </tr>
+        <tr>
+          <td>raspinaclothes.com</td>
+          <td>CRM</td>
+          <td>سفارشات، آدرس‌ها</td>
+          <td><span class="badge badge-blue">REST API + Webhook</span></td>
+          <td>Real-time</td>
+        </tr>
+        <tr>
+          <td>CRM</td>
+          <td>سایت‌ها (۳ تا)</td>
+          <td>امتیاز باشگاه، سطح عضویت</td>
+          <td><span class="badge badge-green">API Push</span></td>
+          <td>لحظه‌ای</td>
+        </tr>
+        <tr>
+          <td>Warehouse</td>
+          <td>Sepidar</td>
+          <td>موجودی انبارگردانی</td>
+          <td><span class="badge badge-gold">Excel Export/Import</span></td>
+          <td>دستی پس از انبارگردانی</td>
+        </tr>
+        <tr>
+          <td>Sepidar</td>
+          <td>Warehouse</td>
+          <td>لیست کالا، قیمت، موجودی</td>
+          <td><span class="badge badge-gold">Excel Import</span></td>
+          <td>قبل از انبارگردانی</td>
+        </tr>
+        <tr>
+          <td>CRM</td>
+          <td>SMS Gateway</td>
+          <td>پیام‌های کمپین و پیگیری</td>
+          <td><span class="badge badge-purple">API</span></td>
+          <td>خودکار (بر اساس Trigger)</td>
+        </tr>
+        <tr>
+          <td>Automation</td>
+          <td>CRM</td>
+          <td>مشخصات کارکنان، دسترسی</td>
+          <td><span class="badge badge-blue">Shared Auth</span></td>
+          <td>Real-time</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- امنیت -->
+    <div class="sub-section">
+      <div class="sub-section-title">🛡️ امنیت و زیرساخت</div>
+      <div class="card-grid">
+        <div class="card card-accent">
+          <span class="card-icon">🔐</span>
+          <h3>احراز هویت پیشرفته</h3>
+          <p>ورود دو مرحله‌ای (OTP + رمز)، JWT Token، نشست‌های محدود زمانی برای همه کاربران</p>
+        </div>
+        <div class="card card-accent">
+          <span class="card-icon">☁️</span>
+          <h3>ابر ایران</h3>
+          <p>هاستینگ روی سرورهای داخل کشور (ابر آروان یا پارس پک) برای سرعت بالا و انطباق با قوانین</p>
+        </div>
+        <div class="card card-accent">
+          <span class="card-icon">🔒</span>
+          <h3>رمزگذاری</h3>
+          <p>رمزگذاری AES-256 برای داده‌های ذخیره‌شده، TLS 1.3 برای انتقال داده</p>
+        </div>
+        <div class="card card-accent">
+          <span class="card-icon">💾</span>
+          <h3>پشتیبان‌گیری خودکار</h3>
+          <p>بکاپ روزانه، هفتگی و ماهانه — نگهداری ۱ سال — بازیابی در کمتر از ۴ ساعت</p>
+        </div>
+        <div class="card card-accent">
+          <span class="card-icon">📱</span>
+          <h3>Progressive Web App</h3>
+          <p>قابل استفاده روی iOS و Android بدون نصب — نصب آیکون روی صفحه اصلی گوشی</p>
+        </div>
+        <div class="card card-accent">
+          <span class="card-icon">📊</span>
+          <h3>لاگ کامل فعالیت</h3>
+          <p>تمام اقدامات همه کاربران ثبت می‌شود — قابل بازبینی توسط مدیران سیستم</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ROADMAP ===== -->
+<section id="roadmap" class="section">
+  <div class="wrapper">
+    <div class="section-header">
+      <div class="section-icon icon-gold">🗓️</div>
+      <div class="section-title-block">
+        <span class="section-num">بخش ۰۹ — جدول زمانی، گانت چارت و نقشه راه اجرایی</span>
+        <h2>برنامه زمان‌بندی پیاده‌سازی</h2>
+        <p>مراحل اجرایی پیشنهادی برای راه‌اندازی تدریجی و بدون اختلال در عملیات جاری</p>
+      </div>
+    </div>
+
+    <div class="highlight-box highlight-gold" style="margin-bottom:28px;">
+      <span class="highlight-icon">⚡</span>
+      <div>
+        <h4>سرعت بالای توسعه مبتنی بر هوش مصنوعی (AI-Accelerated Development)</h4>
+        <p>
+          با به کارگیری ابزارهای مهندسی هوش مصنوعی در کدنویسی، طراحی اسکیما، تست و بهینه‌سازی،
+          بازه زمانی پروژه‌ها از حالت سنتی چندماهه، به <strong>۸ الی ۹ هفته در حالت اجرای موازی</strong> کاهش می‌یابد.
+          کلیه پروژه‌ها می‌توانند به صورت هم‌زمان یا ماژولار تحویل داده شوند.
+        </p>
+      </div>
+    </div>
+
+    <table class="data-table" style="margin-bottom:32px;">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>پروژه</th>
+          <th>زمان اجرای تکی</th>
+          <th>زمان در حالت موازی</th>
+          <th>پیش‌نیازها</th>
+          <th>خروجی تحویلی</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>۱</strong></td>
+          <td><strong>👥 CRM + باشگاه مشتریان</strong></td>
+          <td><strong>۶ هفته</strong></td>
+          <td><span class="badge badge-blue">هفته ۱ تا ۶</span></td>
+          <td>API سایت‌ها و هاست</td>
+          <td>پروفایل ۳۶۰، اتصال به ۳ سایت، سیستم امتیاز و پیگیری</td>
+        </tr>
+        <tr>
+          <td><strong>۲</strong></td>
+          <td><strong>🤖 ربات فروشگاهی تلگرام</strong></td>
+          <td><strong>۳ هفته</strong></td>
+          <td><span class="badge badge-tg">هفته ۱ تا ۳</span></td>
+          <td>توکن تلگرام، دیتابیس کالا</td>
+          <td>فروشگاه کامل تلگرام با دسته‌بندی و لینک خرید</td>
+        </tr>
+        <tr>
+          <td><strong>۳</strong></td>
+          <td><strong>📸 ربات اینستاگرام (AI + تحلیل)</strong></td>
+          <td><strong>۵ هفته</strong></td>
+          <td><span class="badge badge-ig">هفته ۳ تا ۷</span></td>
+          <td>Business Account، Meta API</td>
+          <td>پاسخگویی دایرکت ۲–۱۰ ثانیه + گزارش‌های روزانه/هفتگی</td>
+        </tr>
+        <tr>
+          <td><strong>۴</strong></td>
+          <td><strong>🏢 اتوماسیون اداری دو شعبه</strong></td>
+          <td><strong>۴ هفته</strong></td>
+          <td><span class="badge badge-green">هفته ۲ تا ۵</span></td>
+          <td>مصاحبه فرم‌ها و نقش‌ها</td>
+          <td>سامانه ۱۰۰٪ بدون کاغذ، وب و موبایل</td>
+        </tr>
+        <tr>
+          <td><strong>۵</strong></td>
+          <td><strong>📦 انبارگردانی با بارکد و سپیدار</strong></td>
+          <td><strong>۴ هفته</strong></td>
+          <td><span class="badge badge-purple">هفته ۳ تا ۶</span></td>
+          <td>کدینگ کالا و انبار سپیدار</td>
+          <td>اسکن با دوربین گوشی برای ۱۴M+ کالا و خروجی سپیدار</td>
+        </tr>
+        <tr>
+          <td><strong>★</strong></td>
+          <td><strong>🔗 یکپارچه‌سازی نهایی و تست جامع</strong></td>
+          <td><strong>۲ هفته</strong></td>
+          <td><span class="badge badge-gold">هفته ۷ تا ۸</span></td>
+          <td>اتمام ماژول‌های اصلی</td>
+          <td>استقرار کل اکوسیستم به صورت زنده</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-date">هفته ۱–۲ | فاز آغازین</div>
+        <div class="timeline-title">راه‌اندازی زیرساخت، ربات تلگرام و آغاز اتوماسیون</div>
+        <div class="timeline-desc">
+          بررسی API سایت‌ها، استارت ربات فروشگاهی تلگرام، طراحی دیتابیس مشترک CRM و باشگاه مشتریان،
+          نیازسنجی گردش‌کارهای کاغذی بین دو شعبه همدان و تهران.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">هفته ۳–۴ | فاز دوم: تلگرام زنده + ربات اینستاگرام</div>
+        <div class="timeline-title">تکمیل ربات تلگرام + آغاز هوش مصنوعی اینستاگرام و انبارگردانی</div>
+        <div class="timeline-desc">
+          راه‌اندازی رسمی فروشگاه تلگرام، دریافت مجوزهای Meta Graph API، ساخت وکتور دیتابیس کالاها برای پاسخگویی دایرکت اینستاگرام،
+          پیاده‌سازی اسکنر بارکد با دوربین گوشی و انطباق فرمت سپیدار.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">هفته ۵–۶ | فاز سوم: تکمیل اتوماسیون و CRM</div>
+        <div class="timeline-title">عملیاتی شدن اتوماسیون اداری، انبارگردانی و باشگاه مشتریان</div>
+        <div class="timeline-desc">
+          راه‌اندازی سامانه بدون کاغذ اداری، فعال‌سازی ماژول پیگیری پس از خرید و امتیازدهی باشگاه در CRM،
+          تست اسکن بارکد ۱۴M+ کالا در شعبه همدان، تست پاسخگویی ۲ تا ۱۰ ثانیه‌ای هوش مصنوعی اینستاگرام.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">هفته ۷–۸ | فاز نهایی: تحویل کامل</div>
+        <div class="timeline-title">راه‌اندازی موتور تحلیلی اینستاگرام و یکپارچه‌سازی نهایی</div>
+        <div class="timeline-desc">
+          راه‌اندازی گزارش‌های خودکار روزانه و هفتگی رشد اینستاگرام، اتصال کامل ربات‌ها و شعب به CRM مرکزی،
+          تست فشار و امنیت، آموزش مدیران و پرسنل، تحویل قطعی پروژه‌ها.
+        </div>
+      </div>
+    </div>
+
+    <!-- هزینه تقریبی -->
+    <div class="sub-section">
+      <div class="sub-section-title">💰 اولویت‌بندی پیاده‌سازی</div>
+      <div class="priority-grid">
+        <div class="priority-card">
+          <div class="priority-header" style="background:linear-gradient(135deg,#c0392b,#e74c3c);">
+            🔴 اولویت فوری (ماه ۱–۴)
+          </div>
+          <div class="priority-body">
+            <ul>
+              <li>سیستم انبارگردانی با بارکد دوربین</li>
+              <li>اتصال به سپیدار و export/import</li>
+              <li>مدیریت تیم انبار و ثبت مغایرت‌ها</li>
+              <li>زیرساخت سرور و امنیت</li>
+            </ul>
+          </div>
+        </div>
+        <div class="priority-card">
+          <div class="priority-header" style="background:linear-gradient(135deg,#d35400,#e67e22);">
+            🟠 اولویت بالا (ماه ۵–۶)
+          </div>
+          <div class="priority-body">
+            <ul>
+              <li>CRM پایه و پروفایل مشتریان</li>
+              <li>اتصال API به ۳ سایت</li>
+              <li>ماژول پیگیری پس از خرید</li>
+              <li>داشبورد تیم فروش</li>
+            </ul>
+          </div>
+        </div>
+        <div class="priority-card">
+          <div class="priority-header" style="background:linear-gradient(135deg,#c9a84c,#e8c97a);">
+            🟡 اولویت متوسط (ماه ۷–۸)
+          </div>
+          <div class="priority-body">
+            <ul>
+              <li>باشگاه مشتریان و سطح‌بندی</li>
+              <li>سیستم امتیاز و پاداش</li>
+              <li>پنل وب اعضا</li>
+              <li>کمپین‌های SMS و واتس‌اپ</li>
+            </ul>
+          </div>
+        </div>
+        <div class="priority-card">
+          <div class="priority-header" style="background:linear-gradient(135deg,#1a5276,#2980b9);">
+            🔵 توسعه (ماه ۹–۱۲)
+          </div>
+          <div class="priority-body">
+            <ul>
+              <li>اتوماسیون اداری دو شعبه</li>
+              <li>داشبورد مدیریتی یکپارچه</li>
+              <li>گزارشات پیشرفته و هوش تجاری</li>
+              <li>AI پیشنهاد محصول</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- مزایای کلی -->
+    <div class="sub-section">
+      <div class="sub-section-title">✨ مزایای کلیدی پس از پیاده‌سازی</div>
+      <div class="card-grid">
+        <div class="card card-accent" style="text-align:center;">
+          <span class="card-icon">📈</span>
+          <h3>افزایش درآمد</h3>
+          <p>شخصی‌سازی پیشنهادات + باشگاه مشتریان → افزایش میانگین ارزش سفارش و تکرار خرید</p>
+        </div>
+        <div class="card card-accent-green" style="text-align:center;">
+          <span class="card-icon">⏱️</span>
+          <h3>صرفه‌جویی زمانی</h3>
+          <p>انبارگردانی ۱۴M+ کالا با دوربین گوشی → کاهش ۷۰٪ زمان شمارش نسبت به روش دستی</p>
+        </div>
+        <div class="card card-accent-blue" style="text-align:center;">
+          <span class="card-icon">🎯</span>
+          <h3>دقت بیشتر</h3>
+          <p>حذف خطای انسانی در انبارگردانی و پیگیری مشتریان → کاهش مغایرت‌های انبار</p>
+        </div>
+        <div class="card card-accent-purple" style="text-align:center;">
+          <span class="card-icon">🤝</span>
+          <h3>وفاداری مشتریان</h3>
+          <p>باشگاه مشتریان + پیگیری منظم → افزایش ۴۰٪ نرخ بازگشت مشتری</p>
+        </div>
+        <div class="card card-accent" style="text-align:center;">
+          <span class="card-icon">🏢</span>
+          <h3>هماهنگی شعبه‌ها</h3>
+          <p>اتوماسیون اداری → حذف تأخیر در تبادل اطلاعات بین همدان و تهران</p>
+        </div>
+        <div class="card card-accent-green" style="text-align:center;">
+          <span class="card-icon">📊</span>
+          <h3>تصمیم‌گیری هوشمند</h3>
+          <p>داشبورد یکپارچه → مدیران با داده‌های دقیق بهترین تصمیم‌ها را می‌گیرند</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <h4>◆ RASPINA</h4>
+      <p>برند پوشاک زنانه راسپینا</p>
+      <p style="margin-top:10px;">
+        🏢 همدان: خ. میرزاده عشقی<br>
+        🏢 تهران: خ. ولیعصر، مجتمع راسپینا
+      </p>
+      <p style="margin-top:8px;">📞 ۰۸۱-۳۸۲۸۳۵۲۱</p>
+    </div>
+    <div>
+      <h4>سایت‌های فروش</h4>
+      <ul>
+        <li>🌐 raspinashop.com</li>
+        <li>🌐 raspinaclothing.com</li>
+        <li>🌐 raspinaclothes.com</li>
+        <li>📸 @raspina.clothing</li>
+      </ul>
+    </div>
+    <div>
+      <h4>سیستم‌های دیجیتال</h4>
+      <ul>
+        <li>✅ CRM اختصاصی و پیگیری خرید</li>
+        <li>✅ باشگاه مشتریان چهار سطحی</li>
+        <li>✅ ربات فروشگاهی تلگرام</li>
+        <li>✅ ربات هوشمند اینستاگرام (AI + تحلیل)</li>
+        <li>✅ اتوماسیون اداری بدون کاغذ</li>
+        <li>✅ انبارگردانی بارکدی متصل به سپیدار</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>
+      این مستند برای جلسه هیئت مدیره برند راسپینا تهیه شده است |
+      تاریخ تهیه: آبان ۱۴۰۵ |
+      محرمانه — جهت استفاده داخلی
+    </p>
+  </div>
+</footer>
+
+<!-- دکمه چاپ -->
+<button class="print-btn" onclick="window.print()">🖨️ چاپ / PDF</button>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('revealed'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.card, .module-block, .timeline-item, .kpi-card, .priority-card').forEach(el => {
+    el.classList.add('reveal');
+    observer.observe(el);
+  });
+
+  // Smooth scroll for nav
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Active nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navBtns = document.querySelectorAll('.toc-btn');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => { if(window.scrollY >= s.offsetTop - 120) cur = s.id; });
+    navBtns.forEach(b => {
+      b.style.background = b.getAttribute('href') === '#'+cur
+        ? 'rgba(201,168,76,0.4)'
+        : 'rgba(201,168,76,0.1)';
+    });
+  });
+</script>
+</body>
+</html>

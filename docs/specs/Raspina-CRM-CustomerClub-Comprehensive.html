@@ -1,0 +1,2195 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>راسپینا | سند جامع CRM و باشگاه مشتریان - افق ۵ ساله</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy-dark: #0a0a1a;
+    --navy: #1a1a2e;
+    --navy-light: #16213e;
+    --navy-mid: #0f3460;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --gold-pale: #f5e6b8;
+    --white: #ffffff;
+    --gray-light: #f0f2f5;
+    --gray: #9ca3af;
+    --gray-dark: #4b5563;
+    --green: #10b981;
+    --green-dark: #059669;
+    --blue: #3b82f6;
+    --blue-dark: #1d4ed8;
+    --purple: #8b5cf6;
+    --red: #ef4444;
+    --orange: #f97316;
+    --teal: #14b8a6;
+    --pink: #ec4899;
+    --bronze: #cd7f32;
+    --silver: #c0c0c0;
+    --platinum: #e5e4e2;
+    --black-vip: #1a1a1a;
+    --shadow: 0 4px 24px rgba(0,0,0,0.3);
+    --shadow-gold: 0 4px 24px rgba(201,168,76,0.3);
+    --radius: 16px;
+    --radius-sm: 8px;
+    --transition: all 0.3s ease;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Vazirmatn', sans-serif;
+    background: #0a0a1a;
+    color: #e2e8f0;
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+
+  /* ===== SCROLLBAR ===== */
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: var(--navy); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed; top: 0; right: 0; left: 0; z-index: 1000;
+    background: rgba(10,10,26,0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(201,168,76,0.3);
+    padding: 0 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .nav-brand {
+    font-size: 1.2rem; font-weight: 700; color: var(--gold);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nav-brand span { font-size: 1.5rem; }
+  .nav-links {
+    display: flex; gap: 6px; list-style: none; flex-wrap: wrap;
+  }
+  .nav-links a {
+    color: var(--gray); text-decoration: none; font-size: 0.72rem;
+    padding: 5px 10px; border-radius: var(--radius-sm);
+    transition: var(--transition);
+    border: 1px solid transparent;
+  }
+  .nav-links a:hover {
+    color: var(--gold); border-color: rgba(201,168,76,0.3);
+    background: rgba(201,168,76,0.08);
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 40%, #0f3460 70%, #1a1a2e 100%);
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; padding: 80px 24px 60px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(ellipse at 60% 40%, rgba(201,168,76,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(59,130,246,0.06) 0%, transparent 50%);
+    animation: heroGlow 8s ease-in-out infinite alternate;
+  }
+  @keyframes heroGlow {
+    from { transform: rotate(0deg) scale(1); }
+    to { transform: rotate(5deg) scale(1.05); }
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold-light);
+    padding: 8px 20px; border-radius: 50px;
+    font-size: 0.85rem; font-weight: 600;
+    margin-bottom: 24px; position: relative;
+    animation: fadeInDown 0.8s ease;
+  }
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900; color: var(--white);
+    line-height: 1.3; margin-bottom: 16px;
+    position: relative; animation: fadeInUp 0.8s ease 0.2s both;
+  }
+  .hero h1 .gold { color: var(--gold); }
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    color: var(--gray); max-width: 700px; margin: 0 auto 40px;
+    position: relative; animation: fadeInUp 0.8s ease 0.4s both;
+  }
+  .hero-stats {
+    display: flex; gap: 24px; justify-content: center;
+    flex-wrap: wrap; position: relative;
+    animation: fadeInUp 0.8s ease 0.6s both;
+  }
+  .hero-stat {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: var(--radius); padding: 20px 28px;
+    text-align: center; min-width: 140px;
+  }
+  .hero-stat .num {
+    font-size: 2rem; font-weight: 800; color: var(--gold);
+    display: block;
+  }
+  .hero-stat .label {
+    font-size: 0.8rem; color: var(--gray); margin-top: 4px;
+  }
+
+  /* ===== SECTIONS ===== */
+  section {
+    padding: 80px 24px;
+    max-width: 1400px; margin: 0 auto;
+  }
+  .section-full {
+    padding: 80px 24px;
+    background: var(--navy);
+  }
+  .section-full > * { max-width: 1400px; margin-left: auto; margin-right: auto; }
+
+  .section-header {
+    text-align: center; margin-bottom: 56px;
+  }
+  .section-badge {
+    display: inline-block;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold);
+    padding: 6px 16px; border-radius: 50px;
+    font-size: 0.8rem; font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+    font-weight: 800; color: var(--white);
+    margin-bottom: 12px;
+  }
+  .section-title .gold { color: var(--gold); }
+  .section-desc {
+    font-size: 1rem; color: var(--gray);
+    max-width: 700px; margin: 0 auto;
+  }
+
+  /* ===== CARDS ===== */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+  .card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius); padding: 28px;
+    transition: var(--transition);
+    position: relative; overflow: hidden;
+  }
+  .card::before {
+    content: ''; position: absolute;
+    top: 0; right: 0; width: 100%; height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    transform: scaleX(0); transform-origin: right;
+    transition: var(--transition);
+  }
+  .card:hover { border-color: rgba(201,168,76,0.3); transform: translateY(-4px); box-shadow: var(--shadow-gold); }
+  .card:hover::before { transform: scaleX(1); }
+  .card-icon { font-size: 2.5rem; margin-bottom: 16px; }
+  .card-title { font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 10px; }
+  .card-text { font-size: 0.9rem; color: var(--gray); line-height: 1.8; }
+
+  /* ===== FEATURE LIST ===== */
+  .feature-list { list-style: none; }
+  .feature-list li {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 0.92rem; color: #cbd5e1;
+  }
+  .feature-list li:last-child { border-bottom: none; }
+  .feature-list .fi {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: rgba(201,168,76,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; flex-shrink: 0; margin-top: 2px;
+    color: var(--gold);
+  }
+
+  /* ===== TABLES ===== */
+  .table-wrap { overflow-x: auto; border-radius: var(--radius); }
+  table {
+    width: 100%; border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+  thead th {
+    background: rgba(201,168,76,0.15);
+    color: var(--gold-light); font-weight: 700;
+    padding: 14px 16px; text-align: right;
+    border-bottom: 2px solid rgba(201,168,76,0.3);
+  }
+  tbody tr { border-bottom: 1px solid rgba(255,255,255,0.05); transition: var(--transition); }
+  tbody tr:hover { background: rgba(255,255,255,0.03); }
+  tbody td { padding: 12px 16px; color: #cbd5e1; }
+  tbody td:first-child { color: var(--white); font-weight: 500; }
+
+  /* ===== HIGHLIGHT BOX ===== */
+  .highlight {
+    background: linear-gradient(135deg, rgba(201,168,76,0.1), rgba(201,168,76,0.05));
+    border: 1px solid rgba(201,168,76,0.3);
+    border-right: 4px solid var(--gold);
+    border-radius: var(--radius); padding: 24px;
+    margin: 24px 0;
+  }
+  .highlight-title { font-weight: 700; color: var(--gold-light); margin-bottom: 8px; font-size: 1rem; }
+  .highlight p { font-size: 0.92rem; color: #cbd5e1; }
+
+  .info-box {
+    background: rgba(59,130,246,0.08);
+    border: 1px solid rgba(59,130,246,0.25);
+    border-right: 4px solid var(--blue);
+    border-radius: var(--radius); padding: 20px; margin: 16px 0;
+  }
+  .warning-box {
+    background: rgba(249,115,22,0.08);
+    border: 1px solid rgba(249,115,22,0.25);
+    border-right: 4px solid var(--orange);
+    border-radius: var(--radius); padding: 20px; margin: 16px 0;
+  }
+  .success-box {
+    background: rgba(16,185,129,0.08);
+    border: 1px solid rgba(16,185,129,0.25);
+    border-right: 4px solid var(--green);
+    border-radius: var(--radius); padding: 20px; margin: 16px 0;
+  }
+
+  /* ===== TIERS ===== */
+  .tiers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+  }
+  .tier-card {
+    border-radius: var(--radius); padding: 28px;
+    text-align: center; position: relative; overflow: hidden;
+    transition: var(--transition);
+  }
+  .tier-card:hover { transform: translateY(-6px); }
+  .tier-bronze { background: linear-gradient(135deg, rgba(205,127,50,0.15), rgba(205,127,50,0.05)); border: 2px solid rgba(205,127,50,0.4); }
+  .tier-gold { background: linear-gradient(135deg, rgba(201,168,76,0.2), rgba(201,168,76,0.08)); border: 2px solid rgba(201,168,76,0.5); }
+  .tier-platinum { background: linear-gradient(135deg, rgba(229,228,226,0.1), rgba(229,228,226,0.03)); border: 2px solid rgba(229,228,226,0.3); }
+  .tier-vip { background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(139,92,246,0.05)); border: 2px solid rgba(139,92,246,0.4); }
+  .tier-icon { font-size: 3rem; margin-bottom: 12px; }
+  .tier-name { font-size: 1.3rem; font-weight: 800; margin-bottom: 8px; }
+  .tier-bronze .tier-name { color: #cd7f32; }
+  .tier-gold .tier-name { color: var(--gold); }
+  .tier-platinum .tier-name { color: #e0e0e0; }
+  .tier-vip .tier-name { color: #a78bfa; }
+  .tier-threshold { font-size: 0.85rem; color: var(--gray); margin-bottom: 16px; }
+  .tier-benefits { list-style: none; text-align: right; }
+  .tier-benefits li { font-size: 0.82rem; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.06); color: #cbd5e1; display: flex; align-items: center; gap: 8px; }
+  .tier-benefits li::before { content: '✦'; font-size: 0.6rem; flex-shrink: 0; }
+  .tier-bronze .tier-benefits li::before { color: #cd7f32; }
+  .tier-gold .tier-benefits li::before { color: var(--gold); }
+  .tier-platinum .tier-benefits li::before { color: #e0e0e0; }
+  .tier-vip .tier-benefits li::before { color: #a78bfa; }
+
+  /* ===== TIMELINE ===== */
+  .timeline { position: relative; padding-right: 30px; }
+  .timeline::before {
+    content: ''; position: absolute;
+    right: 0; top: 0; bottom: 0; width: 2px;
+    background: linear-gradient(to bottom, var(--gold), rgba(201,168,76,0.1));
+  }
+  .timeline-item { position: relative; padding: 0 30px 40px 0; }
+  .timeline-dot {
+    position: absolute; right: -10px; top: 4px;
+    width: 20px; height: 20px; border-radius: 50%;
+    background: var(--gold); border: 3px solid var(--navy-dark);
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.3);
+  }
+  .timeline-phase {
+    font-size: 0.75rem; color: var(--gold); font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .timeline-title { font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+  .timeline-desc { font-size: 0.88rem; color: var(--gray); line-height: 1.8; }
+  .timeline-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+  .timeline-tag {
+    background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.25);
+    color: var(--gold-light); padding: 3px 10px; border-radius: 50px;
+    font-size: 0.75rem;
+  }
+
+  /* ===== KPI GRID ===== */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+  .kpi-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius-sm); padding: 20px;
+    text-align: center; transition: var(--transition);
+  }
+  .kpi-card:hover { border-color: rgba(201,168,76,0.3); }
+  .kpi-value { font-size: 1.8rem; font-weight: 800; color: var(--gold); display: block; }
+  .kpi-label { font-size: 0.8rem; color: var(--gray); margin-top: 4px; }
+  .kpi-year { font-size: 0.72rem; color: var(--gray-dark); margin-top: 2px; }
+
+  /* ===== FLOW STEPS ===== */
+  .flow-steps {
+    display: flex; flex-wrap: wrap; gap: 0; align-items: stretch;
+  }
+  .flow-step {
+    flex: 1; min-width: 140px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 20px 16px; text-align: center;
+    position: relative; transition: var(--transition);
+  }
+  .flow-step:not(:last-child)::after {
+    content: '←';
+    position: absolute; left: -14px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--gold); font-size: 1.2rem; z-index: 1;
+  }
+  .flow-step:hover { background: rgba(201,168,76,0.08); border-color: rgba(201,168,76,0.3); }
+  .flow-step .fs-num {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: rgba(201,168,76,0.2); color: var(--gold);
+    font-weight: 800; font-size: 0.9rem;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 10px;
+  }
+  .flow-step .fs-label { font-size: 0.82rem; color: #cbd5e1; font-weight: 600; }
+  .flow-step .fs-sub { font-size: 0.72rem; color: var(--gray); margin-top: 4px; }
+
+  /* ===== ROLE BADGE ===== */
+  .roles-grid { display: flex; gap: 12px; flex-wrap: wrap; }
+  .role-badge {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-sm); padding: 12px 18px;
+    text-align: center; min-width: 130px;
+  }
+  .role-badge .ri { font-size: 1.5rem; margin-bottom: 6px; }
+  .role-badge .rn { font-size: 0.82rem; font-weight: 600; color: var(--white); }
+  .role-badge .rp { font-size: 0.72rem; color: var(--gray); margin-top: 3px; }
+
+  /* ===== AI CARDS ===== */
+  .ai-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .ai-card {
+    background: linear-gradient(135deg, rgba(139,92,246,0.08), rgba(59,130,246,0.05));
+    border: 1px solid rgba(139,92,246,0.2);
+    border-radius: var(--radius); padding: 24px;
+    transition: var(--transition);
+  }
+  .ai-card:hover { border-color: rgba(139,92,246,0.4); transform: translateY(-3px); }
+  .ai-card-icon { font-size: 2rem; margin-bottom: 12px; }
+  .ai-card-title { font-size: 1rem; font-weight: 700; color: #c4b5fd; margin-bottom: 8px; }
+  .ai-card-desc { font-size: 0.85rem; color: var(--gray); line-height: 1.8; }
+  .ai-accuracy { display: inline-block; background: rgba(139,92,246,0.15); color: #a78bfa; padding: 2px 10px; border-radius: 50px; font-size: 0.75rem; font-weight: 600; margin-top: 8px; }
+
+  /* ===== PRINT BTN ===== */
+  .print-btn {
+    position: fixed; bottom: 30px; left: 30px; z-index: 999;
+    background: var(--gold); color: var(--navy-dark);
+    border: none; border-radius: 50px;
+    padding: 14px 24px; font-size: 0.9rem; font-weight: 700;
+    cursor: pointer; font-family: 'Vazirmatn', sans-serif;
+    box-shadow: var(--shadow-gold); transition: var(--transition);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .print-btn:hover { background: var(--gold-light); transform: scale(1.05); }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: #050510;
+    border-top: 1px solid rgba(201,168,76,0.2);
+    padding: 40px 24px; text-align: center;
+  }
+  footer p { color: var(--gray); font-size: 0.85rem; margin-bottom: 8px; }
+  footer strong { color: var(--gold); }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeInDown { from { opacity:0; transform: translateY(-20px); } to { opacity:1; transform:none; } }
+  @keyframes fadeInUp { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform:none; } }
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ===== DIVIDER ===== */
+  .divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent); margin: 48px 0; }
+
+  /* ===== PROGRESS BAR ===== */
+  .progress-row { margin: 12px 0; }
+  .progress-label { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.85rem; }
+  .progress-label span:first-child { color: #cbd5e1; }
+  .progress-label span:last-child { color: var(--gold); font-weight: 700; }
+  .progress-bar { height: 8px; background: rgba(255,255,255,0.08); border-radius: 50px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-light)); border-radius: 50px; transition: width 1s ease; }
+
+  /* ===== TWO COL ===== */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+  @media(max-width:768px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* ===== NUMBERED LIST ===== */
+  .num-list { counter-reset: nl; list-style: none; }
+  .num-list li {
+    counter-increment: nl;
+    display: flex; gap: 14px; align-items: flex-start;
+    padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 0.9rem; color: #cbd5e1;
+  }
+  .num-list li::before {
+    content: counter(nl);
+    min-width: 28px; height: 28px; border-radius: 50%;
+    background: rgba(201,168,76,0.15); color: var(--gold);
+    font-weight: 700; font-size: 0.8rem;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* ===== TAG CLOUD ===== */
+  .tag-cloud { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    color: #cbd5e1; padding: 5px 14px; border-radius: 50px; font-size: 0.8rem;
+    transition: var(--transition);
+  }
+  .tag:hover { background: rgba(201,168,76,0.12); border-color: rgba(201,168,76,0.3); color: var(--gold-light); }
+  .tag.gold { background: rgba(201,168,76,0.12); border-color: rgba(201,168,76,0.3); color: var(--gold-light); }
+  .tag.blue { background: rgba(59,130,246,0.1); border-color: rgba(59,130,246,0.3); color: #93c5fd; }
+  .tag.purple { background: rgba(139,92,246,0.1); border-color: rgba(139,92,246,0.3); color: #c4b5fd; }
+  .tag.green { background: rgba(16,185,129,0.1); border-color: rgba(16,185,129,0.3); color: #6ee7b7; }
+
+  /* ===== PRINT ===== */
+  @media print {
+    nav, .print-btn { display: none; }
+    section { padding: 20px 0; }
+    .hero { min-height: auto; padding: 40px 0; }
+    .card { break-inside: avoid; }
+    body { background: white; color: black; }
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media(max-width:768px) {
+    .hero-stats { flex-direction: column; align-items: center; }
+    .nav-links { display: none; }
+    .flow-steps { flex-direction: column; }
+    .flow-step::after { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand"><span>👑</span> راسپینا CRM</div>
+  <ul class="nav-links">
+    <li><a href="#vision">چشم‌انداز</a></li>
+    <li><a href="#cdp">پلتفرم داده</a></li>
+    <li><a href="#profile">پروفایل ۳۶۰</a></li>
+    <li><a href="#scoring">امتیازدهی</a></li>
+    <li><a href="#journey">سفر مشتری</a></li>
+    <li><a href="#segments">سگمنت‌بندی</a></li>
+    <li><a href="#followup">پیگیری</a></li>
+    <li><a href="#loyalty">باشگاه</a></li>
+    <li><a href="#ai">هوش مصنوعی</a></li>
+    <li><a href="#campaigns">کمپین</a></li>
+    <li><a href="#support">پشتیبانی</a></li>
+    <li><a href="#analytics">آنالیتیکس</a></li>
+    <li><a href="#integration">یکپارچه‌سازی</a></li>
+    <li><a href="#security">امنیت</a></li>
+    <li><a href="#roadmap">نقشه راه</a></li>
+    <li><a href="#kpis">KPI</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="top">
+  <div>
+    <div class="hero-badge">📋 سند جامع استراتژیک | افق ۵ ساله | ۱۴۰۴–۱۴۰۸</div>
+    <h1>سیستم <span class="gold">CRM جامع</span> و<br>باشگاه مشتریان هوشمند<br><span class="gold">راسپینا</span></h1>
+    <p class="hero-sub">طراحی شده توسط ۵ مدیر ارشد | پوشش کامل تمام ابعاد تجاری | آینده‌نگر با هوش مصنوعی | مقیاس‌پذیر برای رشد ۱۰ برابری</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="num">۱۶</span><span class="label">ماژول اصلی</span></div>
+      <div class="hero-stat"><span class="num">+۵۰</span><span class="label">KPI قابل اندازه‌گیری</span></div>
+      <div class="hero-stat"><span class="num">۵</span><span class="label">سال افق برنامه‌ریزی</span></div>
+      <div class="hero-stat"><span class="num">۳۶۰°</span><span class="label">دید کامل مشتری</span></div>
+      <div class="hero-stat"><span class="num">۱۴M</span><span class="label">کالا در انبار</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- PART 1: EXECUTIVE VISION -->
+<section id="vision" class="reveal">
+  <div class="section-header">
+    <div class="section-badge">🎯 بخش اول</div>
+    <h2 class="section-title">چشم‌انداز اجرایی و <span class="gold">نقشه راه ۵ ساله</span></h2>
+    <p class="section-desc">چرا CRM برای راسپینا یک ضرورت وجودی است؟ تحلیل بازار، رقبا و فرصت‌های طلایی پیش رو</p>
+  </div>
+
+  <div class="highlight">
+    <div class="highlight-title">🔑 بیانیه استراتژیک</div>
+    <p>راسپینا در نقطه‌ای قرار دارد که می‌تواند از یک برند منطقه‌ای به یک برند ملی پیشرو در مد زنانه ایران تبدیل شود. تنها سلاح مؤثر برای این تحول: <strong>داده‌محوری، شخصی‌سازی تجربه مشتری، و وفادارسازی هوشمند</strong>. بدون CRM، هر تومان هزینه بازاریابی نیمی از اثر خود را از دست می‌دهد.</p>
+  </div>
+
+  <div class="cards-grid reveal">
+    <div class="card">
+      <div class="card-icon">🏆</div>
+      <div class="card-title">بازار هدف فعلی</div>
+      <div class="card-text">بازار مد زنانه ایران بالغ بر ۸۰ هزار میلیارد تومان است. راسپینا با دو شعبه همدان و تهران و ۳ سایت فعال، آماده رقابت در سطح ملی است. مشتریان وفادار ۵ برابر کمتر هزینه جذب دارند.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">📈</div>
+      <div class="card-title">فرصت رشد ۵ ساله</div>
+      <div class="card-text">با پیاده‌سازی CRM جامع: افزایش ۳۵٪ نرخ بازگشت مشتری، کاهش ۴۰٪ هزینه جذب مشتری جدید، و رشد CLV میانگین از ۸ میلیون به ۲۵ میلیون تومان تا سال پنجم قابل دستیابی است.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <div class="card-title">ضرورت فوری</div>
+      <div class="card-text">در حال حاضر، هیچ اطلاعاتی از مشتریانی که از هر ۳ کانال (سایت، اینستاگرام، حضوری) خرید می‌کنند به هم متصل نیست. هر مشتری سه هویت جداگانه دارد که باید یکپارچه شود.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🌐</div>
+      <div class="card-title">مزیت رقابتی</div>
+      <div class="card-text">رقبای اصلی در ایران هنوز از CRM پیشرفته استفاده نمی‌کنند. پیاده‌سازی زودهنگام این سیستم، راسپینا را ۳-۵ سال جلوتر از رقبا قرار می‌دهد و barrier to entry بالایی می‌سازد.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h3 style="color:var(--gold);font-size:1.3rem;margin-bottom:28px;font-weight:700;">🎯 اهداف کمّی ۵ ساله</h3>
+  <div class="kpi-grid reveal">
+    <div class="kpi-card">
+      <span class="kpi-value">+۳۵٪</span>
+      <div class="kpi-label">نرخ بازگشت مشتری</div>
+      <div class="kpi-year">سال اول</div>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-value">۵۰٪</span>
+      <div class="kpi-label">کاهش هزینه جذب</div>
+      <div class="kpi-year">سال دوم</div>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-value">۲۵M</span>
+      <div class="kpi-label">CLV میانگین (تومان)</div>
+      <div class="kpi-year">سال پنجم</div>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-value">۷۰+</span>
+      <div class="kpi-label">NPS امتیاز</div>
+      <div class="kpi-year">سال سوم</div>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-value">-۶۰٪</span>
+      <div class="kpi-label">نرخ ریزش مشتری</div>
+      <div class="kpi-year">سال دوم</div>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-value">۱۰۰K+</span>
+      <div class="kpi-label">عضو باشگاه فعال</div>
+      <div class="kpi-year">سال سوم</div>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-value">۴۰٪</span>
+      <div class="kpi-label">درآمد از مشتریان وفادار</div>
+      <div class="kpi-year">سال دوم</div>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-value">۳×</span>
+      <div class="kpi-label">رشد AOV با AI</div>
+      <div class="kpi-year">سال چهارم</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h3 style="color:var(--gold);font-size:1.3rem;margin-bottom:28px;font-weight:700;">🌍 تحلیل بازار و رقبا</h3>
+  <div class="two-col reveal">
+    <div>
+      <div class="highlight">
+        <div class="highlight-title">روندهای بازار مد ایران ۱۴۰۴-۱۴۰۸</div>
+        <ul class="feature-list">
+          <li><span class="fi">📱</span>رشد ۴۵٪ سالانه خرید آنلاین مد زنانه</li>
+          <li><span class="fi">🤖</span>ورود هوش مصنوعی به تجربه خرید شخصی‌سازی‌شده</li>
+          <li><span class="fi">⭐</span>نسل Z به دنبال ارتباط برند، نه فقط محصول</li>
+          <li><span class="fi">📦</span>انتظار تحویل سریع (۲۴ ساعته) در تهران</li>
+          <li><span class="fi">♻️</span>رشد آگاهی از مد پایدار و برندهای مسئول</li>
+          <li><span class="fi">🎮</span>گیمیفیکیشن در خرید (عنصر سرگرمی)</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class="info-box">
+        <div style="font-weight:700;color:#93c5fd;margin-bottom:10px;">📊 جایگاه رقابتی راسپینا</div>
+        <div class="progress-row">
+          <div class="progress-label"><span>کیفیت محصول</span><span>۸۵٪</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:85%"></div></div>
+        </div>
+        <div class="progress-row">
+          <div class="progress-label"><span>حضور دیجیتال</span><span>۶۵٪</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:65%"></div></div>
+        </div>
+        <div class="progress-row">
+          <div class="progress-label"><span>وفادارسازی مشتری</span><span>۳۰٪</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:30%"></div></div>
+        </div>
+        <div class="progress-row">
+          <div class="progress-label"><span>داده‌محوری</span><span>۲۰٪</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:20%"></div></div>
+        </div>
+        <div class="progress-row">
+          <div class="progress-label"><span>اتوماسیون بازاریابی</span><span>۱۵٪</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:15%"></div></div>
+        </div>
+        <div class="success-box" style="margin-top:16px;">
+          <strong style="color:#6ee7b7;">فرصت:</strong> ضعف در وفادارسازی و داده‌محوری = فرصت رشد فوری!
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PART 2: CDP -->
+<div class="section-full" id="cdp">
+<section class="reveal">
+  <div class="section-header">
+    <div class="section-badge">🗄️ بخش دوم</div>
+    <h2 class="section-title">پلتفرم داده مشتری <span class="gold">(CDP)</span></h2>
+    <p class="section-desc">زیرساخت یکپارچه‌سازی داده از تمام نقاط تماس — قلب تپنده سیستم CRM</p>
+  </div>
+
+  <div class="highlight reveal">
+    <div class="highlight-title">🏗️ معماری CDP راسپینا</div>
+    <p>CDP یک لایه ابری است که داده‌های خام از تمام کانال‌ها را جمع‌آوری، تمیز، تطبیق و یکپارچه می‌کند تا یک پروفایل واحد برای هر مشتری ایجاد شود — صرف نظر از اینکه از کجا خرید کرده‌اند.</p>
+  </div>
+
+  <div class="cards-grid reveal">
+    <div class="card">
+      <div class="card-icon">🌐</div>
+      <div class="card-title">منابع داده دیجیتال</div>
+      <ul class="feature-list">
+        <li><span class="fi">🛒</span>raspinashop.com — ثبت‌نام، سفارش، کارت محصول بازدیده‌شده</li>
+        <li><span class="fi">🛒</span>raspinaclothing.com — پروفایل، رفتار، تاریخچه</li>
+        <li><span class="fi">🛒</span>raspinaclothes.com — سفارش‌ها و wishlist</li>
+        <li><span class="fi">🤖</span>ربات تلگرام — مکالمات، سفارش‌ها، کلیک‌ها</li>
+        <li><span class="fi">📸</span>اینستاگرام — دایرکت‌ها، کامنت‌ها، واکنش‌ها</li>
+        <li><span class="fi">📧</span>ایمیل — باز کردن، کلیک، آنسابسکرایب</li>
+        <li><span class="fi">📱</span>SMS — واکنش به کمپین‌ها</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">🏪</div>
+      <div class="card-title">منابع داده فیزیکی</div>
+      <ul class="feature-list">
+        <li><span class="fi">🏪</span>شعبه همدان — POS، کارت وفاداری، اطلاعات فروشنده</li>
+        <li><span class="fi">🏪</span>شعبه تهران — خرید حضوری، پرو لباس، بازگشت کالا</li>
+        <li><span class="fi">📞</span>مرکز تلفن — مکالمات ضبط‌شده، تیکت‌ها</li>
+        <li><span class="fi">📦</span>سپیدار ERP — فاکتورها، موجودی، حسابداری</li>
+        <li><span class="fi">🚚</span>شرکت‌های پست — وضعیت ارسال</li>
+        <li><span class="fi">💳</span>درگاه‌های پرداخت — تاریخچه تراکنش</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔗</div>
+      <div class="card-title">Identity Resolution</div>
+      <div class="card-text">همان مشتری، هویت‌های مختلف را با الگوریتم تطبیق هوشمند ادغام می‌کند:</div>
+      <ul class="feature-list" style="margin-top:12px;">
+        <li><span class="fi">📱</span>شماره موبایل (قوی‌ترین شناسه)</li>
+        <li><span class="fi">📧</span>آدرس ایمیل</li>
+        <li><span class="fi">🆔</span>کد ملی (در خریدهای حضوری)</li>
+        <li><span class="fi">🌐</span>IP + Device Fingerprint</li>
+        <li><span class="fi">📱</span>Telegram ID و Instagram Handle</li>
+        <li><span class="fi">🍪</span>Cookie / LocalStorage across sites</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h3 style="color:var(--gold);font-size:1.2rem;margin-bottom:20px;font-weight:700;">🏛️ معماری دیتا لیک و پردازش Real-Time</h3>
+  <div class="two-col reveal">
+    <div>
+      <div class="card">
+        <div class="card-title">لایه‌های معماری داده</div>
+        <ul class="num-list">
+          <li><strong>لایه ورودی (Ingestion)</strong> — API Gateway، Webhooks، ETL Connectors</li>
+          <li><strong>لایه خام (Raw Lake)</strong> — ذخیره تمام داده‌های خام بدون پاکسازی</li>
+          <li><strong>لایه پاکسازی (Cleansed)</strong> — نرمال‌سازی، Deduplication، Validation</li>
+          <li><strong>لایه طلایی (Gold)</strong> — پروفایل یکپارچه، آماده برای مصرف</li>
+          <li><strong>لایه سرویس (Serving)</strong> — API برای CRM، کمپین، داشبورد</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <div class="card-title">مدیریت رضایت و حریم خصوصی</div>
+        <ul class="feature-list">
+          <li><span class="fi">✅</span>Consent Management — ثبت صریح رضایت مشتری برای هر کانال</li>
+          <li><span class="fi">🔒</span>انطباق با مقررات FAVA و قوانین ایران</li>
+          <li><span class="fi">🗑️</span>Right to Deletion — حذف کامل داده در صورت درخواست</li>
+          <li><span class="fi">📋</span>Data Retention Policy — نگهداری حداکثر ۷ سال</li>
+          <li><span class="fi">🛡️</span>رمزگذاری AES-256 برای داده‌های حساس</li>
+          <li><span class="fi">📝</span>Audit Log برای هر دسترسی به داده</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- PART 3: 360° PROFILE -->
+<section id="profile" class="reveal">
+  <div class="section-header">
+    <div class="section-badge">👤 بخش سوم</div>
+    <h2 class="section-title">پروفایل <span class="gold">۳۶۰ درجه</span> مشتری</h2>
+    <p class="section-desc">هر فیلد اطلاعاتی که باید از هر مشتری بدانیم — از نام تا رفتار خرید</p>
+  </div>
+
+  <div class="cards-grid reveal">
+    <div class="card">
+      <div class="card-icon">👤</div>
+      <div class="card-title">اطلاعات شخصی</div>
+      <ul class="feature-list">
+        <li><span class="fi">📝</span>نام و نام خانوادگی کامل</li>
+        <li><span class="fi">🆔</span>کد ملی (اختیاری، برای تأیید هویت)</li>
+        <li><span class="fi">🎂</span>تاریخ تولد (روز + ماه + سال)</li>
+        <li><span class="fi">⚥</span>جنسیت</li>
+        <li><span class="fi">🏙️</span>شهر و استان محل سکونت</li>
+        <li><span class="fi">📍</span>آدرس‌های تحویل (چندگانه)</li>
+        <li><span class="fi">💼</span>شغل (اختیاری)</li>
+        <li><span class="fi">💍</span>وضعیت تأهل (اختیاری)</li>
+        <li><span class="fi">👶</span>تعداد فرزندان (جهت پیشنهاد هدیه)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">📞</div>
+      <div class="card-title">اطلاعات تماس</div>
+      <ul class="feature-list">
+        <li><span class="fi">📱</span>شماره موبایل اصلی (تأییدشده)</li>
+        <li><span class="fi">📱</span>شماره موبایل جایگزین</li>
+        <li><span class="fi">📧</span>ایمیل اصلی (تأییدشده)</li>
+        <li><span class="fi">📧</span>ایمیل جایگزین</li>
+        <li><span class="fi">📱</span>Telegram ID و آیدی</li>
+        <li><span class="fi">📸</span>آیدی اینستاگرام</li>
+        <li><span class="fi">💬</span>واتساپ</li>
+        <li><span class="fi">⚙️</span>ترجیح کانال ارتباطی</li>
+        <li><span class="fi">⏰</span>بهترین زمان تماس</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">👗</div>
+      <div class="card-title">اندازه و سلیقه</div>
+      <ul class="feature-list">
+        <li><span class="fi">📏</span>سایز بالاتنه (XS تا XXXL)</li>
+        <li><span class="fi">📏</span>سایز پایین‌تنه</li>
+        <li><span class="fi">📏</span>سایز لباس تک‌تکه</li>
+        <li><span class="fi">📏</span>سایز کفش</li>
+        <li><span class="fi">📐</span>اندازه‌های بدنی (سینه، کمر، باسن)</li>
+        <li><span class="fi">🎨</span>رنگ‌های مورد علاقه (چندگانه)</li>
+        <li><span class="fi">💎</span>سبک‌های مورد علاقه (کلاسیک، کژوال...)</li>
+        <li><span class="fi">🚫</span>رنگ‌ها و طرح‌های ناپسند</li>
+        <li><span class="fi">🌙</span>ترجیح مناسبت‌ها (رسمی، روزانه)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">🛒</div>
+      <div class="card-title">تاریخچه خرید کامل</div>
+      <ul class="feature-list">
+        <li><span class="fi">📋</span>هر سفارش: تاریخ، محصولات، مبلغ، کانال</li>
+        <li><span class="fi">🏪</span>کانال خرید (سایت، حضوری، تلگرام)</li>
+        <li><span class="fi">💳</span>روش پرداخت مورد استفاده</li>
+        <li><span class="fi">🔄</span>مرجوعی‌ها: دلیل، محصول، وضعیت</li>
+        <li><span class="fi">⭐</span>نظرات و امتیازهای داده‌شده</li>
+        <li><span class="fi">📦</span>وضعیت تحویل هر سفارش</li>
+        <li><span class="fi">🎁</span>خریدهای هدیه</li>
+        <li><span class="fi">💰</span>استفاده از کدهای تخفیف</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">🖱️</div>
+      <div class="card-title">رفتار دیجیتال</div>
+      <ul class="feature-list">
+        <li><span class="fi">👁️</span>محصولات بازدیدشده (با timestamp)</li>
+        <li><span class="fi">❤️</span>wishlist — محصولات موردعلاقه</li>
+        <li><span class="fi">🛒</span>سبدهای رهاشده (Cart Abandon)</li>
+        <li><span class="fi">🔍</span>عبارات جستجوشده در سایت</li>
+        <li><span class="fi">⏱️</span>زمان صرف‌شده در هر دسته‌بندی</li>
+        <li><span class="fi">📱</span>دستگاه مورد استفاده (موبایل/دسکتاپ)</li>
+        <li><span class="fi">🌐</span>مرورگر و سیستم‌عامل</li>
+        <li><span class="fi">📍</span>منبع ورود (اینستاگرام، گوگل، مستقیم)</li>
+        <li><span class="fi">🔗</span>کلیک روی کمپین‌ها</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">💬</div>
+      <div class="card-title">لاگ تعاملات</div>
+      <ul class="feature-list">
+        <li><span class="fi">📞</span>هر تماس تلفنی: تاریخ، موضوع، نتیجه، کارشناس</li>
+        <li><span class="fi">💬</span>هر چت پشتیبانی: خلاصه، رزولوشن</li>
+        <li><span class="fi">📱</span>هر دایرکت اینستاگرام: موضوع، پاسخ</li>
+        <li><span class="fi">🤖</span>مکالمات ربات تلگرام</li>
+        <li><span class="fi">📧</span>ایمیل‌های دریافتی و ارسالی</li>
+        <li><span class="fi">🏪</span>بازدید از شعبه (با یادداشت فروشنده)</li>
+        <li><span class="fi">📝</span>نظرات و شکایات ثبت‌شده</li>
+        <li><span class="fi">🎁</span>هدایا و تبریک‌های دریافت‌شده</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">💰</div>
+      <div class="card-title">پروفایل مالی</div>
+      <ul class="feature-list">
+        <li><span class="fi">💵</span>کل مبلغ خرید (مادام‌العمر)</li>
+        <li><span class="fi">📊</span>میانگین ارزش هر سفارش (AOV)</li>
+        <li><span class="fi">📅</span>فرکانس خرید (بار در ماه)</li>
+        <li><span class="fi">💳</span>روش‌های پرداخت مورد استفاده</li>
+        <li><span class="fi">⚡</span>استفاده از اقساط / خرید اعتباری</li>
+        <li><span class="fi">💎</span>بودجه معمول هر خرید</li>
+        <li><span class="fi">🎯</span>حساسیت به قیمت (Price Sensitivity)</li>
+        <li><span class="fi">🎁</span>استفاده از کیف‌پول دیجیتال</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">🏷️</div>
+      <div class="card-title">تگ‌ها و سگمنت‌ها</div>
+      <ul class="feature-list">
+        <li><span class="fi">🤖</span><strong>خودکار:</strong> VIP، پرخرید، فصلی، تخفیف‌دوست</li>
+        <li><span class="fi">✍️</span><strong>دستی:</strong> مشتری خاص، معرف، اینفلوئنسر</li>
+        <li><span class="fi">⚠️</span><strong>ریسک:</strong> مرجوع‌دهنده مکرر، پرداخت معوق</li>
+        <li><span class="fi">🌟</span><strong>فرصت:</strong> پتانسیل بالا، ready to upsell</li>
+        <li><span class="fi">📅</span>تاریخ آخرین فعالیت</li>
+        <li><span class="fi">🔄</span>وضعیت (فعال / خواب / ریزش‌یافته)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PART 4: SCORING ENGINE -->
+<div class="section-full" id="scoring">
+<section class="reveal">
+  <div class="section-header">
+    <div class="section-badge">📊 بخش چهارم</div>
+    <h2 class="section-title">موتور <span class="gold">امتیازدهی هوشمند</span></h2>
+    <p class="section-desc">سیستم چندبُعدی امتیازدهی برای درک عمیق هر مشتری</p>
+  </div>
+
+  <div class="cards-grid reveal">
+    <div class="card">
+      <div class="card-icon">📈</div>
+      <div class="card-title">مدل RFM — پایه اصلی</div>
+      <div class="card-text" style="margin-bottom:16px;">مدل RFM اختصاصی برای مد زنانه ایران با وزن‌دهی بهینه:</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>پارامتر</th><th>وزن</th><th>منطق</th></tr></thead>
+          <tbody>
+            <tr><td>Recency (تازگی)</td><td style="color:var(--gold)">۳۵٪</td><td>مشتری ۳۰ روز اخیر ارزشمندتر</td></tr>
+            <tr><td>Frequency (تکرار)</td><td style="color:var(--gold)">۳۰٪</td><td>خرید مکرر = وفاداری واقعی</td></tr>
+            <tr><td>Monetary (مبلغ)</td><td style="color:var(--gold)">۳۵٪</td><td>مجموع خرید مادام‌العمر</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎯</div>
+      <div class="card-title">امتیاز رفتاری</div>
+      <ul class="feature-list">
+        <li><span class="fi">👁️</span>بازدید از صفحه محصول (+۱)</li>
+        <li><span class="fi">❤️</span>اضافه به wishlist (+۳)</li>
+        <li><span class="fi">🛒</span>اضافه به سبد خرید (+۵)</li>
+        <li><span class="fi">🔍</span>جستجوی دسته‌بندی خاص (+۲)</li>
+        <li><span class="fi">⭐</span>نوشتن نظر (+۸)</li>
+        <li><span class="fi">📸</span>آپلود عکس استفاده از محصول (+۱۲)</li>
+        <li><span class="fi">📤</span>اشتراک‌گذاری محصول (+۶)</li>
+        <li><span class="fi">🛒</span>سبد رهاشده (-۲)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">💡</div>
+      <div class="card-title">امتیاز تعامل (Engagement)</div>
+      <ul class="feature-list">
+        <li><span class="fi">📧</span>باز کردن ایمیل (+۱)</li>
+        <li><span class="fi">🖱️</span>کلیک روی ایمیل (+۳)</li>
+        <li><span class="fi">📱</span>واکنش به SMS (+۲)</li>
+        <li><span class="fi">📲</span>فعالیت در ربات تلگرام (+۴)</li>
+        <li><span class="fi">💬</span>پاسخ به نظرسنجی (+۵)</li>
+        <li><span class="fi">🎯</span>شرکت در کمپین (+۷)</li>
+        <li><span class="fi">📱</span>Push Notification کلیک (+۲)</li>
+        <li><span class="fi">🚫</span>Unsubscribe (-۱۰)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">⚠️</div>
+      <div class="card-title">امتیاز ریسک و پتانسیل</div>
+      <ul class="feature-list">
+        <li><span class="fi">📉</span><strong>ریسک ریزش:</strong> احتمال ترک برند (۰-۱۰۰)</li>
+        <li><span class="fi">🔄</span><strong>ریسک مرجوع:</strong> احتمال بازگشت کالا</li>
+        <li><span class="fi">⚠️</span><strong>ریسک تقلب:</strong> الگوی غیرعادی خرید</li>
+        <li><span class="fi">🚀</span><strong>پتانسیل CLV:</strong> ارزش پیش‌بینی‌شده ۱۲ ماهه</li>
+        <li><span class="fi">📊</span><strong>پتانسیل Upsell:</strong> آمادگی برای خرید بالاتر</li>
+        <li><span class="fi">👥</span><strong>پتانسیل Referral:</strong> احتمال معرفی</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">❤️</div>
+      <div class="card-title">امتیاز علاقه به دسته‌بندی</div>
+      <div class="card-text" style="margin-bottom:12px;">Brand Affinity Score برای هر دسته:</div>
+      <ul class="feature-list">
+        <li><span class="fi">👗</span>مانتو و پالتو</li>
+        <li><span class="fi">👚</span>بلوز و پیراهن</li>
+        <li><span class="fi">👖</span>شلوار و دامن</li>
+        <li><span class="fi">🩱</span>ست و کامل لباس</li>
+        <li><span class="fi">💎</span>اکسسوری</li>
+        <li><span class="fi">🌙</span>لباس خواب و راحتی</li>
+        <li><span class="fi">👒</span>مجلسی و رسمی</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">🏅</div>
+      <div class="card-title">امتیاز NPS و رضایت</div>
+      <ul class="feature-list">
+        <li><span class="fi">😊</span>Promoter (۹-۱۰): سفیر برند</li>
+        <li><span class="fi">😐</span>Passive (۷-۸): رضایت‌مند ولی بی‌تفاوت</li>
+        <li><span class="fi">😡</span>Detractor (۰-۶): ناراضی، باید اقدام شود</li>
+        <li><span class="fi">📅</span>تاریخ آخرین نظرسنجی</li>
+        <li><span class="fi">🔄</span>روند تغییر NPS در طول زمان</li>
+        <li><span class="fi">💬</span>علت ناراضایتی (تگ‌بندی‌شده)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="highlight reveal">
+    <div class="highlight-title">🎯 فرمول امتیاز کلی مشتری</div>
+    <p style="font-family:monospace;font-size:1rem;margin-top:8px;color:var(--gold-light);">
+      Customer Score = (RFM × 0.35) + (Behavioral × 0.20) + (Engagement × 0.15) + (NPS × 0.15) + (Potential × 0.15)
+    </p>
+    <p style="margin-top:12px;">امتیاز نهایی ۰ تا ۱۰۰ — هر ۲۴ ساعت یک بار به‌روزرسانی می‌شود و trigger اقدامات خودکار است.</p>
+  </div>
+</section>
+</div>
+
+<!-- PART 5: JOURNEY -->
+<section id="journey" class="reveal">
+  <div class="section-header">
+    <div class="section-badge">🗺️ بخش پنجم</div>
+    <h2 class="section-title">نقشه <span class="gold">سفر مشتری Omnichannel</span></h2>
+    <p class="section-desc">ردیابی کامل هر نقطه تماس — از اولین بازدید تا وفاداری مادام‌العمر</p>
+  </div>
+
+  <h3 style="color:var(--white);margin-bottom:20px;font-size:1.1rem;">🌐 مسیر خرید آنلاین (سایت)</h3>
+  <div class="flow-steps reveal">
+    <div class="flow-step"><div class="fs-num">۱</div><div class="fs-label">اولین بازدید</div><div class="fs-sub">منبع: گوگل/اینستا</div></div>
+    <div class="flow-step"><div class="fs-num">۲</div><div class="fs-label">مرور محصول</div><div class="fs-sub">زمان + دسته بازدید</div></div>
+    <div class="flow-step"><div class="fs-num">۳</div><div class="fs-label">افزودن به سبد</div><div class="fs-sub">trigger remarketing</div></div>
+    <div class="flow-step"><div class="fs-num">۴</div><div class="fs-label">ثبت‌نام/ورود</div><div class="fs-sub">Identity creation</div></div>
+    <div class="flow-step"><div class="fs-num">۵</div><div class="fs-label">خرید اول</div><div class="fs-sub">Welcome program شروع</div></div>
+    <div class="flow-step"><div class="fs-num">۶</div><div class="fs-label">تحویل + NPS</div><div class="fs-sub">۴۸ ساعت بعد</div></div>
+    <div class="flow-step"><div class="fs-num">۷</div><div class="fs-label">خرید دوم</div><div class="fs-sub">Loyalty tier فعال</div></div>
+    <div class="flow-step"><div class="fs-num">۸</div><div class="fs-label">سفیر برند</div><div class="fs-sub">Referral program</div></div>
+  </div>
+
+  <div style="margin-top:36px;"></div>
+  <h3 style="color:var(--white);margin-bottom:20px;font-size:1.1rem;">📸 مسیر خرید از اینستاگرام</h3>
+  <div class="flow-steps reveal">
+    <div class="flow-step"><div class="fs-num">۱</div><div class="fs-label">مشاهده پست</div><div class="fs-sub">محصول جدید</div></div>
+    <div class="flow-step"><div class="fs-num">۲</div><div class="fs-label">ارسال DM</div><div class="fs-sub">سؤال درباره محصول</div></div>
+    <div class="flow-step"><div class="fs-num">۳</div><div class="fs-label">AI پاسخ می‌دهد</div><div class="fs-sub">قیمت + لینک</div></div>
+    <div class="flow-step"><div class="fs-num">۴</div><div class="fs-label">رفتن به سایت</div><div class="fs-sub">Attribution ثبت</div></div>
+    <div class="flow-step"><div class="fs-num">۵</div><div class="fs-label">خرید</div><div class="fs-sub">Instagram credit</div></div>
+    <div class="flow-step"><div class="fs-num">۶</div><div class="fs-label">Follow-up DM</div><div class="fs-sub">رضایت‌سنجی</div></div>
+  </div>
+
+  <div style="margin-top:36px;"></div>
+  <h3 style="color:var(--white);margin-bottom:20px;font-size:1.1rem;">🏪 مسیر خرید حضوری</h3>
+  <div class="flow-steps reveal">
+    <div class="flow-step"><div class="fs-num">۱</div><div class="fs-label">ورود به شعبه</div><div class="fs-sub">شناسایی موبایل</div></div>
+    <div class="flow-step"><div class="fs-num">۲</div><div class="fs-label">مشاوره فروش</div><div class="fs-sub">یادداشت در CRM</div></div>
+    <div class="flow-step"><div class="fs-num">۳</div><div class="fs-label">پرو لباس</div><div class="fs-sub">ثبت سایز</div></div>
+    <div class="flow-step"><div class="fs-num">۴</div><div class="fs-label">خرید از POS</div><div class="fs-sub">فاکتور در سپیدار</div></div>
+    <div class="flow-step"><div class="fs-num">۵</div><div class="fs-label">امتیاز دریافت</div><div class="fs-sub">باشگاه به‌روز</div></div>
+    <div class="flow-step"><div class="fs-num">۶</div><div class="fs-label">SMS تشکر</div><div class="fs-sub">بلافاصله</div></div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="two-col reveal">
+    <div>
+      <div class="card">
+        <div class="card-title">🎯 مدل Attribution</div>
+        <div class="card-text" style="margin-bottom:12px;">کدام کانال اعتبار فروش را می‌گیرد؟</div>
+        <ul class="feature-list">
+          <li><span class="fi">1️⃣</span><strong>First Touch:</strong> اولین کانال معرفی مشتری</li>
+          <li><span class="fi">🔚</span><strong>Last Touch:</strong> آخرین کانال قبل از خرید</li>
+          <li><span class="fi">⚖️</span><strong>Linear:</strong> تقسیم مساوی بین همه کانال‌ها</li>
+          <li><span class="fi">🤖</span><strong>AI-Based:</strong> وزن‌دهی هوشمند بر اساس داده</li>
+          <li><span class="fi">📊</span>داشبورد مقایسه مدل‌های Attribution</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <div class="card-title">📊 Touchpoint Heatmap</div>
+        <div class="card-text">برای هر مشتری یک نقشه گرمایی از تعاملاتش:</div>
+        <ul class="feature-list" style="margin-top:12px;">
+          <li><span class="fi">📅</span>فرکانس بازدید در روزهای هفته</li>
+          <li><span class="fi">⏰</span>ساعت‌های پیک تعامل</li>
+          <li><span class="fi">📱</span>کانال‌های پرکاربرد</li>
+          <li><span class="fi">🛍️</span>دسته‌بندی‌های پرمراجعه</li>
+          <li><span class="fi">🔄</span>چرخه خرید (فصلی/ماهانه)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PART 6: SEGMENTS -->
+<div class="section-full" id="segments">
+<section class="reveal">
+  <div class="section-header">
+    <div class="section-badge">🎯 بخش ششم</div>
+    <h2 class="section-title">موتور <span class="gold">سگمنت‌بندی پیشرفته</span></h2>
+    <p class="section-desc">بیش از ۲۰ سگمنت پویا با به‌روزرسانی real-time</p>
+  </div>
+
+  <div class="cards-grid reveal">
+    <div class="card">
+      <div class="card-icon">👑</div>
+      <div class="card-title">سگمنت‌های ارزشمند</div>
+      <ul class="feature-list">
+        <li><span class="fi">💎</span>VIP Black — خرید بالای ۵۰M تومان/سال</li>
+        <li><span class="fi">🏆</span>Platinum Loyalists — ۳+ سال عضویت پیوسته</li>
+        <li><span class="fi">⭐</span>Big Spenders — AOV بالای ۳M تومان</li>
+        <li><span class="fi">🚀</span>Rising Stars — رشد خرید بالای ۵۰٪</li>
+        <li><span class="fi">👥</span>Brand Ambassadors — ۵+ معرفی موفق</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">⚠️</div>
+      <div class="card-title">سگمنت‌های در خطر</div>
+      <ul class="feature-list">
+        <li><span class="fi">😴</span>At-Risk — عدم خرید ۶۰-۹۰ روز</li>
+        <li><span class="fi">💤</span>Sleeping — عدم خرید ۹۱-۱۸۰ روز</li>
+        <li><span class="fi">👻</span>Lost — بیش از ۱۸۰ روز غیرفعال</li>
+        <li><span class="fi">📉</span>Declining Spenders — کاهش مداوم AOV</li>
+        <li><span class="fi">😡</span>Detractors — NPS زیر ۶</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">🌱</div>
+      <div class="card-title">سگمنت‌های رشد</div>
+      <ul class="feature-list">
+        <li><span class="fi">🆕</span>New Customers — خرید اول (۰-۳۰ روز)</li>
+        <li><span class="fi">🔄</span>Second Purchase Ready — یک خرید، پتانسیل دارند</li>
+        <li><span class="fi">🎯</span>High Potential — بازدید زیاد، خرید کم</li>
+        <li><span class="fi">🌟</span>Upsell Ready — آماده ارتقاء خرید</li>
+        <li><span class="fi">💰</span>Price Sensitive — منتظر تخفیف هستند</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">📅</div>
+      <div class="card-title">سگمنت‌های رفتاری</div>
+      <ul class="feature-list">
+        <li><span class="fi">🌸</span>Seasonal Buyers — نوروز، پاییز، زمستان</li>
+        <li><span class="fi">🏷️</span>Sale Hunters — فقط در تخفیف خرید می‌کنند</li>
+        <li><span class="fi">🎁</span>Gift Buyers — خرید هدیه برای دیگران</li>
+        <li><span class="fi">📱</span>Mobile-First — فقط موبایل</li>
+        <li><span class="fi">🌙</span>Night Owls — خرید در ساعات شبانه</li>
+        <li><span class="fi">⚡</span>Impulse Buyers — تصمیم سریع</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="highlight reveal">
+    <div class="highlight-title">🤖 AI Micro-Segmentation</div>
+    <p>با استفاده از الگوریتم‌های clustering (K-Means، DBSCAN) و ML، سگمنت‌های micro-behavior کشف می‌شوند که به صورت دستی قابل تعریف نیستند. مثال: «مشتریانی که شنبه شب لباس مجلسی می‌بینند ولی دوشنبه صبح می‌خرند» — این الگو برای trigger کردن پیشنهاد day-before-Saturday استفاده می‌شود.</p>
+  </div>
+
+  <div class="info-box reveal">
+    <strong style="color:#93c5fd;">🛠️ Custom Segment Builder:</strong> تیم بازاریابی می‌تواند با drag-and-drop، سگمنت‌های سفارشی با شرایط پیچیده بسازد:
+    شرط AND/OR، محدوده زمانی، فیلتر محصول، فیلتر جغرافیایی، فیلتر مالی. هر سگمنت custom در real-time به‌روزرسانی می‌شود.
+  </div>
+</section>
+</div>
+
+<!-- PART 7: FOLLOW-UP -->
+<section id="followup" class="reveal">
+  <div class="section-header">
+    <div class="section-badge">📞 بخش هفتم</div>
+    <h2 class="section-title">ماژول <span class="gold">پیگیری پس از خرید</span></h2>
+    <p class="section-desc">ریزترین جزئیات تمام پیگیری‌ها — هیچ مشتری فراموش نمی‌شود</p>
+  </div>
+
+  <div class="timeline reveal">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-phase">بلافاصله پس از خرید</div>
+      <div class="timeline-title">تأیید سفارش هوشمند</div>
+      <div class="timeline-desc">SMS + ایمیل با جزئیات کامل سفارش، کد رهگیری، زمان تخمینی تحویل. برای VIP: تماس تلفنی تشکر توسط مسئول فروش. لینک ردیابی real-time ارسال.</div>
+      <div class="timeline-tags"><span class="timeline-tag">SMS</span><span class="timeline-tag">Email</span><span class="timeline-tag">Auto</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-phase">۲۴ ساعت بعد از تحویل</div>
+      <div class="timeline-title">NPS سریع + رضایت‌سنجی</div>
+      <div class="timeline-desc">یک سؤال ساده: «آیا از کیفیت محصول راضی بودید؟» با ۳ گزینه (عالی/خوب/مشکل داشتم). در صورت مشکل: ticket خودکار باز می‌شود + تماس در ۲ ساعت.</div>
+      <div class="timeline-tags"><span class="timeline-tag">NPS</span><span class="timeline-tag">Auto-ticket</span><span class="timeline-tag">۲۴h</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-phase">۷ روز بعد</div>
+      <div class="timeline-title">نظر کامل + اشتراک‌گذاری</div>
+      <div class="timeline-desc">دعوت برای نوشتن نظر در سایت + ارسال هاشتگ اینستاگرام + ۵۰۰ امتیاز هدیه برای اشتراک‌گذاری عکس با محصول. لینک مستقیم به صفحه نظر.</div>
+      <div class="timeline-tags"><span class="timeline-tag">Review</span><span class="timeline-tag">UGC</span><span class="timeline-tag">۵۰۰pts</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-phase">۳۰ روز بعد</div>
+      <div class="timeline-title">پیشنهاد cross-sell هوشمند</div>
+      <div class="timeline-desc">بر اساس محصول خریداری‌شده، AI ۳-۵ محصول مکمل پیشنهاد می‌دهد. مثال: «خریدار مانتو → پیشنهاد شلوار ست + روسری». همراه با کد تخفیف ۱۰٪ یک‌بارمصرف.</div>
+      <div class="timeline-tags"><span class="timeline-tag">AI Cross-sell</span><span class="timeline-tag">۱۰٪ تخفیف</span><span class="timeline-tag">۳۰ روز</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-phase">۹۰ روز بعد</div>
+      <div class="timeline-title">Win-back یا Upsell</div>
+      <div class="timeline-desc">اگر خرید دوم نشده: Win-back campaign با ۱۵٪ تخفیف. اگر خرید دوم شده: پیشنهاد ارتقاء tier باشگاه. برای VIP: تماس شخصی توسط مدیر فروش.</div>
+      <div class="timeline-tags"><span class="timeline-tag">Win-back</span><span class="timeline-tag">Upsell</span><span class="timeline-tag">۱۵٪</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-phase">سالگرد خرید</div>
+      <div class="timeline-title">برنامه سالگرد</div>
+      <div class="timeline-desc">یادآور سالگرد اولین خرید + پیشنهاد ویژه «سالگرد مشتری» + دبل امتیاز در روز سالگرد + کارت تبریک دیجیتال شخصی‌سازی‌شده.</div>
+      <div class="timeline-tags"><span class="timeline-tag">Anniversary</span><span class="timeline-tag">2X Points</span></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <h3 style="color:var(--gold);margin-bottom:20px;font-size:1.2rem;">🔄 مدیریت مرجوعی یکپارچه</h3>
+  <div class="cards-grid reveal">
+    <div class="card">
+      <div class="card-icon">📦</div>
+      <div class="card-title">فرایند مرجوع</div>
+      <ul class="num-list">
+        <li>درخواست مرجوع از هر کانال (سایت، تلگرام، تلفن)</li>
+        <li>ثبت خودکار در CRM با دلیل مرجوع</li>
+        <li>تأیید و صدور کد مرجوع در ۲ ساعت</li>
+        <li>بازگشت وجه به کیف پول یا کارت</li>
+        <li>پیگیری رضایت پس از مرجوع (NPS جداگانه)</li>
+        <li>تحلیل الگوی مرجوع برای بهبود محصول</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">🏆</div>
+      <div class="card-title">Win-back هوشمند</div>
+      <ul class="feature-list">
+        <li><span class="fi">📧</span>ایمیل «دلتنگت شدیم» + عکس آخرین خرید</li>
+        <li><span class="fi">🎁</span>کوپن بازگشت ویژه (بر اساس CLV)</li>
+        <li><span class="fi">📱</span>Push با «محصول جدید در سبک موردعلاقه‌ات»</li>
+        <li><span class="fi">📞</span>تماس شخصی برای VIP‌های ریزش‌یافته</li>
+        <li><span class="fi">🤖</span>AI تعیین می‌کند کدام trigger مؤثرتر است</li>
+        <li><span class="fi">📊</span>ردیابی نرخ بازگشت هر روش</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PART 8: LOYALTY CLUB -->
+<div class="section-full" id="loyalty">
+<section class="reveal">
+  <div class="section-header">
+    <div class="section-badge">👑 بخش هشتم</div>
+    <h2 class="section-title">باشگاه مشتریان <span class="gold">راسپینا</span> — مشخصات کامل</h2>
+    <p class="section-desc">سیستم جامع وفادارسازی با ۴ سطح، گیمیفیکیشن، کیف پول دیجیتال و برنامه‌های انگیزشی</p>
+  </div>
+
+  <h3 style="color:var(--white);font-size:1.2rem;margin-bottom:28px;font-weight:700;text-align:center;">🏅 چهار سطح عضویت باشگاه</h3>
+  <div class="tiers-grid reveal">
+    <div class="tier-card tier-bronze">
+      <div class="tier-icon">🥉</div>
+      <div class="tier-name">برنزی</div>
+      <div class="tier-threshold">ثبت‌نام رایگان | ۰ تا ۵M تومان خرید/سال</div>
+      <ul class="tier-benefits">
+        <li>۱ امتیاز به ازای هر ۱۰,۰۰۰ تومان</li>
+        <li>تخفیف ۵٪ در تولد</li>
+        <li>اطلاع‌رسانی موجودی محصول</li>
+        <li>دسترسی به تاریخچه خرید</li>
+        <li>کیف پول دیجیتال</li>
+        <li>پشتیبانی ۴۸ ساعته</li>
+      </ul>
+    </div>
+    <div class="tier-card tier-gold">
+      <div class="tier-icon">🥇</div>
+      <div class="tier-name">طلایی</div>
+      <div class="tier-threshold">۵M تا ۱۵M تومان خرید/سال</div>
+      <ul class="tier-benefits">
+        <li>۱.۵ امتیاز به ازای هر ۱۰,۰۰۰ تومان</li>
+        <li>تخفیف ۱۰٪ تولد + دسته‌بندی موردعلاقه</li>
+        <li>دسترسی زودهنگام به کلکسیون جدید</li>
+        <li>ارسال رایگان (بالای ۵۰۰K تومان)</li>
+        <li>اولویت پشتیبانی (۲۴ ساعته)</li>
+        <li>نظرسنجی VIP (تأثیر در محصولات)</li>
+        <li>۱ جلسه مشاوره استایل (آنلاین)</li>
+      </ul>
+    </div>
+    <div class="tier-card tier-platinum">
+      <div class="tier-icon">💎</div>
+      <div class="tier-name">پلاتینیوم</div>
+      <div class="tier-threshold">۱۵M تا ۵۰M تومان خرید/سال</div>
+      <ul class="tier-benefits">
+        <li>۲ امتیاز به ازای هر ۱۰,۰۰۰ تومان</li>
+        <li>تخفیف ۱۵٪ دائم + تولد ۲۰٪</li>
+        <li>ارسال رایگان همیشگی</li>
+        <li>دسترسی اختصاصی پیش‌فروش</li>
+        <li>پشتیبانی اولویت‌دار ۱۲ ساعته</li>
+        <li>۲ جلسه مشاوره استایل (حضوری)</li>
+        <li>دعوت به رویدادهای خصوصی</li>
+        <li>هدیه ویژه سالگرد عضویت</li>
+        <li>بازگشت ۵٪ به کیف پول</li>
+      </ul>
+    </div>
+    <div class="tier-card tier-vip">
+      <div class="tier-icon">👑</div>
+      <div class="tier-name">VIP Black</div>
+      <div class="tier-threshold">بالای ۵۰M تومان خرید/سال | دعوت‌نامه اختصاصی</div>
+      <ul class="tier-benefits">
+        <li>۳ امتیاز به ازای هر ۱۰,۰۰۰ تومان</li>
+        <li>تخفیف ۲۰٪ دائم + تولد ۳۰٪</li>
+        <li>مدیر اختصاصی VIP</li>
+        <li>اولین نفر در کلکسیون‌های جدید</li>
+        <li>پشتیبانی اختصاصی ۲۴/۷</li>
+        <li>جلسات استایل نامحدود</li>
+        <li>دعوت به runway و رویداد مد</li>
+        <li>بسته‌بندی VIP اختصاصی</li>
+        <li>بازگشت ۱۰٪ به کیف پول</li>
+        <li>هدیه‌های ماهانه سورپرایز</li>
+        <li>سفارش اختصاصی (Custom Order)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h3 style="color:var(--gold);font-size:1.2rem;margin-bottom:24px;font-weight:700;">💰 موتور امتیاز — کسب و خرج</h3>
+  <div class="two-col reveal">
+    <div>
+      <div class="card">
+        <div class="card-title">🌟 کسب امتیاز</div>
+        <div class="table-wrap" style="margin-top:12px;">
+          <table>
+            <thead><tr><th>اقدام</th><th>امتیاز</th></tr></thead>
+            <tbody>
+              <tr><td>هر ۱۰,۰۰۰ تومان خرید (برنز)</td><td style="color:var(--gold)">۱ امتیاز</td></tr>
+              <tr><td>هر ۱۰,۰۰۰ تومان خرید (طلا)</td><td style="color:var(--gold)">۱.۵ امتیاز</td></tr>
+              <tr><td>هر ۱۰,۰۰۰ تومان خرید (پلاتین)</td><td style="color:var(--gold)">۲ امتیاز</td></tr>
+              <tr><td>هر ۱۰,۰۰۰ تومان خرید (VIP)</td><td style="color:var(--gold)">۳ امتیاز</td></tr>
+              <tr><td>نوشتن نظر</td><td style="color:var(--gold)">۵۰ امتیاز</td></tr>
+              <tr><td>نظر + عکس</td><td style="color:var(--gold)">۱۵۰ امتیاز</td></tr>
+              <tr><td>معرفی دوست (خرید اول)</td><td style="color:var(--gold)">۵۰۰ امتیاز</td></tr>
+              <tr><td>تولد مشتری</td><td style="color:var(--gold)">۲۰۰ امتیاز</td></tr>
+              <tr><td>تکمیل پروفایل</td><td style="color:var(--gold)">۱۰۰ امتیاز</td></tr>
+              <tr><td>اشتراک در خبرنامه</td><td style="color:var(--gold)">۵۰ امتیاز</td></tr>
+              <tr><td>اشتراک‌گذاری محصول اینستا</td><td style="color:var(--gold)">۸۰ امتیاز</td></tr>
+              <tr><td>شرکت در چالش هفتگی</td><td style="color:var(--gold)">۳۰۰ امتیاز</td></tr>
+              <tr><td>پر کردن نظرسنجی</td><td style="color:var(--gold)">۷۵ امتیاز</td></tr>
+              <tr><td>سالگرد عضویت</td><td style="color:var(--gold)">۱۰۰۰ امتیاز</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <div class="card-title">🎁 خرج امتیاز (Redeem)</div>
+        <div class="table-wrap" style="margin-top:12px;">
+          <table>
+            <thead><tr><th>جایزه</th><th>امتیاز لازم</th></tr></thead>
+            <tbody>
+              <tr><td>۱۰,۰۰۰ تومان تخفیف</td><td style="color:var(--gold-light)">۱۰۰ امتیاز</td></tr>
+              <tr><td>ارسال رایگان</td><td style="color:var(--gold-light)">۱۵۰ امتیاز</td></tr>
+              <tr><td>تخفیف ۵٪ یک سفارش</td><td style="color:var(--gold-light)">۲۵۰ امتیاز</td></tr>
+              <tr><td>جلسه مشاوره استایل</td><td style="color:var(--gold-light)">۸۰۰ امتیاز</td></tr>
+              <tr><td>هدیه کوچک سورپرایز</td><td style="color:var(--gold-light)">۱,۰۰۰ امتیاز</td></tr>
+              <tr><td>تخفیف ۱۵٪ یک سفارش</td><td style="color:var(--gold-light)">۱,۵۰۰ امتیاز</td></tr>
+              <tr><td>اکسسوری انتخابی</td><td style="color:var(--gold-light)">۲,۵۰۰ امتیاز</td></tr>
+              <tr><td>شال و روسری</td><td style="color:var(--gold-light)">۳,۵۰۰ امتیاز</td></tr>
+              <tr><td>اولویت پشتیبانی VIP</td><td style="color:var(--gold-light)">۵۰۰ امتیاز</td></tr>
+              <tr><td>دعوت رویداد مد</td><td style="color:var(--gold-light)">۵,۰۰۰ امتیاز</td></tr>
+              <tr><td>انتقال به عضو خانواده</td><td style="color:var(--gold-light)">رایگان</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="warning-box" style="margin-top:12px;">
+          <strong style="color:#fb923c;">انقضای امتیاز:</strong> امتیازها پس از ۱۲ ماه عدم فعالیت منقضی می‌شوند. ۳۰ روز قبل، هشدار SMS/Email ارسال می‌شود.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <h3 style="color:var(--gold);font-size:1.2rem;margin-bottom:24px;font-weight:700;">🎮 گیمیفیکیشن — سیستم بازی و چالش</h3>
+  <div class="cards-grid reveal">
+    <div class="card">
+      <div class="card-icon">🏅</div>
+      <div class="card-title">سیستم Badge ها</div>
+      <div class="tag-cloud" style="margin-top:12px;">
+        <span class="tag gold">🛒 خریدار اول</span>
+        <span class="tag gold">🔥 خریدار پرتکرار</span>
+        <span class="tag blue">⭐ نظردهنده فعال</span>
+        <span class="tag purple">👑 VIP معرف</span>
+        <span class="tag green">📸 عکاس برند</span>
+        <span class="tag gold">🎂 جشن تولد</span>
+        <span class="tag blue">🌟 سفیر برند</span>
+        <span class="tag purple">💎 خریدار سالانه</span>
+        <span class="tag green">🌙 خریدار شبانه</span>
+        <span class="tag gold">🚀 Fast Buyer</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <div class="card-title">چالش‌های هفتگی و ماهانه</div>
+      <ul class="feature-list">
+        <li><span class="fi">🛒</span>چالش «۳ خرید این هفته» — ۵۰۰ امتیاز هدیه</li>
+        <li><span class="fi">📸</span>چالش «عکس ست راسپینا» — ۸۰۰ امتیاز</li>
+        <li><span class="fi">⭐</span>چالش «۵ نظر این ماه» — ۳۰۰ امتیاز</li>
+        <li><span class="fi">👥</span>چالش «معرفی ۳ دوست» — ۱۵۰۰ امتیاز</li>
+        <li><span class="fi">🎯</span>چالش‌های فصلی (نوروز، پاییز)</li>
+        <li><span class="fi">🏆</span>رده‌بندی ماهانه با جوایز ویژه</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">📊</div>
+      <div class="card-title">Leaderboard و رقابت</div>
+      <ul class="feature-list">
+        <li><span class="fi">🏆</span>رده‌بندی ماهانه (بر اساس امتیاز)</li>
+        <li><span class="fi">🌍</span>رده‌بندی شهری (همدان vs تهران)</li>
+        <li><span class="fi">👑</span>رده‌بندی سالانه با جوایز بزرگ</li>
+        <li><span class="fi">🤝</span>رقابت تیمی (خانواده/دوستان)</li>
+        <li><span class="fi">🎁</span>جایزه اول: یک کلکسیون کامل رایگان</li>
+        <li><span class="fi">📱</span>نمایش در پروفایل باشگاه</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">📦</div>
+      <div class="card-title">جعبه سورپرایز ماهانه راسپینا</div>
+      <div class="card-text" style="margin-bottom:12px;"><em>Raspina Surprise Box — اشتراک ماهانه</em></div>
+      <ul class="feature-list">
+        <li><span class="fi">💎</span>بسته Essentials: ۳-۴ قطعه اکسسوری و روسری</li>
+        <li><span class="fi">🌟</span>بسته Classic: ۲ قطعه لباس کژوال</li>
+        <li><span class="fi">👑</span>بسته Premium: ۳ قطعه لباس + مشاوره استایل</li>
+        <li><span class="fi">🤖</span>انتخاب توسط AI بر اساس سلیقه ثبت‌شده</li>
+        <li><span class="fi">📅</span>تحویل اول هر ماه | قرارداد ۳ یا ۶ ماهه</li>
+        <li><span class="fi">🔄</span>قابلیت تعویض آیتم‌ها</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">👨‍👩‍👧</div>
+      <div class="card-title">عضویت خانوادگی</div>
+      <ul class="feature-list">
+        <li><span class="fi">🔗</span>اتصال حساب‌های خانوادگی (حداکثر ۵ نفر)</li>
+        <li><span class="fi">💰</span>جمع امتیازات خانواده برای tier</li>
+        <li><span class="fi">🎁</span>انتقال امتیاز بین اعضا</li>
+        <li><span class="fi">📊</span>داشبورد مشترک خانواده</li>
+        <li><span class="fi">🛒</span>خرید گروهی با تخفیف اضافه</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎁</div>
+      <div class="card-title">سیستم کارت هدیه</div>
+      <ul class="feature-list">
+        <li><span class="fi">💳</span>کارت هدیه دیجیتال (۱۰۰K - ۱۰M تومان)</li>
+        <li><span class="fi">📱</span>ارسال دیجیتال از طریق واتساپ/تلگرام</li>
+        <li><span class="fi">🎨</span>طراحی‌های مناسبتی (تولد، عروسی، نوروز)</li>
+        <li><span class="fi">📅</span>تاریخ انقضای قابل تنظیم</li>
+        <li><span class="fi">📊</span>ردیابی کامل استفاده در CRM</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <h3 style="color:var(--gold);font-size:1.2rem;margin-bottom:24px;font-weight:700;">🏢 برنامه وفاداری B2B (عمده‌فروش)</h3>
+  <div class="highlight reveal">
+    <div class="highlight-title">سطح Corporate/Wholesale Loyalty</div>
+    <p>برای خریداران عمده، آتلیه‌ها، فروشگاه‌های خرده‌فروش مستقل و بوتیک‌های همکار: امتیاز ۵X برای سفارش‌های بالای ۵۰M تومان، خط پشتیبانی اختصاصی B2B، دسترسی اولیه به موجودی انبار، امکان پیش‌سفارش کلکسیون‌ها، و گزارش‌های اختصاصی فروش.</p>
+  </div>
+</section>
+</div>
+
+<!-- PART 9: AI/ML -->
+<section id="ai" class="reveal">
+  <div class="section-header">
+    <div class="section-badge">🤖 بخش نهم</div>
+    <h2 class="section-title">قابلیت‌های <span class="gold">هوش مصنوعی</span> — افق ۵ ساله</h2>
+    <p class="section-desc">از پیشنهاد محصول تا استایلیست مجازی — هوش مصنوعی در خدمت تجربه مشتری</p>
+  </div>
+
+  <h3 style="color:var(--white);font-size:1.1rem;margin-bottom:20px;font-weight:600;">🚀 فاز اول (ماه ۱-۶): AI های پایه</h3>
+  <div class="ai-grid reveal">
+    <div class="ai-card">
+      <div class="ai-card-icon">🛍️</div>
+      <div class="ai-card-title">موتور پیشنهاد محصول</div>
+      <div class="ai-card-desc">بر اساس تاریخچه خرید، wishlist، دسته‌بندی‌های محبوب و مشتریان مشابه، ۵-۱۰ محصول کاملاً شخصی‌سازی‌شده پیشنهاد می‌دهد. Collaborative + Content-based Filtering.</div>
+      <span class="ai-accuracy">دقت هدف: ۷۵٪</span>
+    </div>
+    <div class="ai-card">
+      <div class="ai-card-icon">📏</div>
+      <div class="ai-card-title">پیشنهاد سایز هوشمند</div>
+      <div class="ai-card-desc">بر اساس سفارش‌های قبلی (سایز خریداری‌شده، مرجوعی به دلیل سایز)، برند، و جنس پارچه، دقیق‌ترین سایز را پیشنهاد می‌کند.</div>
+      <span class="ai-accuracy">کاهش مرجوع: ۳۰٪</span>
+    </div>
+    <div class="ai-card">
+      <div class="ai-card-icon">🎯</div>
+      <div class="ai-card-title">پیش‌بینی ریزش مشتری</div>
+      <div class="ai-card-desc">مدل ML با ۱۵ فیچر مختلف، احتمال ریزش هر مشتری در ۹۰ روز آینده را محاسبه می‌کند. برای مشتریان با احتمال بالا، کمپین win-back خودکار فعال می‌شود.</div>
+      <span class="ai-accuracy">دقت: ۸۵٪</span>
+    </div>
+    <div class="ai-card">
+      <div class="ai-card-icon">💬</div>
+      <div class="ai-card-title">تحلیل احساسات</div>
+      <div class="ai-card-desc">تمام نظرات، دایرکت‌ها، پیام‌های پشتیبانی به صورت خودکار از نظر احساسی (مثبت/منفی/خنثی) و موضوعی (کیفیت/قیمت/ارسال) دسته‌بندی می‌شوند.</div>
+      <span class="ai-accuracy">دقت: ۸۰٪</span>
+    </div>
+    <div class="ai-card">
+      <div class="ai-card-icon">💰</div>
+      <div class="ai-card-title">تحلیل حساسیت قیمتی</div>
+      <div class="ai-card-desc">برای هر مشتری، آستانه قیمتی که احتمال خرید را به حداکثر می‌رساند محاسبه می‌شود. تخفیف‌های شخصی‌سازی‌شده بدون از دست دادن مارجین.</div>
+      <span class="ai-accuracy">مارجین: +۱۲٪</span>
+    </div>
+    <div class="ai-card">
+      <div class="ai-card-icon">🔮</div>
+      <div class="ai-card-title">پیش‌بینی CLV</div>
+      <div class="ai-card-desc">مدل پیش‌بینی ارزش مادام‌العمر مشتری در ۱، ۳ و ۵ سال آینده. اولویت‌بندی تلاش فروش و بازاریابی بر اساس CLV پیش‌بینی‌شده.</div>
+      <span class="ai-accuracy">خطا: زیر ۱۵٪</span>
+    </div>
+  </div>
+
+  <div style="margin-top:40px;"></div>
+  <h3 style="color:var(--white);font-size:1.1rem;margin-bottom:20px;font-weight:600;">🌟 فاز دوم (سال ۲-۳): AI های پیشرفته</h3>
+  <div class="ai-grid reveal">
+    <div class="ai-card">
+      <div class="ai-card-icon">👗</div>
+      <div class="ai-card-title">استایلیست AI شخصی</div>
+      <div class="ai-card-desc">دستیار مجازی که بر اساس سلیقه، اندازه، بودجه و مناسبت، ست‌های کامل لباس پیشنهاد می‌دهد. یکپارچه در پورتال مشتری و ربات تلگرام.</div>
+      <span class="ai-accuracy">سال ۲</span>
+    </div>
+    <div class="ai-card">
+      <div class="ai-card-icon">📊</div>
+      <div class="ai-card-title">پیش‌بینی تقاضا</div>
+      <div class="ai-card-desc">ترکیب داده‌های CRM (سلیقه، wishlist، بازدید) با داده‌های انبار برای پیش‌بینی دقیق تقاضا در ۳۰/۶۰/۹۰ روز آینده. کاهش stockout.</div>
+      <span class="ai-accuracy">دقت: ۸۸٪</span>
+    </div>
+    <div class="ai-card">
+      <div class="ai-card-icon">🎨</div>
+      <div class="ai-card-title">تطبیق ترند با سلیقه</div>
+      <div class="ai-card-desc">رصد ترندهای مد (Instagram, Pinterest, Runway) و تطبیق با پروفایل سلیقه هر مشتری. ارسال هشدار «این ترند با استایل تو ست می‌شه».</div>
+      <span class="ai-accuracy">سال ۳</span>
+    </div>
+  </div>
+
+  <div style="margin-top:40px;"></div>
+  <h3 style="color:var(--white);font-size:1.1rem;margin-bottom:20px;font-weight:600;">🚀 فاز سوم (سال ۴-۵): AI های نسل آینده</h3>
+  <div class="ai-grid reveal">
+    <div class="ai-card" style="border-color:rgba(236,72,153,0.3);background:linear-gradient(135deg,rgba(236,72,153,0.08),rgba(139,92,246,0.05))">
+      <div class="ai-card-icon">🪞</div>
+      <div class="ai-card-title" style="color:#f9a8d4;">AR پرو مجازی</div>
+      <div class="ai-card-desc">پرو لباس مجازی با استفاده از دوربین گوشی. مشتری می‌بیند لباس روی هیکل او چه شکلی می‌شود. کاهش قابل توجه مرجوعی.</div>
+      <span class="ai-accuracy" style="background:rgba(236,72,153,0.15);color:#f9a8d4;">سال ۴-۵</span>
+    </div>
+    <div class="ai-card" style="border-color:rgba(236,72,153,0.3);background:linear-gradient(135deg,rgba(236,72,153,0.08),rgba(139,92,246,0.05))">
+      <div class="ai-card-icon">🔐</div>
+      <div class="ai-card-title" style="color:#f9a8d4;">NFT Loyalty Token</div>
+      <div class="ai-card-desc">امتیازهای VIP به عنوان NFT روی بلاک‌چین ذخیره می‌شوند. قابل انتقال، قابل فروش در بازار ثانویه، دارای ارزش واقعی. برای مشتریان Gen Z.</div>
+      <span class="ai-accuracy" style="background:rgba(236,72,153,0.15);color:#f9a8d4;">سال ۵</span>
+    </div>
+    <div class="ai-card" style="border-color:rgba(236,72,153,0.3);background:linear-gradient(135deg,rgba(236,72,153,0.08),rgba(139,92,246,0.05))">
+      <div class="ai-card-icon">🤖</div>
+      <div class="ai-card-title" style="color:#f9a8d4;">Autonomous Shopping</div>
+      <div class="ai-card-desc">با اجازه مشتری، AI به صورت خودکار لباس‌های متناسب با سلیقه را در تخفیف‌ها می‌خرد. «خرید هوشمند خودکار» برای مشتریان VIP.</div>
+      <span class="ai-accuracy" style="background:rgba(236,72,153,0.15);color:#f9a8d4;">سال ۵</span>
+    </div>
+  </div>
+</section>
+
+<!-- PART 10: CAMPAIGNS -->
+<div class="section-full" id="campaigns">
+<section class="reveal">
+  <div class="section-header">
+    <div class="section-badge">📣 بخش دهم</div>
+    <h2 class="section-title">مدیریت <span class="gold">کمپین و بازاریابی</span></h2>
+    <p class="section-desc">سیستم جامع اجرای کمپین‌های چندکاناله با شخصی‌سازی کامل</p>
+  </div>
+
+  <div class="cards-grid reveal">
+    <div class="card">
+      <div class="card-icon">📱</div>
+      <div class="card-title">کانال‌های ارتباطی</div>
+      <ul class="feature-list">
+        <li><span class="fi">📧</span><strong>ایمیل:</strong> طراحی drag-drop، personalization، A/B test</li>
+        <li><span class="fi">📱</span><strong>SMS:</strong> کوتاه، شخصی، لینک کوتاه‌شده</li>
+        <li><span class="fi">💬</span><strong>واتساپ:</strong> پیام‌های غنی (تصویر + دکمه)</li>
+        <li><span class="fi">🤖</span><strong>تلگرام:</strong> پیام‌های خودکار از ربات</li>
+        <li><span class="fi">📲</span><strong>Push Notification:</strong> وب + PWA</li>
+        <li><span class="fi">📸</span><strong>Instagram DM:</strong> پاسخ هوشمند AI</li>
+        <li><span class="fi">📞</span><strong>تلفن:</strong> تماس دستی برای VIP</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">⚙️</div>
+      <div class="card-title">Campaign Builder</div>
+      <ul class="feature-list">
+        <li><span class="fi">🖱️</span>Visual Drag-Drop Workflow Builder</li>
+        <li><span class="fi">🎯</span>انتخاب سگمنت هدف</li>
+        <li><span class="fi">📅</span>زمان‌بندی دقیق یا Trigger-based</li>
+        <li><span class="fi">🧪</span>A/B Testing خودکار (موضوع، محتوا، زمان)</li>
+        <li><span class="fi">🔄</span>Multi-step Drip Campaign</li>
+        <li><span class="fi">📊</span>پیش‌نمایش قبل از ارسال</li>
+        <li><span class="fi">🤖</span>بهینه‌سازی خودکار با AI</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎯</div>
+      <div class="card-title">Personalization Tokens</div>
+      <ul class="feature-list">
+        <li><span class="fi">👤</span>{نام} — نام شخصی مشتری</li>
+        <li><span class="fi">🛒</span>{آخرین_خرید} — آخرین محصول خریداری‌شده</li>
+        <li><span class="fi">💎</span>{سطح} — Bronze/Gold/Platinum/VIP</li>
+        <li><span class="fi">💰</span>{امتیاز} — امتیاز فعلی کیف‌پول</li>
+        <li><span class="fi">🎁</span>{پیشنهاد} — پیشنهاد AI شخصی</li>
+        <li><span class="fi">🏙️</span>{شهر} — شهر مشتری</li>
+        <li><span class="fi">📅</span>{روزهای_مانده} — مانده تا انقضای امتیاز</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">🛡️</div>
+      <div class="card-title">سیاست‌های ارسال</div>
+      <ul class="feature-list">
+        <li><span class="fi">⏰</span>Blackout Hours: ۲۳-۸ صبح (بدون ارسال)</li>
+        <li><span class="fi">📊</span>Frequency Cap: حداکثر ۲ SMS/هفته</li>
+        <li><span class="fi">🚫</span>Unsubscribe فوری و رعایت کامل</li>
+        <li><span class="fi">🌙</span>Do Not Disturb برای VIP (تنظیم شخصی)</li>
+        <li><span class="fi">📋</span>Consent Check قبل از هر ارسال</li>
+        <li><span class="fi">🔄</span>Channel Preference رعایت</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">📊</div>
+      <div class="card-title">آنالیتیکس کمپین</div>
+      <ul class="feature-list">
+        <li><span class="fi">📈</span>Open Rate، Click Rate، Conversion Rate</li>
+        <li><span class="fi">💰</span>Revenue per Campaign</li>
+        <li><span class="fi">📱</span>مقایسه کانال‌ها</li>
+        <li><span class="fi">🧪</span>نتایج A/B Test (winner پیشنهادی)</li>
+        <li><span class="fi">💔</span>Unsubscribe Rate</li>
+        <li><span class="fi">🤖</span>Heatmap زمانی (بهترین ساعت ارسال)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <div class="card-title">Trigger-Based Campaigns</div>
+      <ul class="feature-list">
+        <li><span class="fi">🛒</span>سبد رهاشده (۱ ساعت بعد)</li>
+        <li><span class="fi">🎂</span>تولد مشتری (۷ روز قبل + روز تولد)</li>
+        <li><span class="fi">📦</span>دریافت سفارش (بلافاصله)</li>
+        <li><span class="fi">😴</span>عدم بازدید ۳۰ روز (re-engagement)</li>
+        <li><span class="fi">🔔</span>موجود شدن wishlist item</li>
+        <li><span class="fi">📉</span>کاهش قیمت wishlist item</li>
+        <li><span class="fi">🏆</span>ارتقاء سطح باشگاه</li>
+      </ul>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- PART 11: SUPPORT -->
+<section id="support" class="reveal">
+  <div class="section-header">
+    <div class="section-badge">🎧 بخش یازدهم</div>
+    <h2 class="section-title">ماژول <span class="gold">پشتیبانی مشتری</span></h2>
+    <p class="section-desc">سیستم Helpdesk یکپارچه با SLA مشخص برای هر سطح باشگاه</p>
+  </div>
+
+  <div class="two-col reveal">
+    <div>
+      <div class="card">
+        <div class="card-title">🎫 سیستم تیکتینگ</div>
+        <ul class="feature-list">
+          <li><span class="fi">🌐</span>دریافت تیکت از تمام کانال‌ها (یک Inbox)</li>
+          <li><span class="fi">🤖</span>دسته‌بندی خودکار با AI (مرجوع، کیفیت، ارسال)</li>
+          <li><span class="fi">🎯</span>اولویت‌بندی بر اساس سطح باشگاه</li>
+          <li><span class="fi">👤</span>اختصاص به کارشناس مناسب</li>
+          <li><span class="fi">📋</span>کد تیکت منحصربه‌فرد برای ردیابی</li>
+          <li><span class="fi">📧</span>اطلاع‌رسانی خودکار به مشتری</li>
+          <li><span class="fi">📊</span>داشبورد وضعیت تیکت‌ها</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <div class="card-title">⏱️ SLA مشخص برای هر سطح</div>
+        <div class="table-wrap" style="margin-top:12px;">
+          <table>
+            <thead><tr><th>سطح</th><th>اول پاسخ</th><th>رزولوشن</th></tr></thead>
+            <tbody>
+              <tr><td>👑 VIP Black</td><td style="color:#a78bfa">۱ ساعت</td><td style="color:#a78bfa">۴ ساعت</td></tr>
+              <tr><td>💎 پلاتینیوم</td><td style="color:var(--gold)">۴ ساعت</td><td style="color:var(--gold)">۱۲ ساعت</td></tr>
+              <tr><td>🥇 طلایی</td><td style="color:var(--gold-light)">۱۲ ساعت</td><td style="color:var(--gold-light)">۲۴ ساعت</td></tr>
+              <tr><td>🥉 برنزی</td><td>۲۴ ساعت</td><td>۴۸ ساعت</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="warning-box" style="margin-top:12px;">
+          <strong style="color:#fb923c;">SLA Breach:</strong> اگر SLA نقض شود، هشدار خودکار به مدیر ارسال می‌شود و امتیاز جبرانی به مشتری داده می‌شود.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cards-grid reveal" style="margin-top:28px;">
+    <div class="card">
+      <div class="card-icon">📞</div>
+      <div class="card-title">ثبت مکالمات تلفنی</div>
+      <ul class="feature-list">
+        <li><span class="fi">🎙️</span>ضبط خودکار مکالمات (با رضایت)</li>
+        <li><span class="fi">📝</span>رونویسی (Transcription) با AI</li>
+        <li><span class="fi">🏷️</span>تگ‌بندی موضوع مکالمه</li>
+        <li><span class="fi">😊</span>تحلیل احساس مشتری در مکالمه</li>
+        <li><span class="fi">📊</span>خلاصه خودکار هر تماس</li>
+        <li><span class="fi">📋</span>ثبت در پروفایل مشتری</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔄</div>
+      <div class="card-title">فرایند مرجوع / تعویض</div>
+      <ul class="num-list">
+        <li>درخواست مرجوع توسط مشتری (هر کانال)</li>
+        <li>تأیید واجد شرایط بودن در ۳۰ دقیقه</li>
+        <li>صدور RMA (Return Merchandise Authorization)</li>
+        <li>هماهنگی پیک رایگان برای VIP/Platinum</li>
+        <li>بازگشت وجه در ۲۴ ساعت پس از دریافت</li>
+        <li>NPS پس از مرجوع + گزارش به تیم محصول</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">📚</div>
+      <div class="card-title">Knowledge Base</div>
+      <ul class="feature-list">
+        <li><span class="fi">❓</span>سؤالات متداول با جستجوی هوشمند</li>
+        <li><span class="fi">🎥</span>ویدئوهای آموزشی (سایز، مراقبت)</li>
+        <li><span class="fi">📄</span>راهنمای سایز تمام محصولات</li>
+        <li><span class="fi">🤖</span>Chatbot با دسترسی به KB</li>
+        <li><span class="fi">📊</span>ردیابی کارایی هر مقاله KB</li>
+        <li><span class="fi">🔄</span>به‌روزرسانی خودکار با مشکلات جدید</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PART 12: ANALYTICS -->
+<div class="section-full" id="analytics">
+<section class="reveal">
+  <div class="section-header">
+    <div class="section-badge">📊 بخش دوازدهم</div>
+    <h2 class="section-title">آنالیتیکس و <span class="gold">هوش تجاری</span></h2>
+    <p class="section-desc">داشبوردهای real-time، تحلیل کوهورت، attribution و گزارش‌های خودکار مدیریتی</p>
+  </div>
+
+  <div class="cards-grid reveal">
+    <div class="card">
+      <div class="card-icon">📊</div>
+      <div class="card-title">داشبورد اجرایی (CEO)</div>
+      <ul class="feature-list">
+        <li><span class="fi">💰</span>درآمد روز جاری vs همین روز پارسال</li>
+        <li><span class="fi">👥</span>مشتریان جدید این هفته</li>
+        <li><span class="fi">🏆</span>توزیع سطح باشگاه (Tier Distribution)</li>
+        <li><span class="fi">📈</span>NPS میانگین real-time</li>
+        <li><span class="fi">⚠️</span>مشتریان VIP در خطر ریزش</li>
+        <li><span class="fi">🎯</span>پیشرفت KPI های ماه</li>
+        <li><span class="fi">📱</span>Mobile-ready, Refresh خودکار</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔬</div>
+      <div class="card-title">تحلیل کوهورت (Cohort)</div>
+      <ul class="feature-list">
+        <li><span class="fi">📅</span>گروه‌بندی مشتریان بر اساس ماه جذب</li>
+        <li><span class="fi">📊</span>نرخ بازگشت ۱، ۳، ۶، ۱۲ ماهه</li>
+        <li><span class="fi">💰</span>CLV تجمعی هر کوهورت</li>
+        <li><span class="fi">📉</span>منحنی ریزش هر کوهورت</li>
+        <li><span class="fi">🎯</span>مقایسه کوهورت‌های مختلف</li>
+        <li><span class="fi">🏆</span>بهترین کانال جذب (بر اساس CLV)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">🏙️</div>
+      <div class="card-title">تحلیل جغرافیایی</div>
+      <ul class="feature-list">
+        <li><span class="fi">🗺️</span>نقشه گرمایی مشتریان ایران</li>
+        <li><span class="fi">📊</span>مقایسه همدان vs تهران</li>
+        <li><span class="fi">🛒</span>تفاوت سلیقه شهرها</li>
+        <li><span class="fi">🚚</span>میانگین زمان تحویل هر شهر</li>
+        <li><span class="fi">💰</span>AOV بر اساس شهر</li>
+        <li><span class="fi">🔝</span>شهرهای با بیشترین پتانسیل رشد</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">📦</div>
+      <div class="card-title">تحلیل محصول-مشتری</div>
+      <ul class="feature-list">
+        <li><span class="fi">🛍️</span>کدام مشتریان چه محصولاتی می‌خرند</li>
+        <li><span class="fi">🔗</span>محصولات خریداری‌شده همراه (Market Basket)</li>
+        <li><span class="fi">📉</span>محصولات با بالاترین مرجوعی</li>
+        <li><span class="fi">🌟</span>محصولات با بهترین NPS</li>
+        <li><span class="fi">📅</span>فصلی‌بودن هر محصول</li>
+        <li><span class="fi">💎</span>محصولات VIP (تنها VIP می‌خرد)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔮</div>
+      <div class="card-title">پیش‌بینی درآمد</div>
+      <ul class="feature-list">
+        <li><span class="fi">📈</span>پیش‌بینی درآمد ماه آینده (ML-based)</li>
+        <li><span class="fi">🎯</span>سناریوهای خوش‌بینانه/بدبینانه</li>
+        <li><span class="fi">📊</span>تأثیر کمپین‌های برنامه‌ریزی‌شده</li>
+        <li><span class="fi">🔄</span>Seasonality Factor</li>
+        <li><span class="fi">⚠️</span>هشدار divergence از هدف</li>
+        <li><span class="fi">📋</span>گزارش هفتگی خودکار به مدیران</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">📧</div>
+      <div class="card-title">گزارش‌های خودکار</div>
+      <ul class="feature-list">
+        <li><span class="fi">📅</span>گزارش روزانه (ساعت ۸ صبح)</li>
+        <li><span class="fi">📊</span>گزارش هفتگی (شنبه صبح)</li>
+        <li><span class="fi">📋</span>گزارش ماهانه مفصل</li>
+        <li><span class="fi">🏆</span>گزارش عملکرد باشگاه</li>
+        <li><span class="fi">📣</span>گزارش کمپین‌ها</li>
+        <li><span class="fi">📧</span>ارسال به ایمیل مدیران</li>
+      </ul>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- PART 13: INTEGRATION -->
+<section id="integration" class="reveal">
+  <div class="section-header">
+    <div class="section-badge">🔗 بخش سیزدهم</div>
+    <h2 class="section-title">معماری <span class="gold">یکپارچه‌سازی</span></h2>
+    <p class="section-desc">نقشه کامل API ها، Webhooks و اتصالات سیستم‌های مختلف</p>
+  </div>
+
+  <div class="cards-grid reveal">
+    <div class="card">
+      <div class="card-icon">🛒</div>
+      <div class="card-title">اتصال ۳ وب‌سایت</div>
+      <ul class="feature-list">
+        <li><span class="fi">🔗</span>REST API برای خواندن پروفایل کاربر</li>
+        <li><span class="fi">🔔</span>Webhook هنگام ثبت سفارش جدید</li>
+        <li><span class="fi">🔔</span>Webhook هنگام ثبت‌نام کاربر جدید</li>
+        <li><span class="fi">💰</span>همگام‌سازی امتیاز و tier در real-time</li>
+        <li><span class="fi">🎁</span>نمایش امتیاز در پنل کاربری سایت</li>
+        <li><span class="fi">🛍️</span>نمایش پیشنهادات AI در سایت</li>
+        <li><span class="fi">🔄</span>SSO (یک بار ورود برای هر ۳ سایت)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">📊</div>
+      <div class="card-title">سپیدار ERP</div>
+      <ul class="feature-list">
+        <li><span class="fi">📋</span>خواندن فاکتورهای فروش (batch/real-time)</li>
+        <li><span class="fi">📦</span>همگام‌سازی موجودی</li>
+        <li><span class="fi">🔄</span>خواندن مرجوعی‌های ثبت‌شده</li>
+        <li><span class="fi">💳</span>اطلاعات پرداخت‌ها</li>
+        <li><span class="fi">📊</span>گزارش مالی برای داشبورد</li>
+        <li><span class="fi">🔗</span>اتصال از طریق API سپیدار + File Export</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">📱</div>
+      <div class="card-title">پیام‌رسان‌ها</div>
+      <ul class="feature-list">
+        <li><span class="fi">📱</span>SMS: کاوه‌نگار یا فراز SMS</li>
+        <li><span class="fi">💬</span>واتساپ: WhatsApp Business API</li>
+        <li><span class="fi">🤖</span>تلگرام: Telegram Bot API</li>
+        <li><span class="fi">📸</span>اینستاگرام: Instagram Graph API</li>
+        <li><span class="fi">📧</span>ایمیل: SMTP / SendGrid</li>
+        <li><span class="fi">📲</span>Push: Firebase Cloud Messaging</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">💳</div>
+      <div class="card-title">درگاه‌های پرداخت</div>
+      <ul class="feature-list">
+        <li><span class="fi">💳</span>زرین‌پال — اصلی</li>
+        <li><span class="fi">💳</span>بانک ملت (به‌پرداخت)</li>
+        <li><span class="fi">💳</span>سپ (بانک سپه)</li>
+        <li><span class="fi">📊</span>ردیابی روش پرداخت در CRM</li>
+        <li><span class="fi">🔄</span>Webhook تأیید پرداخت</li>
+        <li><span class="fi">💰</span>بازگشت وجه خودکار</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">🚚</div>
+      <div class="card-title">سرویس‌های ارسال</div>
+      <ul class="feature-list">
+        <li><span class="fi">📮</span>پست ایران — رهگیری API</li>
+        <li><span class="fi">🚀</span>تیپاکس — ارسال سریع</li>
+        <li><span class="fi">⚡</span>اسنپ اکسپرس — همان روز</li>
+        <li><span class="fi">🛵</span>ماهکس — شهری</li>
+        <li><span class="fi">🔔</span>اطلاع‌رسانی خودکار وضعیت ارسال</li>
+        <li><span class="fi">📊</span>آمار تحویل در CRM</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">🏗️</div>
+      <div class="card-title">زیرساخت داده</div>
+      <ul class="feature-list">
+        <li><span class="fi">🗄️</span>Data Warehouse: BigQuery/ClickHouse</li>
+        <li><span class="fi">🔄</span>ETL Pipeline: Apache Airflow</li>
+        <li><span class="fi">⚡</span>Real-time streaming: Apache Kafka</li>
+        <li><span class="fi">🤖</span>ML Platform: Vertex AI / MLflow</li>
+        <li><span class="fi">📊</span>BI Tool: Metabase / Superset</li>
+        <li><span class="fi">☁️</span>Cloud: Arvan Cloud / Liara (ایرانی)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PART 14: SECURITY -->
+<div class="section-full" id="security">
+<section class="reveal">
+  <div class="section-header">
+    <div class="section-badge">🔐 بخش چهاردهم</div>
+    <h2 class="section-title">امنیت، حریم خصوصی و <span class="gold">انطباق</span></h2>
+    <p class="section-desc">حفاظت کامل از داده‌های مشتری با رعایت قوانین ایران</p>
+  </div>
+
+  <div class="cards-grid reveal">
+    <div class="card">
+      <div class="card-icon">👥</div>
+      <div class="card-title">سطح دسترسی (RBAC)</div>
+      <div class="roles-grid" style="margin-top:12px;">
+        <div class="role-badge"><div class="ri">👑</div><div class="rn">CEO</div><div class="rp">دسترسی کامل</div></div>
+        <div class="role-badge"><div class="ri">🏪</div><div class="rn">مدیر شعبه</div><div class="rp">شعبه خود</div></div>
+        <div class="role-badge"><div class="ri">📣</div><div class="rn">مارکتینگ</div><div class="rp">کمپین‌ها</div></div>
+        <div class="role-badge"><div class="ri">🎧</div><div class="rn">پشتیبانی</div><div class="rp">تیکت‌ها</div></div>
+        <div class="role-badge"><div class="ri">📊</div><div class="rn">آنالیست</div><div class="rp">گزارش‌ها</div></div>
+        <div class="role-badge"><div class="ri">🛒</div><div class="rn">فروش</div><div class="rp">پروفایل‌ها</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔒</div>
+      <div class="card-title">رمزگذاری و امنیت</div>
+      <ul class="feature-list">
+        <li><span class="fi">🔐</span>AES-256 برای داده‌های حساس</li>
+        <li><span class="fi">🔗</span>TLS 1.3 برای انتقال داده</li>
+        <li><span class="fi">🗝️</span>رمزگذاری فیلدهای کد ملی و موبایل</li>
+        <li><span class="fi">🔑</span>Multi-Factor Authentication برای کارشناسان</li>
+        <li><span class="fi">🛡️</span>Rate Limiting و DDoS Protection</li>
+        <li><span class="fi">🔍</span>Web Application Firewall (WAF)</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">📋</div>
+      <div class="card-title">Audit Log</div>
+      <ul class="feature-list">
+        <li><span class="fi">📝</span>ثبت هر دسترسی به پروفایل مشتری</li>
+        <li><span class="fi">✏️</span>ثبت هر تغییر داده (قبل و بعد)</li>
+        <li><span class="fi">🗑️</span>ثبت هر حذف داده</li>
+        <li><span class="fi">📤</span>ثبت هر export داده</li>
+        <li><span class="fi">🔍</span>قابلیت جستجو و فیلتر audit</li>
+        <li><span class="fi">🔔</span>هشدار دسترسی غیرمجاز</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">🛡️</div>
+      <div class="card-title">حقوق مشتریان</div>
+      <ul class="feature-list">
+        <li><span class="fi">📋</span>حق دسترسی به داده‌های خود</li>
+        <li><span class="fi">✏️</span>حق تصحیح اطلاعات نادرست</li>
+        <li><span class="fi">🗑️</span>حق حذف کامل حساب</li>
+        <li><span class="fi">📤</span>حق export داده (فرمت JSON/CSV)</li>
+        <li><span class="fi">🚫</span>حق opt-out از کمپین‌ها</li>
+        <li><span class="fi">📋</span>اجرای خودکار در ۷۲ ساعت</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon">💾</div>
+      <div class="card-title">Backup و Disaster Recovery</div>
+      <ul class="feature-list">
+        <li><span class="fi">⏰</span>Backup کامل هر ۶ ساعت</li>
+        <li><span class="fi">📅</span>نگهداری backup برای ۹۰ روز</li>
+        <li><span class="fi">🌍</span>ذخیره در ۲ datacenter مجزا</li>
+        <li><span class="fi">⚡</span>RTO: حداکثر ۴ ساعت</li>
+        <li><span class="fi">📊</span>RPO: حداکثر ۱ ساعت داده از دست می‌رود</li>
+        <li><span class="fi">🔄</span>آزمایش Disaster Recovery ماهانه</li>
+      </ul>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- PART 15: ROADMAP -->
+<section id="roadmap" class="reveal">
+  <div class="section-header">
+    <div class="section-badge">🗓️ بخش پانزدهم</div>
+    <h2 class="section-title">نقشه راه <span class="gold">اجرایی ۵ ساله</span></h2>
+    <p class="section-desc">فازبندی دقیق پیاده‌سازی از پایه تا قابلیت‌های پیشرفته سال ۵</p>
+  </div>
+
+  <div class="timeline reveal">
+    <div class="timeline-item">
+      <div class="timeline-dot" style="background:#10b981;"></div>
+      <div class="timeline-phase">ماه ۱-۲ | فاز صفر</div>
+      <div class="timeline-title">زیرساخت و پایه CDP</div>
+      <div class="timeline-desc">راه‌اندازی دیتابیس، CDP، اتصال ۳ وب‌سایت، Identity Resolution، پروفایل پایه مشتری، اتصال سپیدار (batch). ایجاد داشبورد مدیریتی اولیه.</div>
+      <div class="timeline-tags"><span class="timeline-tag">CDP</span><span class="timeline-tag">Database</span><span class="timeline-tag">API Connections</span><span class="timeline-tag">Basic Dashboard</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot" style="background:#3b82f6;"></div>
+      <div class="timeline-phase">ماه ۳-۴ | فاز اول</div>
+      <div class="timeline-title">باشگاه مشتریان و CRM پایه</div>
+      <div class="timeline-desc">راه‌اندازی کامل باشگاه ۴ سطحه، موتور امتیاز، کیف پول دیجیتال، پورتال عضو PWA، سیستم تیکتینگ پایه، اتصال SMS و ایمیل.</div>
+      <div class="timeline-tags"><span class="timeline-tag">Loyalty Club</span><span class="timeline-tag">Points Engine</span><span class="timeline-tag">Member Portal</span><span class="timeline-tag">SMS/Email</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot" style="background:#8b5cf6;"></div>
+      <div class="timeline-phase">ماه ۵-۶ | فاز دوم</div>
+      <div class="timeline-title">اتوماسیون کمپین و پشتیبانی</div>
+      <div class="timeline-desc">Campaign Builder، کمپین‌های trigger-based، follow-up workflows، سیستم تیکتینگ کامل، اتصال تلگرام/واتساپ، گیمیفیکیشن اولیه.</div>
+      <div class="timeline-tags"><span class="timeline-tag">Campaign Automation</span><span class="timeline-tag">Helpdesk</span><span class="timeline-tag">Telegram</span><span class="timeline-tag">Gamification</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot" style="background:#f59e0b;"></div>
+      <div class="timeline-phase">ماه ۷-۹ | فاز سوم</div>
+      <div class="timeline-title">AI و ML پایه</div>
+      <div class="timeline-desc">موتور پیشنهاد محصول، پیش‌بینی ریزش، پیشنهاد سایز هوشمند، تحلیل احساسات، مدل RFM پیشرفته، داشبوردهای آنالیتیکس کامل.</div>
+      <div class="timeline-tags"><span class="timeline-tag">Recommendation AI</span><span class="timeline-tag">Churn Prediction</span><span class="timeline-tag">Advanced Analytics</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot" style="background:#ec4899;"></div>
+      <div class="timeline-phase">سال ۲ (ماه ۱۰-۲۴)</div>
+      <div class="timeline-title">باشگاه پیشرفته + B2B + AI استایلیست</div>
+      <div class="timeline-desc">برنامه اشتراک Surprise Box، باشگاه B2B، Leaderboard، برنامه خانوادگی، AI Stylist نسخه ۱، Subscription Analytics، Referral Program کامل.</div>
+      <div class="timeline-tags"><span class="timeline-tag">Surprise Box</span><span class="timeline-tag">B2B Loyalty</span><span class="timeline-tag">AI Stylist v1</span><span class="timeline-tag">Referral</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot" style="background:#14b8a6;"></div>
+      <div class="timeline-phase">سال ۳ (ماه ۲۵-۳۶)</div>
+      <div class="timeline-title">AI پیشرفته + Trend Matching</div>
+      <div class="timeline-desc">تطبیق ترند با سلیقه، پیش‌بینی تقاضا، AI Stylist کامل، رصد رقبا، گزارش‌های predictive، expansion به شهرهای جدید با پشتیبانی CRM.</div>
+      <div class="timeline-tags"><span class="timeline-tag">Trend AI</span><span class="timeline-tag">Demand Forecasting</span><span class="timeline-tag">AI Stylist v2</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot" style="background:#f97316;"></div>
+      <div class="timeline-phase">سال ۴-۵</div>
+      <div class="timeline-title">AR پرو مجازی + NFT Loyalty</div>
+      <div class="timeline-desc">AR Virtual Try-On در اپ موبایل، NFT Loyalty Token روی بلاک‌چین، Autonomous Shopping AI، تجربه Metaverse برای VIP، گسترش به خارج از ایران.</div>
+      <div class="timeline-tags"><span class="timeline-tag">AR Try-On</span><span class="timeline-tag">NFT Loyalty</span><span class="timeline-tag">Autonomous AI</span><span class="timeline-tag">Global</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PART 16: KPIs -->
+<div class="section-full" id="kpis">
+<section class="reveal">
+  <div class="section-header">
+    <div class="section-badge">📏 بخش شانزدهم</div>
+    <h2 class="section-title">KPI های جامع و <span class="gold">اهداف سالانه</span></h2>
+    <p class="section-desc">بیش از ۵۰ شاخص قابل اندازه‌گیری با اهداف سال اول تا پنجم</p>
+  </div>
+
+  <h3 style="color:var(--gold);font-size:1.1rem;margin-bottom:16px;font-weight:700;">💰 شاخص‌های درآمدی</h3>
+  <div class="table-wrap reveal">
+    <table>
+      <thead><tr><th>KPI</th><th>وضعیت فعلی</th><th>سال ۱</th><th>سال ۲</th><th>سال ۳</th><th>سال ۵</th></tr></thead>
+      <tbody>
+        <tr><td>Customer Lifetime Value</td><td>؟</td><td>۸M تومان</td><td>۱۲M تومان</td><td>۱۷M تومان</td><td>۲۵M تومان</td></tr>
+        <tr><td>Average Order Value</td><td>؟</td><td>+۱۵٪</td><td>+۲۵٪</td><td>+۳۵٪</td><td>+۶۰٪</td></tr>
+        <tr><td>درآمد از مشتریان وفادار</td><td>؟</td><td>۲۵٪ کل</td><td>۳۵٪ کل</td><td>۴۵٪ کل</td><td>۶۰٪ کل</td></tr>
+        <tr><td>Revenue per Campaign</td><td>؟</td><td>ROI 3x</td><td>ROI 5x</td><td>ROI 7x</td><td>ROI 10x</td></tr>
+        <tr><td>درآمد Subscription Box</td><td>—</td><td>—</td><td>شروع</td><td>5٪ کل</td><td>12٪ کل</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="margin-top:28px;"></div>
+  <h3 style="color:var(--gold);font-size:1.1rem;margin-bottom:16px;font-weight:700;">👥 شاخص‌های وفاداری</h3>
+  <div class="table-wrap reveal">
+    <table>
+      <thead><tr><th>KPI</th><th>سال ۱</th><th>سال ۲</th><th>سال ۳</th><th>سال ۵</th></tr></thead>
+      <tbody>
+        <tr><td>نرخ ثبت‌نام باشگاه</td><td>۴۰٪ از خریداران</td><td>۶۰٪</td><td>۷۵٪</td><td>۹۰٪</td></tr>
+        <tr><td>اعضای فعال باشگاه</td><td>۱۰,۰۰۰</td><td>۳۰,۰۰۰</td><td>۷۰,۰۰۰</td><td>۱۵۰,۰۰۰</td></tr>
+        <tr><td>نرخ استفاده از امتیاز</td><td>۳۰٪</td><td>۴۵٪</td><td>۶۰٪</td><td>۷۵٪</td></tr>
+        <tr><td>نرخ ارتقاء Tier</td><td>۱۵٪/سال</td><td>۲۰٪/سال</td><td>۲۵٪/سال</td><td>۳۰٪/سال</td></tr>
+        <tr><td>نرخ بازگشت مشتری</td><td>+۲۵٪</td><td>+۳۵٪</td><td>+۴۵٪</td><td>+۶۰٪</td></tr>
+        <tr><td>نرخ معرفی (Referral)</td><td>۵٪</td><td>۱۰٪</td><td>۱۵٪</td><td>۲۵٪</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="margin-top:28px;"></div>
+  <h3 style="color:var(--gold);font-size:1.1rem;margin-bottom:16px;font-weight:700;">📣 شاخص‌های کمپین و تعامل</h3>
+  <div class="table-wrap reveal">
+    <table>
+      <thead><tr><th>KPI</th><th>سال ۱</th><th>سال ۲</th><th>سال ۳</th></tr></thead>
+      <tbody>
+        <tr><td>نرخ باز شدن ایمیل</td><td>۲۵٪</td><td>۳۵٪</td><td>۴۵٪</td></tr>
+        <tr><td>نرخ کلیک ایمیل (CTR)</td><td>۴٪</td><td>۷٪</td><td>۱۰٪</td></tr>
+        <tr><td>نرخ تبدیل SMS</td><td>۲٪</td><td>۴٪</td><td>۶٪</td></tr>
+        <tr><td>نرخ کلیک Push Notification</td><td>۵٪</td><td>۸٪</td><td>۱۲٪</td></tr>
+        <tr><td>نرخ بازگشت سبد رهاشده</td><td>۱۵٪</td><td>۲۵٪</td><td>۳۵٪</td></tr>
+        <tr><td>DAU پورتال باشگاه</td><td>۵۰۰</td><td>۲,۰۰۰</td><td>۸,۰۰۰</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="margin-top:28px;"></div>
+  <h3 style="color:var(--gold);font-size:1.1rem;margin-bottom:16px;font-weight:700;">🎧 شاخص‌های پشتیبانی</h3>
+  <div class="table-wrap reveal">
+    <table>
+      <thead><tr><th>KPI</th><th>هدف سال ۱</th><th>هدف سال ۳</th></tr></thead>
+      <tbody>
+        <tr><td>CSAT (رضایت مشتری)</td><td>بالای ۸۵٪</td><td>بالای ۹۳٪</td></tr>
+        <tr><td>FCR (رزولوشن اول تماس)</td><td>۷۰٪</td><td>۸۵٪</td></tr>
+        <tr><td>میانگین زمان رزولوشن</td><td>۲۴ ساعت</td><td>۸ ساعت</td></tr>
+        <tr><td>نرخ تیکت تکراری</td><td>زیر ۱۵٪</td><td>زیر ۵٪</td></tr>
+        <tr><td>NPS میانگین</td><td>+۵۰</td><td>+۷۰</td></tr>
+        <tr><td>نرخ ریزش پس از شکایت</td><td>-۳۰٪</td><td>-۵۰٪</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="margin-top:28px;"></div>
+  <div class="highlight reveal">
+    <div class="highlight-title">🎯 شاخص‌های اضافی (کامل)</div>
+    <div class="tag-cloud" style="margin-top:12px;">
+      <span class="tag green">Cost per Acquisition</span>
+      <span class="tag blue">Churn Rate</span>
+      <span class="tag gold">Repeat Purchase Rate</span>
+      <span class="tag purple">Point Burn Rate</span>
+      <span class="tag green">Referral Conversion</span>
+      <span class="tag blue">Cart Abandonment Rate</span>
+      <span class="tag gold">Email Deliverability</span>
+      <span class="tag purple">Tier Distribution</span>
+      <span class="tag green">Subscription Churn</span>
+      <span class="tag blue">Win-back Rate</span>
+      <span class="tag gold">Review Rate</span>
+      <span class="tag purple">AI Recommendation CTR</span>
+      <span class="tag green">Size Return Rate</span>
+      <span class="tag blue">Support Ticket Volume</span>
+      <span class="tag gold">SLA Compliance %</span>
+      <span class="tag purple">Portal Engagement Time</span>
+      <span class="tag green">Campaign ROI</span>
+      <span class="tag blue">Attribution Accuracy</span>
+      <span class="tag gold">Data Quality Score</span>
+      <span class="tag purple">Fraud Detection Rate</span>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- INVESTMENT SECTION -->
+<section class="reveal">
+  <div class="section-header">
+    <div class="section-badge">💰 تخمین سرمایه‌گذاری</div>
+    <h2 class="section-title">برآورد هزینه و <span class="gold">بازگشت سرمایه</span></h2>
+  </div>
+  <div class="two-col reveal">
+    <div>
+      <div class="card">
+        <div class="card-title">💸 هزینه‌های اصلی</div>
+        <div class="table-wrap" style="margin-top:12px;">
+          <table>
+            <thead><tr><th>آیتم</th><th>فاز ۱ (۶ ماه)</th><th>سالانه</th></tr></thead>
+            <tbody>
+              <tr><td>توسعه نرم‌افزار</td><td style="color:var(--gold)">۳۰۰-۵۰۰M</td><td style="color:var(--gold)">۱۵۰-۲۵۰M</td></tr>
+              <tr><td>زیرساخت Cloud</td><td>۲۰-۴۰M</td><td>۱۵-۳۰M</td></tr>
+              <tr><td>SMS/ایمیل</td><td>۵M</td><td>۱۵-۳۰M</td></tr>
+              <tr><td>تیم اجرایی</td><td>۸۰-۱۵۰M</td><td>۲۰۰-۳۵۰M</td></tr>
+              <tr><td>آموزش کارکنان</td><td>۱۰-۲۰M</td><td>۱۰M</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:0.8rem;color:var(--gray);margin-top:12px;">* ارقام به تومان، تخمینی</p>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <div class="card-title">📈 بازگشت سرمایه پیش‌بینی‌شده</div>
+        <div class="success-box" style="margin-top:12px;">
+          <strong style="color:#6ee7b7;">سال اول:</strong> کاهش ۲۵٪ هزینه جذب + افزایش ۲۰٪ درآمد وفاداران → ROI تخمینی ۲۵۰٪
+        </div>
+        <div class="success-box">
+          <strong style="color:#6ee7b7;">سال دوم:</strong> کمپین‌های هوشمند + پیشنهاد AI → ROI تجمعی ۴۰۰٪
+        </div>
+        <div class="success-box">
+          <strong style="color:#6ee7b7;">سال سوم:</strong> باشگاه ۷۰K عضو + Subscription → سیستم خودکفا با سود خالص
+        </div>
+        <div class="highlight" style="margin-top:16px;">
+          <div class="highlight-title">🎯 نقطه سربه‌سر</div>
+          <p>تخمین: ماه ۱۴-۱۸ — از آن پس هر تومان سرمایه‌گذاری در CRM به طور میانگین ۴-۷ تومان درآمد افزاده ایجاد می‌کند.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>👑 <strong>راسپینا</strong> — سند جامع CRM و باشگاه مشتریان</p>
+  <p>طراحی‌شده برای افق ۵ ساله ۱۴۰۴–۱۴۰۸ | تمام حقوق محفوظ است</p>
+  <p style="margin-top:16px;">
+    <a href="Raspina-Digital-Transformation-Plan.html" style="color:var(--gold);text-decoration:none;">📄 طرح تحول دیجیتال</a> |
+    <a href="Raspina-Project-Timeline.html" style="color:var(--gold);text-decoration:none;margin-right:12px;">📅 تایم‌لاین پروژه</a>
+  </p>
+</footer>
+
+<button class="print-btn" onclick="window.print()">🖨️ چاپ / PDF</button>
+
+<script>
+  // Scroll Reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+
+  // Active nav highlight
+  const sections = document.querySelectorAll('section[id], div[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--gold)' : '';
+    });
+  });
+
+  // Animate progress bars on scroll
+  const progFills = document.querySelectorAll('.progress-fill');
+  const progObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const w = e.target.style.width;
+        e.target.style.width = '0';
+        setTimeout(() => { e.target.style.width = w; }, 100);
+      }
+    });
+  }, { threshold: 0.5 });
+  progFills.forEach(p => progObserver.observe(p));
+</script>
+</body>
+</html>
