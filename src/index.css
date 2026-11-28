@@ -5,6 +5,18 @@
     scroll-behavior: smooth;
   }
 
+  /* One visible, high-contrast focus ring for every interactive control. */
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: 3px solid #8a6a12;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Gold ring reads better on the dark sidebar/nav surfaces. */
+  [class*="bg-[#14192b]"] :is(a, button, input, select, textarea, [tabindex]):focus-visible {
+    outline-color: #f5dc9a;
+  }
+
   body {
     font-family: 'Vazirmatn', Tahoma, Arial, sans-serif;
     background-color: #f8f6f2;
@@ -20,6 +32,21 @@
 
   .tabular-nums {
     font-variant-numeric: tabular-nums;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 

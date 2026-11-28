@@ -253,6 +253,16 @@ export interface AuditLogEntry {
   timestamp: string;
 }
 
+export interface WebhookSimulationOutcome {
+  ok: boolean;
+  duplicate?: boolean;
+  customerId?: string;
+  customerName?: string;
+  pointsEarned?: number;
+  tierUpgraded?: string | null;
+  errorFa?: string;
+}
+
 export interface CustomSegmentRule {
   city: 'همه' | 'همدان' | 'تهران' | 'سایر';
   tier: 'all' | LoyaltyTierCode;

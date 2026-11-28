@@ -1,75 +1,137 @@
 <?php
-// Raspina CRM & Loyalty Club REST API (PHP 8.2+ / Zero-SSH Shared Hosting)
-// Handles authenticated CRUD actions from public_html SPA when connected to MySQL
-
 declare(strict_types=1);
-header('Content-Type: application/json; charset=utf-8');
 
-$configPath = __DIR__ . '/config.php';
-if (!file_exists($configPath)) {
-    http_response_code(503);
-    echo json_encode(['ok' => false, 'error' => 'config.php not configured']);
-    exit;
-}
+require __DIR__ . '/bootstrap.php';
+raspina_set_exception_handler();
+raspina_send_security_headers();
+raspina_start_session();
 
-$config = require $configPath;
-$authHeader = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
-$expectedToken = (string) ($config['api_bearer_token'] ?? '');
+$method = strtoupper((string) ($_SERVER['REQUEST_METHOD'] ?? 'GET'));
+$action = (string) ($_GET['action'] ?? 'customers');
 
-if ($expectedToken === '' || !hash_equals('Bearer ' . $expectedToken, $authHeader)) {
-    http_response_code(401);
-    echo json_encode(['ok' => false, 'error' => 'Unauthorized']);
-    exit;
-}
+if ($method === 'GET' && $action === 'customers') {
+    raspina_require_permission('customers:view');
 
-$pdo = new PDO(
-    sprintf('mysql:host=%s;dbname=%s;charset=utf8mb4', $config['db_host'], $config['db_name']),
-    $config['db_user'],
-    $config['db_pass'],
-    [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
-);
+    $limit = (int) ($_GET['limit'] ?? 50);
+    $limit = max(1, min(200, $limit));
+    $offset = max(0, (int) ($_GET['offset'] ?? 0));
 
-$action = $_GET['action'] ?? 'customers';
-
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && $action === 'customers') {
-    $stmt = $pdo->query(
+    $stmt = raspina_db()->prepare(
         'SELECT c.id, c.full_name, c.phone_e164, c.city, c.annual_spend_toman, c.lifetime_value_toman,
-                c.wallet_balance_toman, l.tier_code, l.points_balance
+                c.wallet_balance_toman, c.overall_score, c.churn_risk_pct, c.last_purchase_at,
+                l.tier_code, l.points_balance
          FROM customers c
          LEFT JOIN loyalty_accounts l ON l.customer_id = c.id
          ORDER BY c.updated_at DESC
-         LIMIT 100'
+         LIMIT :limit OFFSET :offset'
     );
-    echo json_encode(['ok' => true, 'customers' => $stmt->fetchAll(PDO::FETCH_ASSOC)]);
-    exit;
+    $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+    $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+    $stmt->execute();
+
+    raspina_json([
+        'ok' => true,
+        'customers' => $stmt->fetchAll(),
+        'limit' => $limit,
+        'offset' => $offset,
+    ]);
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && $action === 'award_points') {
-    $body = json_decode(file_get_contents('php://input') ?: '', true);
-    $customerId = (string) ($body['customerId'] ?? '');
-    $points = max(1, (int) ($body['points'] ?? 0));
-    $reason = mb_substr((string) ($body['reason'] ?? 'اعطای امتیاز کارشناس'), 0, 100);
+if ($method === 'GET' && $action === 'audit') {
+    raspina_require_permission('audit:view');
+    $limit = max(1, min(200, (int) ($_GET['limit'] ?? 50)));
+    $stmt = raspina_db()->prepare(
+        'SELECT actor_role, action_text, target_ref, created_at FROM audit_logs ORDER BY created_at DESC LIMIT :limit'
+    );
+    $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+    $stmt->execute();
+    raspina_json(['ok' => true, 'logs' => $stmt->fetchAll()]);
+}
 
-    if ($customerId === '' || $points <= 0) {
-        http_response_code(400);
-        echo json_encode(['ok' => false, 'error' => 'Invalid input']);
-        exit;
+if ($method === 'POST' && $action === 'award_points') {
+    $user = raspina_require_permission('loyalty:award');
+    raspina_require_same_origin();
+    raspina_require_csrf();
+
+    $body = raspina_read_json_body();
+    $customerId = (string) ($body['customerId'] ?? '');
+    $points = (int) ($body['points'] ?? 0);
+    $reason = mb_substr(trim((string) ($body['reason'] ?? 'اعطای امتیاز کارشناس')), 0, 100);
+    $requestId = (string) ($body['requestId'] ?? '');
+
+    if (!preg_match('/^[a-f0-9-]{36}$/', $customerId)) {
+        raspina_fail('invalid_customer', 'شناسه مشتری معتبر نیست.', 422);
+    }
+    if ($points <= 0 || $points > 10_000) {
+        raspina_fail('invalid_points', 'مقدار امتیاز باید بین ۱ تا ۱۰,۰۰۰ باشد.', 422);
+    }
+    if (!preg_match('/^[A-Za-z0-9_-]{8,64}$/', $requestId)) {
+        raspina_fail('request_id_required', 'شناسه یکتای درخواست (requestId) الزامی است.', 422);
     }
 
-    $upd = $pdo->prepare('UPDATE loyalty_accounts SET points_balance = points_balance + :pts WHERE customer_id = :cid');
-    $upd->execute([':pts' => $points, ':cid' => $customerId]);
+    $pdo = raspina_db();
+    try {
+        $pdo->beginTransaction();
 
-    $aud = $pdo->prepare('INSERT INTO audit_logs (id, actor_role, action_text, target_ref) VALUES (:id, :role, :act, :tgt)');
-    $aud->execute([
-        ':id' => bin2hex(random_bytes(16)),
-        ':role' => 'crm_api',
-        ':act' => $reason,
-        ':tgt' => $customerId,
-    ]);
+        $accountStmt = $pdo->prepare(
+            'SELECT id, points_balance FROM loyalty_accounts WHERE customer_id = :customer LIMIT 1 FOR UPDATE'
+        );
+        $accountStmt->execute([':customer' => $customerId]);
+        $account = $accountStmt->fetch();
 
-    echo json_encode(['ok' => true, 'pointsAdded' => $points]);
-    exit;
+        if (!is_array($account)) {
+            $pdo->rollBack();
+            raspina_fail('account_not_found', 'حساب باشگاه این مشتری یافت نشد.', 404);
+        }
+
+        $idempotencyKey = 'api:award:' . $requestId;
+        $txStmt = $pdo->prepare(
+            'INSERT INTO loyalty_transactions
+                (id, loyalty_account_id, tx_type, points_delta, idempotency_key)
+             VALUES (:id, :account, :type, :points, :key)'
+        );
+
+        try {
+            $txStmt->execute([
+                ':id' => bin2hex(random_bytes(16)),
+                ':account' => $account['id'],
+                ':type' => 'earn_review',
+                ':points' => $points,
+                ':key' => $idempotencyKey,
+            ]);
+        } catch (PDOException $e) {
+            if ($e->getCode() === '23000') {
+                $pdo->rollBack();
+                raspina_json(['ok' => true, 'duplicate' => true, 'pointsAdded' => 0]);
+            }
+            throw $e;
+        }
+
+        $update = $pdo->prepare(
+            'UPDATE loyalty_accounts SET points_balance = points_balance + :points WHERE id = :id'
+        );
+        $update->execute([':points' => $points, ':id' => $account['id']]);
+
+        raspina_audit(
+            'اعطای ' . $points . ' امتیاز (' . $reason . ')',
+            $customerId,
+            (string) $user['role']
+        );
+
+        $pdo->commit();
+        raspina_json([
+            'ok' => true,
+            'duplicate' => false,
+            'pointsAdded' => $points,
+            'pointsBalance' => (int) $account['points_balance'] + $points,
+        ]);
+    } catch (PDOException $e) {
+        if ($pdo->inTransaction()) {
+            $pdo->rollBack();
+        }
+        error_log('Raspina award points failed: ' . $e->getCode());
+        raspina_fail('award_failed', 'ثبت امتیاز انجام نشد.', 500);
+    }
 }
 
-http_response_code(404);
-echo json_encode(['ok' => false, 'error' => 'Unknown action']);
+raspina_fail('not_found', 'عملیات درخواستی وجود ندارد.', 404);

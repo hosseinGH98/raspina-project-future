@@ -8,8 +8,10 @@ import {
   Send,
   Server,
   ShieldCheck,
+  Users,
   Webhook,
 } from 'lucide-react';
+import TeamManagementView from './TeamManagementView';
 import { AI_ROADMAP_PHASES } from '../data/crmSeed';
 import { BRAND_PROFILE, HOSTING_CHECKLIST, TELEGRAM_SAMPLE_PRODUCTS } from '../data/raspinaPlan';
 import {
@@ -18,18 +20,16 @@ import {
   resolveInstagramInquiry,
 } from '../utils/estimator';
 import type { WebhookOrderInput } from '../utils/crmEngine';
-import type { AuditLogEntry, ChannelKey, Customer360 } from '../types/crm';
+import type { AuditLogEntry, ChannelKey, Customer360, WebhookSimulationOutcome } from '../types/crm';
+import { sanitizeText, validateAmountToman, validatePhone } from '../utils/validation';
 
 interface IntegrationsOpsViewProps {
   customers: Customer360[];
   auditLogs: AuditLogEntry[];
-  onSimulateWebhookOrder: (payload: WebhookOrderInput) => {
-    customerId: string;
-    customerName: string;
-    pointsEarned: number;
-    tierUpgraded: string | null;
-  };
+  onSimulateWebhookOrder: (payload: WebhookOrderInput) => WebhookSimulationOutcome;
   onOpenCustomerProfile: (customerId: string) => void;
+  canManageUsers: boolean;
+  currentUsername: string;
 }
 
 export function IntegrationsOpsView({
@@ -37,8 +37,10 @@ export function IntegrationsOpsView({
   auditLogs,
   onSimulateWebhookOrder,
   onOpenCustomerProfile,
+  canManageUsers,
+  currentUsername,
 }: IntegrationsOpsViewProps) {
-  const [subTab, setSubTab] = useState<'webhook' | 'bots' | 'ops_roadmap' | 'hosting'>('webhook');
+  const [subTab, setSubTab] = useState<'webhook' | 'bots' | 'ops_roadmap' | 'hosting' | 'team'>('webhook');
 
   // Webhook Order Simulator state
   const [whPhone, setWhPhone] = useState('09355544332');
@@ -48,6 +50,8 @@ export function IntegrationsOpsView({
   const [whAmount, setWhAmount] = useState(3_450_000);
   const [whItem, setWhItem] = useState('مانتو عبایی مزونی کرپ حریر مشکی');
   const [whAttr, setWhAttr] = useState<WebhookOrderInput['attributionChannel']>('instagram_dm');
+  const [whOrderId, setWhOrderId] = useState('WH-10001');
+  const [whError, setWhError] = useState('');
   const [whResult, setWhResult] = useState<{ text: string; customerId: string } | null>(null);
 
   // Telegram Simulator
@@ -74,22 +78,39 @@ export function IntegrationsOpsView({
 
   const handleTriggerWebhook = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!whPhone.trim() || whAmount <= 0) return;
+    const phoneError = validatePhone(whPhone);
+    const amountError = validateAmountToman(whAmount, 100_000, 5_000_000_000);
+    const orderId = sanitizeText(whOrderId, 64);
+    if (phoneError || amountError || orderId.length < 3) {
+      setWhError(phoneError ?? amountError ?? 'کد سفارش باید حداقل ۳ نویسه باشد.');
+      return;
+    }
+    setWhError('');
+
     const result = onSimulateWebhookOrder({
       phone: whPhone.trim(),
-      fullName: whName.trim(),
+      fullName: sanitizeText(whName, 120),
       city: whCity,
       sourceSite: whSite,
-      externalOrderId: `WH-${Math.floor(10000 + Math.random() * 89999)}`,
-      totalToman: whAmount,
-      itemsSummary: whItem.trim() || 'محصول راسپینا',
+      externalOrderId: orderId,
+      totalToman: Math.round(whAmount),
+      itemsSummary: sanitizeText(whItem, 255) || 'محصول راسپینا',
       attributionChannel: whAttr,
     });
+
+    if (!result.ok) {
+      setWhResult(null);
+      setWhError(result.errorFa ?? 'پردازش سفارش انجام نشد.');
+      return;
+    }
+
     setWhResult({
-      customerId: result.customerId,
-      text: `سفارش وب‌هوک برای ${result.customerName} همگام شد: +${result.pointsEarned.toLocaleString('fa-IR')} امتیاز${
-        result.tierUpgraded ? ` و ارتقاء به سطح ${result.tierUpgraded}` : ''
-      } + ایجاد وظیفه پیگیری فوری.`,
+      customerId: result.customerId ?? '',
+      text: result.duplicate
+        ? `سفارش ${orderId} قبلاً در CRM ثبت شده بود؛ برای جلوگیری از امتیازدهی دوباره، این درخواست idempotent رد شد.`
+        : `سفارش وب‌هوک برای ${result.customerName} همگام شد: +${(result.pointsEarned ?? 0).toLocaleString('fa-IR')} امتیاز${
+            result.tierUpgraded ? ` و ارتقاء به سطح ${result.tierUpgraded}` : ''
+          } + ایجاد وظیفه پیگیری فوری.`,
     });
   };
 
@@ -102,6 +123,9 @@ export function IntegrationsOpsView({
           { id: 'bots', label: 'ربات تلگرام و هوش مصنوعی اینستاگرام', icon: Bot },
           { id: 'ops_roadmap', label: 'اتوماسیون اداری، انبار ۱۴M، تایم‌لاین و امنیت', icon: CalendarClock },
           { id: 'hosting', label: 'استقرار بدون SSH در public_html', icon: Server },
+          ...(canManageUsers
+            ? [{ id: 'team' as const, label: 'مدیریت تیم و دسترسی‌ها', icon: Users }]
+            : []),
         ].map((tab) => {
           const Icon = tab.icon;
           return (
@@ -244,6 +268,26 @@ export function IntegrationsOpsView({
                 </div>
               </div>
 
+              <div>
+                <label className="mb-1 block font-bold text-[#14192b]" htmlFor="wh-order-id">
+                  کد سفارش خارجی (برای تست idempotency یک کد را دوبار ارسال کنید)
+                </label>
+                <input
+                  id="wh-order-id"
+                  type="text"
+                  dir="ltr"
+                  value={whOrderId}
+                  onChange={(e) => setWhOrderId(e.target.value)}
+                  className="font-mono-code w-full rounded-lg border border-[#e5dfd3] bg-[#f7f6f2] px-3 py-2"
+                />
+              </div>
+
+              {whError && (
+                <p role="alert" className="rounded-lg border border-[#fca5a5] bg-[#fef2f2] px-3 py-2 font-semibold text-[#991b1b]">
+                  {whError}
+                </p>
+              )}
+
               <button
                 type="submit"
                 className="inline-flex items-center gap-2 rounded-lg bg-[#14192b] px-4 py-2.5 font-bold text-white hover:bg-[#1e2540]"
@@ -256,13 +300,15 @@ export function IntegrationsOpsView({
             {whResult && (
               <div className="mt-4 flex flex-wrap items-center justify-between gap-2 rounded-lg border border-[#16a34a]/30 bg-[#dcfce7] p-3 text-xs font-bold text-[#16a34a]">
                 <span>{whResult.text}</span>
-                <button
-                  type="button"
-                  onClick={() => onOpenCustomerProfile(whResult.customerId)}
-                  className="rounded bg-[#14192b] px-2.5 py-1 text-[11px] text-white"
-                >
-                  مشاهده در پروفایل ۳۶۰
-                </button>
+                {whResult.customerId && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenCustomerProfile(whResult.customerId)}
+                    className="rounded bg-[#14192b] px-2.5 py-1 text-[11px] text-white"
+                  >
+                    مشاهده در پروفایل ۳۶۰
+                  </button>
+                )}
               </div>
             )}
           </section>
@@ -590,13 +636,19 @@ export function IntegrationsOpsView({
             <p className="font-bold text-[#e2c275]">ساختار فایل‌های آماده آپلود در public_html:</p>
             <p className="font-mono-code mt-2 break-words leading-7 text-white/85">
               public_html/index.html · public_html/assets/* · public_html/.htaccess ·
+              public_html/app-config.js · public_html/storage/.htaccess ·
               public_html/sql/raspina_crm_schema.sql · public_html/api/config.example.php ·
-              public_html/api/crm-api.php · public_html/api/crm-sync.php ·
-              public_html/api/telegram-webhook.php · public_html/api/instagram-webhook.php ·
-              public_html/api/cron-daily-report.php
+              public_html/api/bootstrap.php · public_html/api/auth.php · public_html/api/setup.php ·
+              public_html/api/state.php · public_html/api/users.php · public_html/api/crm-api.php ·
+              public_html/api/crm-sync.php · public_html/api/telegram-webhook.php ·
+              public_html/api/instagram-webhook.php · public_html/api/cron-daily-report.php
             </p>
           </div>
         </section>
+      )}
+
+      {subTab === 'team' && canManageUsers && (
+        <TeamManagementView currentUsername={currentUsername} />
       )}
     </div>
   );

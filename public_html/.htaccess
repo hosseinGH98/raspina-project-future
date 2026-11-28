@@ -1,34 +1,86 @@
-# Raspina Digital Ecosystem - Apache Shared Hosting Configuration (.htaccess)
+# Raspina CRM — Apache shared-hosting configuration (no SSH required)
+# This file is copied into public_html by `npm run build`.
+
 Options -Indexes
+DirectoryIndex index.html
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # Protect SQL dumps and PHP config files from direct HTTP access
-  RewriteRule ^sql/ - [F,L]
+  # Never serve secrets, SQL dumps, logs, storage or internal PHP helpers.
+  RewriteRule ^storage(/|$) - [F,L]
+  RewriteRule ^sql(/|$) - [F,L]
   RewriteRule ^api/config(\.example)?\.php$ - [F,L]
+  RewriteRule ^api/bootstrap\.php$ - [F,L]
+  RewriteCond %{REQUEST_URI} !^/\.well-known/
+  RewriteRule (^|/)\. - [F,L]
+  RewriteRule \.(sql|log|ini|bak|env|md)$ - [F,L]
 
-  # Allow existing files, directories, and API endpoints
+  # Serve real files/directories; route every other path to the SPA shell.
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
-
-  # Route SPA paths to index.html
   RewriteRule ^ index.html [L]
 </IfModule>
 
-<IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript application/json
-</IfModule>
-
-<IfModule mod_expires.c>
-  ExpiresActive On
-  ExpiresByType text/css "access plus 1 month"
-  ExpiresByType application/javascript "access plus 1 month"
-  ExpiresByType text/html "access plus 0 seconds"
+# Some shared hosts strip the Authorization header before PHP; keep it for future use.
+<IfModule mod_setenvif.c>
+  SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
 </IfModule>
 
 <IfModule mod_headers.c>
-  Header set X-Content-Type-Options "nosniff"
-  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(self), microphone=(), geolocation=()"
+  Header always set Cross-Origin-Opener-Policy "same-origin"
+  Header always set Cross-Origin-Resource-Policy "same-origin"
+
+  # The SPA is self-contained; only Google Fonts is external. Inline styles are required
+  # because the UI uses React style attributes for progress bars and widths.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests"
+
+  # HSTS is only meaningful over HTTPS and is ignored on plain HTTP.
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains" env=HTTPS
+
+  # The API and the HTML shell must never be cached; hashed assets are immutable.
+  <FilesMatch "\.(html|php)$">
+    Header always set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+    Header always set Pragma "no-cache"
+  </FilesMatch>
+  <FilesMatch "\.(js|css|woff2|png|jpg|jpeg|webp|svg|ico)$">
+    Header always set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  # Must come after the generic asset rule so the runtime config is always revalidated.
+  <FilesMatch "app-config\.js$">
+    Header always set Cache-Control "no-cache, must-revalidate, max-age=0"
+  </FilesMatch>
 </IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml application/javascript application/json image/svg+xml
+</IfModule>
+
+<IfModule mod_mime.c>
+  AddType application/javascript .js
+  AddType text/css .css
+  AddType font/woff2 .woff2
+</IfModule>
+
+# Force HTTPS after the certificate is active. Uncomment these four lines in production.
+# <IfModule mod_rewrite.c>
+#   RewriteCond %{HTTPS} !=on
+#   RewriteCond %{HTTP:X-Forwarded-Proto} !https
+#   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+# </IfModule>
+
+# Block directory listing and executable uploads even if another config is merged.
+<FilesMatch "\.(phar|phtml|phps)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>

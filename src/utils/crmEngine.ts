@@ -10,35 +10,86 @@ import type {
   RfmSegmentName,
 } from '../types/crm';
 
+const IRAN_MOBILE_NATIONAL = /^9\d{9}$/;
+
+/** Converts Persian/Arabic-Indic digits to ASCII digits. */
+export function toLatinDigits(input: string): string {
+  return String(input ?? '')
+    .replace(/[۰-۹]/g, (d) => String('۰۱۲۳۴۵۶۷۸۹'.indexOf(d)))
+    .replace(/[٠-٩]/g, (d) => String('٠١٢٣٤٥٦٧٨٩'.indexOf(d)));
+}
+
+/**
+ * Normalizes any common Iranian mobile representation to E.164 (+98 9xxxxxxxxx).
+ * Returns an empty string for invalid numbers so callers can reject them explicitly.
+ */
 export function normalizeIranPhone(raw: string): string {
-  const digits = raw.replace(/[^0-9]/g, '');
-  if (digits.startsWith('98') && digits.length >= 12) {
-    return `+${digits.slice(0, 12)}`;
-  }
-  if (digits.startsWith('09') && digits.length >= 11) {
-    return `+98${digits.slice(1, 11)}`;
-  }
-  if (digits.startsWith('9') && digits.length === 10) {
-    return `+98${digits}`;
-  }
-  return raw.trim();
+  const cleaned = toLatinDigits(raw).replace(/[^\d+]/g, '');
+  let national = cleaned.replace(/^\+/, '');
+
+  if (national.startsWith('0098')) national = national.slice(4);
+  else if (national.startsWith('98')) national = national.slice(2);
+  else if (national.startsWith('0')) national = national.slice(1);
+
+  return IRAN_MOBILE_NATIONAL.test(national) ? `+98${national}` : '';
+}
+
+export function isValidIranMobile(raw: string): boolean {
+  return normalizeIranPhone(raw) !== '';
+}
+
+/** Formats an E.164 Iranian mobile for display without leaking nothing extra. */
+export function formatIranPhone(phoneE164: string): string {
+  const normalized = normalizeIranPhone(phoneE164);
+  if (!normalized) return phoneE164;
+  const national = normalized.slice(3);
+  return `0${national.slice(0, 3)} ${national.slice(3, 6)} ${national.slice(6)}`;
 }
 
 export function getTierSpec(code: LoyaltyTierCode): LoyaltyTierSpec {
   return LOYALTY_TIERS.find((t) => t.code === code) ?? LOYALTY_TIERS[0];
 }
 
+export interface TierProgress {
+  current: LoyaltyTierSpec;
+  next: LoyaltyTierSpec | null;
+  amountToNextToman: number;
+  progressPct: number;
+}
+
+export function getTierProgress(annualSpendToman: number): TierProgress {
+  const spend = Number.isFinite(annualSpendToman) ? Math.max(0, annualSpendToman) : 0;
+  const current = determineLoyaltyTier({ annualSpendToman: spend });
+  const next = LOYALTY_TIERS.find((t) => t.minAnnualToman > current.minAnnualToman) ?? null;
+
+  if (!next) {
+    return { current, next: null, amountToNextToman: 0, progressPct: 100 };
+  }
+
+  const span = next.minAnnualToman - current.minAnnualToman;
+  const progressPct =
+    span > 0 ? Math.min(100, Math.max(0, Math.round(((spend - current.minAnnualToman) / span) * 100))) : 0;
+
+  return {
+    current,
+    next,
+    amountToNextToman: Math.max(0, next.minAnnualToman - spend),
+    progressPct,
+  };
+}
+
 export function determineLoyaltyTier(input: {
   annualSpendToman: number;
   manualVipInvited?: boolean;
 }): LoyaltyTierSpec {
-  if (input.manualVipInvited || input.annualSpendToman >= 50_000_000) {
+  const spend = Number.isFinite(input.annualSpendToman) ? Math.max(0, input.annualSpendToman) : 0;
+  if (input.manualVipInvited || spend >= 50_000_000) {
     return getTierSpec('vip_black');
   }
-  if (input.annualSpendToman >= 15_000_000) {
+  if (spend >= 15_000_000) {
     return getTierSpec('platinum');
   }
-  if (input.annualSpendToman >= 5_000_000) {
+  if (spend >= 5_000_000) {
     return getTierSpec('gold');
   }
   return getTierSpec('bronze');
@@ -50,7 +101,7 @@ export function calculatePurchasePoints(input: {
   isAnniversaryDay?: boolean;
   isB2BWholesale?: boolean;
 }): { pointsEarned: number; walletCashbackToman: number } {
-  const amount = Math.max(0, input.amountToman);
+  const amount = Number.isFinite(input.amountToman) ? Math.max(0, input.amountToman) : 0;
   const spec = getTierSpec(input.tierCode);
   let multiplier = spec.pointsPer10k;
 
@@ -60,8 +111,11 @@ export function calculatePurchasePoints(input: {
     multiplier *= 2;
   }
 
-  const pointsEarned = Math.floor((amount / 10_000) * multiplier);
-  const walletCashbackToman = Math.round((amount * spec.walletCashbackPct) / 100);
+  const pointsEarned = Math.min(5_000_000, Math.floor((amount / 10_000) * multiplier));
+  const walletCashbackToman = Math.min(
+    amount,
+    Math.round((amount * spec.walletCashbackPct) / 100)
+  );
   return { pointsEarned, walletCashbackToman };
 }
 
@@ -74,47 +128,60 @@ export function calculateCustomerScores(input: {
   npsLatest: number;
   wishlistCount: number;
 }): CustomerScoreBreakdown {
-  const days = Math.max(0, input.lastPurchaseDaysAgo);
+  const days = Number.isFinite(input.lastPurchaseDaysAgo)
+    ? Math.max(0, input.lastPurchaseDaysAgo)
+    : 365;
+  const orderCount = Number.isFinite(input.orderCount) ? Math.max(0, input.orderCount) : 0;
+  const lifetimeValue = Number.isFinite(input.lifetimeValueToman)
+    ? Math.max(0, input.lifetimeValueToman)
+    : 0;
+  const nps = Number.isFinite(input.npsLatest) ? Math.min(10, Math.max(0, input.npsLatest)) : 0;
+
   const recencyScore =
     days <= 7 ? 98 : days <= 30 ? 88 : days <= 60 ? 68 : days <= 90 ? 45 : days <= 180 ? 22 : 10;
 
-  const frequencyScore = Math.min(100, Math.max(20, input.orderCount * 22 + 12));
-  const monetaryScore = Math.min(
-    100,
-    Math.max(20, Math.round((input.lifetimeValueToman / 70_000_000) * 100))
-  );
+  const frequencyScore = Math.min(100, Math.max(20, orderCount * 22 + 12));
+  const monetaryScore = Math.min(100, Math.max(20, Math.round((lifetimeValue / 70_000_000) * 100)));
 
-  // Exact spec weights: Recency 35%, Frequency 30%, Monetary 35%
+  // Spec weights: Recency 35%, Frequency 30%, Monetary 35%
   const rfmWeighted = Math.round(
     recencyScore * 0.35 + frequencyScore * 0.30 + monetaryScore * 0.35
   );
 
-  const behavioralScore = Math.min(100, Math.max(0, Math.round(input.behavioralScore)));
-  const engagementScore = Math.min(100, Math.max(0, Math.round(input.engagementScore)));
-  const npsNormalized = Math.min(100, Math.max(0, Math.round(input.npsLatest * 10)));
+  const behavioralScore = Math.min(100, Math.max(0, Math.round(input.behavioralScore || 0)));
+  const engagementScore = Math.min(100, Math.max(0, Math.round(input.engagementScore || 0)));
+  const npsNormalized = Math.round(nps * 10);
   const potentialScore = Math.min(
     100,
-    Math.round(rfmWeighted * 0.6 + behavioralScore * 0.25 + Math.min(15, input.wishlistCount * 5))
+    Math.max(
+      0,
+      Math.round(
+        rfmWeighted * 0.6 +
+          behavioralScore * 0.25 +
+          Math.min(15, Math.max(0, input.wishlistCount || 0) * 5)
+      )
+    )
   );
 
-  // Exact spec formula:
-  // Customer Score = (RFM * 0.35) + (Behavioral * 0.20) + (Engagement * 0.15) + (NPS * 0.15) + (Potential * 0.15)
-  const overallScore = Math.round(
-    rfmWeighted * 0.35 +
-      behavioralScore * 0.20 +
-      engagementScore * 0.15 +
-      npsNormalized * 0.15 +
-      potentialScore * 0.15
+  const overallScore = Math.min(
+    100,
+    Math.round(
+      rfmWeighted * 0.35 +
+        behavioralScore * 0.20 +
+        engagementScore * 0.15 +
+        npsNormalized * 0.15 +
+        potentialScore * 0.15
+    )
   );
 
   const churnRiskPct = Math.min(
     95,
-    Math.max(4, Math.round(days * 0.45 + (input.npsLatest <= 6 ? 25 : 0) - input.orderCount * 3))
+    Math.max(4, Math.round(days * 0.45 + (nps <= 6 ? 25 : 0) - orderCount * 3))
   );
 
-  const returnRiskPct = Math.min(45, Math.max(3, input.npsLatest <= 6 ? 24 : 7));
+  const returnRiskPct = Math.min(45, Math.max(3, nps <= 6 ? 24 : 7));
   const predicted12mClvToman = Math.round(
-    Math.max(input.lifetimeValueToman, 6_000_000) * (1 + overallScore / 220)
+    Math.max(lifetimeValue, 6_000_000) * (1 + overallScore / 220)
   );
 
   return {
@@ -133,7 +200,9 @@ export function calculateCustomerScores(input: {
   };
 }
 
-export function classifyRfmSegment(customer: Pick<Customer360, 'lastPurchaseDaysAgo' | 'orders' | 'scores'>): RfmSegmentName {
+export function classifyRfmSegment(
+  customer: Pick<Customer360, 'lastPurchaseDaysAgo' | 'orders' | 'scores'>
+): RfmSegmentName {
   const days = customer.lastPurchaseDaysAgo;
   const orderCount = customer.orders.length;
 
@@ -228,40 +297,93 @@ export interface WebhookOrderInput {
   attributionChannel: 'instagram_dm' | 'telegram_bot' | 'direct_web' | 'store_walkin';
 }
 
-export function applyWebhookOrderToCustomers(
-  customers: Customer360[],
-  payload: WebhookOrderInput
-): {
+export interface WebhookApplySuccess {
+  ok: true;
+  duplicate: boolean;
   updatedCustomers: Customer360[];
   targetCustomer: Customer360;
   isNewCustomer: boolean;
   pointsEarned: number;
   walletCashbackToman: number;
   tierUpgradedFrom: LoyaltyTierCode | null;
-  newFollowUpTask: FollowUpTask;
-} {
+  newFollowUpTask: FollowUpTask | null;
+}
+
+export interface WebhookApplyFailure {
+  ok: false;
+  errorFa: string;
+}
+
+export type WebhookApplyResult = WebhookApplySuccess | WebhookApplyFailure;
+
+const MAX_ORDER_TOMAN = 5_000_000_000;
+
+/**
+ * Applies an order webhook exactly once. Duplicate externalOrderIds (retries from the
+ * three storefronts or POS) are detected before any loyalty mutation, so a retried
+ * webhook can never double-count spend, points or follow-up tasks.
+ */
+export function applyWebhookOrderToCustomers(
+  customers: Customer360[],
+  payload: WebhookOrderInput
+): WebhookApplyResult {
   const phoneE164 = normalizeIranPhone(payload.phone);
-  const existingIndex = customers.findIndex((c) => c.phoneE164 === phoneE164);
-  const isNewCustomer = existingIndex === -1;
+  if (!phoneE164) {
+    return { ok: false, errorFa: 'شماره موبایل معتبر نیست؛ سفارش پذیرفته نشد.' };
+  }
+
+  const totalToman = Math.round(Number(payload.totalToman));
+  if (!Number.isFinite(totalToman) || totalToman <= 0 || totalToman > MAX_ORDER_TOMAN) {
+    return { ok: false, errorFa: 'مبلغ سفارش نامعتبر است؛ سفارش پذیرفته نشد.' };
+  }
+
+  const externalOrderId = String(payload.externalOrderId ?? '').trim().slice(0, 64);
+  if (externalOrderId.length < 3) {
+    return { ok: false, errorFa: 'کد سفارش معتبر نیست؛ سفارش پذیرفته نشد.' };
+  }
+
+  const itemsSummary = String(payload.itemsSummary ?? '').trim().slice(0, 255) || 'محصول راسپینا';
+  const fullName = String(payload.fullName ?? '').trim().slice(0, 120) || 'مشتری جدید راسپینا';
+
+  const duplicateOwner = customers.find((c) =>
+    c.orders.some(
+      (o) => o.externalOrderId.trim().toLowerCase() === externalOrderId.toLowerCase()
+    )
+  );
+  if (duplicateOwner) {
+    return {
+      ok: true,
+      duplicate: true,
+      updatedCustomers: customers,
+      targetCustomer: duplicateOwner,
+      isNewCustomer: false,
+      pointsEarned: 0,
+      walletCashbackToman: 0,
+      tierUpgradedFrom: null,
+      newFollowUpTask: null,
+    };
+  }
 
   const newOrder = {
     id: `ord-${Date.now()}`,
-    externalOrderId: payload.externalOrderId,
+    externalOrderId,
     sourceSite: payload.sourceSite,
     attributionChannel: payload.attributionChannel,
     orderedAt: 'هم‌اکنون (۱۴۰۴/۰۸/۲۶)',
-    totalToman: payload.totalToman,
-    itemsSummary: payload.itemsSummary,
+    totalToman,
+    itemsSummary,
     paymentMethod: 'zarinpal' as const,
     status: 'paid' as const,
   };
 
+  const existingIndex = customers.findIndex((c) => c.phoneE164 === phoneE164);
+  const isNewCustomer = existingIndex === -1;
   let target: Customer360;
   let tierUpgradedFrom: LoyaltyTierCode | null = null;
 
   if (!isNewCustomer) {
     const prev = customers[existingIndex];
-    const nextAnnual = prev.annualSpendToman + payload.totalToman;
+    const nextAnnual = prev.annualSpendToman + totalToman;
     const nextTier = determineLoyaltyTier({
       annualSpendToman: nextAnnual,
       manualVipInvited: prev.manualVipInvited,
@@ -271,7 +393,7 @@ export function applyWebhookOrderToCustomers(
     }
 
     const { pointsEarned, walletCashbackToman } = calculatePurchasePoints({
-      amountToman: payload.totalToman,
+      amountToman: totalToman,
       tierCode: nextTier.code,
       isB2BWholesale: prev.isB2BWholesale,
     });
@@ -290,7 +412,7 @@ export function applyWebhookOrderToCustomers(
         ];
 
     const nextOrders = [newOrder, ...prev.orders];
-    const nextClv = prev.lifetimeValueToman + payload.totalToman;
+    const nextClv = prev.lifetimeValueToman + totalToman;
     const scores = calculateCustomerScores({
       lastPurchaseDaysAgo: 0,
       orderCount: nextOrders.length,
@@ -316,6 +438,8 @@ export function applyWebhookOrderToCustomers(
 
     const updatedCustomers = customers.map((c, idx) => (idx === existingIndex ? target : c));
     return {
+      ok: true,
+      duplicate: false,
       updatedCustomers,
       targetCustomer: target,
       isNewCustomer: false,
@@ -327,7 +451,7 @@ export function applyWebhookOrderToCustomers(
         customerId: target.id,
         customerName: target.fullName,
         tierCode: target.tierCode,
-        orderId: payload.externalOrderId,
+        orderId: externalOrderId,
         stage: 'immediate_confirm',
         stageLabelFa: 'تأیید سفارش هوشمند + زمان‌بندی NPS ۲۴ساعته',
         dueLabelFa: 'هم‌اکنون (Webhook)',
@@ -341,16 +465,16 @@ export function applyWebhookOrderToCustomers(
     };
   }
 
-  const nextTier = determineLoyaltyTier({ annualSpendToman: payload.totalToman });
+  const nextTier = determineLoyaltyTier({ annualSpendToman: totalToman });
   const { pointsEarned, walletCashbackToman } = calculatePurchasePoints({
-    amountToman: payload.totalToman,
+    amountToman: totalToman,
     tierCode: nextTier.code,
   });
 
   const scores = calculateCustomerScores({
     lastPurchaseDaysAgo: 0,
     orderCount: 1,
-    lifetimeValueToman: payload.totalToman,
+    lifetimeValueToman: totalToman,
     behavioralScore: 65,
     engagementScore: 70,
     npsLatest: 8,
@@ -359,7 +483,7 @@ export function applyWebhookOrderToCustomers(
 
   target = {
     id: `cust-${Date.now()}`,
-    fullName: payload.fullName.trim() || 'مشتری جدید راسپینا',
+    fullName,
     phoneE164,
     birthDate: '1375/01/01',
     city: payload.city,
@@ -383,15 +507,15 @@ export function applyWebhookOrderToCustomers(
       },
     ],
     orders: [newOrder],
-    viewedProducts: [payload.itemsSummary],
+    viewedProducts: [itemsSummary],
     wishlist: [],
     abandonedCartItems: [],
     searchKeywords: [],
     devicePreference: 'mobile',
     acquisitionSource: payload.sourceSite,
     interactions: [],
-    annualSpendToman: payload.totalToman,
-    lifetimeValueToman: payload.totalToman,
+    annualSpendToman: totalToman,
+    lifetimeValueToman: totalToman,
     walletBalanceToman: walletCashbackToman,
     pointsBalance: pointsEarned,
     tierCode: nextTier.code,
@@ -410,6 +534,8 @@ export function applyWebhookOrderToCustomers(
   };
 
   return {
+    ok: true,
+    duplicate: false,
     updatedCustomers: [target, ...customers],
     targetCustomer: target,
     isNewCustomer: true,
@@ -421,7 +547,7 @@ export function applyWebhookOrderToCustomers(
       customerId: target.id,
       customerName: target.fullName,
       tierCode: target.tierCode,
-      orderId: payload.externalOrderId,
+      orderId: externalOrderId,
       stage: 'immediate_confirm',
       stageLabelFa: 'خوش‌آمدگویی + تأیید سفارش اول',
       dueLabelFa: 'هم‌اکنون (Webhook)',

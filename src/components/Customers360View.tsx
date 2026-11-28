@@ -6,6 +6,7 @@ import {
   getTierSpec,
   normalizeIranPhone,
 } from '../utils/crmEngine';
+import { sanitizeText, validateFullName, validatePhone } from '../utils/validation';
 import type {
   Customer360,
   CustomerInteraction,
@@ -78,12 +79,14 @@ export function Customers360View({
 
   const handleCreateCustomer = (e: React.FormEvent) => {
     e.preventDefault();
-    const trimmedName = newName.trim();
-    const normalizedPhone = normalizeIranPhone(newPhone);
-    if (!trimmedName || normalizedPhone.length < 11) {
-      setFormError('نام کامل و شماره موبایل معتبر الزامی است.');
+    const nameError = validateFullName(newName);
+    const phoneError = validatePhone(newPhone);
+    if (nameError || phoneError) {
+      setFormError(nameError ?? phoneError ?? 'اطلاعات مشتری نامعتبر است.');
       return;
     }
+    const trimmedName = sanitizeText(newName, 120);
+    const normalizedPhone = normalizeIranPhone(newPhone);
     if (customers.some((c) => c.phoneE164 === normalizedPhone)) {
       setFormError('مشتری با این شماره موبایل از قبل در CDP ثبت شده است.');
       return;
@@ -560,6 +563,7 @@ export function Customers360View({
                   <input
                     type="text"
                     aria-label="موضوع تعامل"
+                    maxLength={120}
                     value={noteTopic}
                     onChange={(e) => setNoteTopic(e.target.value)}
                     placeholder="موضوع (مثلاً: مشاوره سایز پالتو)"
@@ -568,6 +572,7 @@ export function Customers360View({
                   <input
                     type="text"
                     aria-label="خلاصه یادداشت تعامل"
+                    maxLength={500}
                     value={noteSummary}
                     onChange={(e) => setNoteSummary(e.target.value)}
                     placeholder="نتیجه تماس یا سلیقه ثبت‌شده..."
@@ -599,6 +604,7 @@ export function Customers360View({
                   <input
                     type="text"
                     aria-label="افزودن تگ دستی"
+                    maxLength={40}
                     value={newTagText}
                     onChange={(e) => setNewTagText(e.target.value)}
                     placeholder="تگ دستی..."
@@ -651,6 +657,7 @@ export function Customers360View({
                 <input
                   id="cust-name-input"
                   type="text"
+                  maxLength={120}
                   value={newName}
                   onChange={(e) => setNewName(e.target.value)}
                   placeholder="مثلاً: آزاده شریفی"
@@ -665,6 +672,9 @@ export function Customers360View({
                 <input
                   id="cust-phone-input"
                   type="tel"
+                  inputMode="numeric"
+                  maxLength={16}
+                  dir="ltr"
                   value={newPhone}
                   onChange={(e) => setNewPhone(e.target.value)}
                   placeholder="09120001122"

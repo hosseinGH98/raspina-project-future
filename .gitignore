@@ -1,0 +1,11 @@
+node_modules/
+artifacts/
+*.log
+.DS_Store
+
+# Secrets must never be committed
+.env
+.env.*
+!.env.example
+public/api/config.php
+public_html/api/config.php

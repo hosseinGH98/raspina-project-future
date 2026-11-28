@@ -4,6 +4,42 @@
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
+-- ---------------------------------------------------------------------------
+-- Authentication & application state (required by public_html/api/*.php)
+-- ---------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS users (
+  id CHAR(36) PRIMARY KEY,
+  username VARCHAR(60) NOT NULL UNIQUE,
+  display_name VARCHAR(120) NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  role ENUM('ceo','branch_manager','marketing','support','sales','analyst') NOT NULL DEFAULT 'analyst',
+  is_active TINYINT(1) NOT NULL DEFAULT 1,
+  session_version INT UNSIGNED NOT NULL DEFAULT 1,
+  failed_attempts TINYINT NOT NULL DEFAULT 0,
+  locked_until DATETIME NULL,
+  last_login_at DATETIME NULL,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX idx_users_role (role)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS app_state (
+  id TINYINT UNSIGNED PRIMARY KEY,
+  payload LONGTEXT NOT NULL,
+  version BIGINT UNSIGNED NOT NULL DEFAULT 0,
+  updated_by VARCHAR(60) NOT NULL,
+  updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS webhook_events (
+  id CHAR(36) PRIMARY KEY,
+  source VARCHAR(32) NOT NULL,
+  nonce VARCHAR(64) NOT NULL,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  UNIQUE KEY uq_webhook_nonce (source, nonce),
+  INDEX idx_webhook_created (created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 CREATE TABLE IF NOT EXISTS customers (
   id CHAR(36) PRIMARY KEY,
   phone_e164 VARCHAR(16) NOT NULL UNIQUE,
@@ -195,5 +231,10 @@ CREATE TABLE IF NOT EXISTS instagram_daily_metrics (
   ai_specialist_summary JSON NOT NULL,
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Verification queries after import (run in phpMyAdmin → SQL):
+-- SELECT COUNT(*) FROM information_schema.tables
+--  WHERE table_schema = DATABASE() AND table_name IN
+--  ('users','app_state','webhook_events','customers','loyalty_accounts','orders','follow_up_tasks');
 
 SET FOREIGN_KEY_CHECKS = 1;
